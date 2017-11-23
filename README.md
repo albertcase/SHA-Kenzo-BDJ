@@ -1,29 +1,52 @@
-# README #
+# SHA-Kenzo-BDJ`s API
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### 1. 小样提交信息API
 
-### What is this repository for? ###
+Method: POST
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+##### API URL:
 
-### How do I get set up? ###
+```html
+domian/api/giftinfo
+```
+##### Get Parameter
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+name: 张三, moblile: 13112345678, province:上海, city:上海, area:黄浦区, address:湖滨路
 
-### Contribution guidelines ###
+```javascript
+{
+name: '张三',
+tel: '13112345678',
+province: '上海',
+city: '上海',
+area: '黄浦区',
+address: '湖滨路'
+}
+```
 
-* Writing tests
-* Code review
-* Other guidelines
 
-### Who do I talk to? ###
+##### Response
 
-* Repo owner or admin
-* Other community or team contact
+##### status 1
+
+```javascript
+{
+status: '1',
+msg: '信息提交成功',
+}
+```
+
+#####  status 0
+
+```javascript
+{
+status: '0',
+msg: '信息提交失败',
+userStatus: {
+    "isold": 0,
+    "isgift": 1,
+    "issubmit": 0,
+    "isluckydraw": 0
+  }
+}
+```
