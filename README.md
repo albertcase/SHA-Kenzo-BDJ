@@ -1,29 +1,33 @@
 # SHA-Kenzo-BDJ`s API
 
-### 1. 小样提交信息API
+##备注
+```
+1.domain/home.html ：入口文件
+2.API list
+    - 1.domain/api/phonecode :短信验证码
+    - 2.domain/api/submit :提交表单
+3.授权登陆
+    - http://127.0.0.1:9123/Initialization （js引用）
+```
+
+### 1. 短信验证API
 
 Method: POST
 
-##### API URL:
+##### API URL: 
 
 ```html
-domian/api/giftinfo
+domain/api/phonecode
 ```
 ##### Get Parameter
 
-name: 张三, moblile: 13112345678, province:上海, city:上海, area:黄浦区, address:湖滨路
+phone:13112311231
 
 ```javascript
 {
-name: '张三',
-tel: '13112345678',
-province: '上海',
-city: '上海',
-area: '黄浦区',
-address: '湖滨路'
+    phone : 13112311231
 }
 ```
-
 
 ##### Response
 
@@ -31,8 +35,8 @@ address: '湖滨路'
 
 ```javascript
 {
-status: '1',
-msg: '信息提交成功',
+    status: '1',
+    msg: '发送成功！',
 }
 ```
 
@@ -40,13 +44,7 @@ msg: '信息提交成功',
 
 ```javascript
 {
-status: '0',
-msg: '信息提交失败',
-userStatus: {
-    "isold": 0,
-    "isgift": 1,
-    "issubmit": 0,
-    "isluckydraw": 0
-  }
+    status: '0',
+    msg: '发送失败！',
 }
 ```

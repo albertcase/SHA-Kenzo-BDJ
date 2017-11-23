@@ -11,7 +11,7 @@ define("ENV", 'dev');
 define("USER_STORAGE", 'COOKIE');
 
 //
-define("WECHAT_CAMPAIGN", true);
+define("WECHAT_CAMPAIGN", false);
 
 //Wechat Vendor
 define("WECHAT_VENDOR", 'same'); // default | curio | same
@@ -60,4 +60,3 @@ define("ENCRYPT_KEY", '29FB77CB8E94B358');
 define("ENCRYPT_IV", '6E4CAB2EAAF32E90');
 
 define("WECHAT_TOKEN_PREFIX", 'wechat:token:');
-
