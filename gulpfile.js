@@ -32,26 +32,34 @@ var path = {
         //'./src/assets/js/api.js',
         //'./src/assets/js/home.js'
     ],
-    newFollowJs:[
+    wechatJs:[
         './src/assets/js/lib/zepto.min.js',
         './src/assets/js/lib/pre-loader.js',
         './src/assets/js/rem.js',
-        './src/assets/js/region.js',
+        //'./src/assets/js/region.js',
         './src/assets/js/common.js',
         './src/assets/js/api.js',
-        './src/assets/js/wxshare.js',
-        './src/assets/js/newfollow.js',
+        './src/assets/js/home.js',
+        './src/assets/js/home_wechat.js',
     ],
-    followedJs:[
+    weiboJs:[
         './src/assets/js/lib/zepto.min.js',
         './src/assets/js/lib/pre-loader.js',
-        './src/assets/js/lib/cookie.js',
         './src/assets/js/rem.js',
-        './src/assets/js/region.js',
+        //'./src/assets/js/region.js',
         './src/assets/js/common.js',
         './src/assets/js/api.js',
-        './src/assets/js/wxshare.js',
-        './src/assets/js/followed.js',
+        './src/assets/js/home.js',
+        './src/assets/js/home_weibo.js',
+    ],
+    webJs:[
+        './src/assets/js/lib/zepto.min.js',
+        './src/assets/js/lib/pre-loader.js',
+        './src/assets/js/rem.js',
+        './src/assets/js/common.js',
+        './src/assets/js/api.js',
+        './src/assets/js/home.js',
+        './src/assets/js/home_web.js',
     ],
     images:[
         './src/assets/*.{png,jpg,jpeg}',
@@ -89,19 +97,28 @@ gulp.task('css',['clean'],function () {
 });
 
 // Concatenate & Minify
-gulp.task('scripts_newfollow',['clean'], function() {
-    return gulp.src(path.newFollowJs)
-        .pipe(concat('all_newfollow.js'))
+gulp.task('scripts_wechat',['clean'], function() {
+    return gulp.src(path.wechatJs)
+        .pipe(concat('all_wechat.js'))
         .pipe(gulp.dest('./src/dist'))
-        .pipe(rename('all_newfollow.min.js'))
+        .pipe(rename('all_wechat.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./src/dist/js'));
 });
-gulp.task('scripts_followed',['clean'], function() {
-    return gulp.src(path.followedJs)
-        .pipe(concat('all_followed.js'))
+gulp.task('scripts_weibo',['clean'], function() {
+    return gulp.src(path.weiboJs)
+        .pipe(concat('all_weibo.js'))
         .pipe(gulp.dest('./src/dist'))
-        .pipe(rename('all_followed.min.js'))
+        .pipe(rename('all_weibo.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./src/dist/js'));
+});
+
+gulp.task('scripts_web',['clean'], function() {
+    return gulp.src(path.weiboJs)
+        .pipe(concat('all_web.js'))
+        .pipe(gulp.dest('./src/dist'))
+        .pipe(rename('all_web.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./src/dist/js'));
 });
@@ -122,10 +139,13 @@ gulp.task("tinypng", function(){
 // Watch Files For Changes
 gulp.task('watch', ['clean'],function() {
     gulp.watch(path.css,['css']);
-    gulp.watch(path.followedJs,['scripts_followed']);
+    gulp.watch(path.wechatJs,['scripts_wechat']);
+    gulp.watch(path.weiboJs,['scripts_weibo']);
+    gulp.watch(path.web,['scripts_web']);
+    gulp.watch(path.images,['tinypng']);
 });
 
 // Default Task
-gulp.task('default', ['watch', 'css','scripts_followed','browser-sync']);
+gulp.task('default', ['watch', 'css','scripts_wechat','scripts_weibo','scripts_web','tinypng','browser-sync']);
 
 
