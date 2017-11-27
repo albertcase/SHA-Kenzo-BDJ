@@ -16,3 +16,5 @@ $routers['/ajax/post'] = array('CampaignBundle\Api', 'form');
 $routers['/'] = array('CampaignBundle\Page', 'index');
 // $routers['/initialization'] = array('CampaignBundle\Page', 'login');
 
+//Api
+$routers['/api/phonecode'] = array('CampaignBundle\Api', 'phoneCode');
