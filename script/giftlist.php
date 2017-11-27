@@ -29,7 +29,7 @@ class GiftList
 
     public function createList()
     {
-      foreach ($this->ApplyList as $k => $v) {
+      foreach ($this->giftList as $k => $v) {
           $redis = new Redis();
           $redis->hSet('quality', $v['name'], $v['num']);
           $v['created'] = date('Y-m-d H:i:s');
