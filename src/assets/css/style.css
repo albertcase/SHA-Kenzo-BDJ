@@ -886,6 +886,11 @@ body {
 /*
   For pin-fillform
 */
+#pin-fillform {
+  background: url("../images/form-bg.png") no-repeat;
+  background-size: 100% 100%;
+  color: #99578a;
+}
 #pin-fillform .msgbox {
   position: absolute;
   top: 0;
@@ -898,9 +903,18 @@ body {
 }
 #pin-fillform .title {
   font-size: 0.26rem;
-  color: #6b6b6b;
+  color: #99578a;
   text-align: center;
   margin: 0.3rem auto 0.6rem;
+}
+#pin-fillform .title strong {
+  font-size: 0.38rem;
+  letter-spacing: 2px;
+}
+#pin-fillform .tips {
+  font-size: 0.16rem;
+  color: #99578a;
+  text-align: center;
 }
 #pin-fillform #form-contact {
   position: relative;
@@ -923,15 +937,14 @@ body {
   padding: 0.15rem 0;
   font-size: 0.26rem;
   text-align: center;
-  border: none;
+  border: #8b5890 1px solid;
   background: transparent;
-  border-bottom: #a4b3e7 1px solid;
-  mask-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #ffffff 15%, #ffffff 50%, #ffffff 85%, rgba(255, 255, 255, 0) 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  -webkit-mask-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #ffffff 15%, #ffffff 50%, #ffffff 85%, rgba(255, 255, 255, 0) 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  -webkit-mask-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, white 15%, white 50%, white 85%, rgba(255, 255, 255, 0) 100%);
-  /* Chrome10-25,Safari5.1-6 */
+  color: #7e4983;
+}
+#pin-fillform #form-contact .input-box label {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 #pin-fillform #form-contact .select-box {
   position: relative;

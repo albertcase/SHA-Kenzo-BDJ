@@ -99,17 +99,23 @@
 
     <!-- 填写表单选项-->
     <div class="pin pin-5" id="pin-fillform">
+        <div class="logo">
+            <img src="src/dist/images/logo.png" alt=""/>
+        </div>
         <h3 class="title">
-            *请确认您的邮寄信息填写无误<br>
-            以便我们为您更快寄出产品
+            <strong>填写信息</strong><br>
+            赠品将以快递的形式送达<br>
+            请如实填写
         </h3>
         <form id="form-contact">
             <div class="form-information">
                 <div class="input-box input-box-name">
-                    <input type="text" id="input-name" placeholder="姓名"/>
+                    <label for="input-name">姓名</label>
+                    <input type="text" id="input-name"/>
                 </div>
                 <div class="input-box input-box-mobile">
-                    <input type="tel" maxlength="11" id="input-mobile" placeholder="电话"/>
+                    <label for="input-mobile">电话</label>
+                    <input type="tel" maxlength="11" id="input-mobile"/>
                 </div>
                 <div class="input-box input-box-validate-code">
                     <input type="text" id="input-validate-code" placeholder="输入验证码"/>
@@ -148,6 +154,10 @@
                     <input type="text" id="input-address" placeholder="详细地址"/>
                 </div>
             </div>
+            <p class="tips">
+                填写以上信息并点击“确认提交”即代表您同意我们收集和使用您的个人信息
+                并且我们仅为本次活动的目的收集和使用您的个人信息
+            </p>
             <div class="btn btn-submit">
                 <div class="tt">提 交</div>
             </div>
