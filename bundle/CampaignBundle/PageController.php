@@ -23,11 +23,11 @@ class PageController extends Controller
         return $this->render('index', array('config' => $config));
     }
 
-    public function loginAction()
-    {
-        echo 'Initialization ok';
-        exit;
-    }
+    // public function loginAction()
+    // {
+    //     echo 'Initialization ok';
+    //     exit;
+    // }
 
     public function clearCookieAction()
     {

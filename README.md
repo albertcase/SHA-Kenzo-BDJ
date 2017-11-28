@@ -6,8 +6,6 @@
 2.API list
     - 1.domain/api/phonecode :短信验证码
     - 2.domain/api/submit :提交表单
-3.授权登陆
-    - http://127.0.0.1:9123/Initialization （js引用）
 ```
 
 ### 1. 短信验证API

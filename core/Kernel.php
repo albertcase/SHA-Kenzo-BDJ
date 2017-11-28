@@ -20,7 +20,7 @@ class Kernel
 	public function handle(Request $request)
 	{
 
-		$this->initialize();
+		// $this->initialize();
 
 		//request
 		$event = new RequestEvent($request);
@@ -47,11 +47,11 @@ class Kernel
 
 	public function initialize()
 	{
-		if(WECHAT_CAMPAIGN)
-			$this->dispatcher->addListener('kernel.request', array(new \WechatBundle\EventListener(), 'initUser'));
-		else
-			$this->dispatcher->addListener('kernel.request', array(new \CampaignBundle\EventListener(), 'initUser'));
-		$this->dispatcher->addListener('kernel.request', array(new \CampaignBundle\EventListener(), 'extendUser'));
+		// if(WECHAT_CAMPAIGN)
+		// 	$this->dispatcher->addListener('kernel.request', array(new \WechatBundle\EventListener(), 'initUser'));
+		// else
+		// 	$this->dispatcher->addListener('kernel.request', array(new \CampaignBundle\EventListener(), 'initUser'));
+		// $this->dispatcher->addListener('kernel.request', array(new \CampaignBundle\EventListener(), 'extendUser'));
 		//$this->dispatcher->addListener('kernel.request', new CampaignBundle\Listerner());
 	}
 }
