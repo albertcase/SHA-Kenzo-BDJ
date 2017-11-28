@@ -114,7 +114,6 @@ body{
   left: 0;
   bottom: 0;
   @include size(100%,100%);
-  padding-top: 1.3rem;
   box-sizing: border-box;
   overflow: hidden;
   @include transition(opacity 1s);
@@ -150,6 +149,9 @@ body{
 .wrapper{
   opacity: 0;
   @include fullabsolute(0,0,100%,100%,1);
+  &.fade{
+   opacity: 1;
+  }
 }
 .container{
   @include fullabsolute(0,0,100%,100%,10);
@@ -672,20 +674,97 @@ $ani-delay-5: 5000ms;
   }
 }
 
-//for unfollow page
-#pin-follow{
-  .qrcode{
-    @include size(3.05rem,3.06rem);
-    margin: 0.8rem auto 0.5rem;
-  }
-  .qrcode-des{
-    @include size(3.53rem,1.57rem);
-    margin: 0 auto;
-  }
-  .foreground{
-    position: absolute;
-    left: 0.7rem;
-    bottom: 0;
-    width: 5.52rem;
-  }
+
+/* Basic sample */
+
+body{
+  overflow:hidden;
+  background-color:#fcfcfc;
+  margin:0;
+  padding:0;
+}
+
+.flipbook-viewport{
+  overflow:hidden;
+  width:100%;
+  height:100%;
+}
+
+.flipbook-viewport .container{
+  position:absolute;
+  top:0%;
+  left:10%;
+  margin:auto;
+  width: 80%;
+  height: 80%;
+}
+
+.flipbook-viewport .flipbook{
+  /*width:922px;*/
+  /*height:600px;*/
+  /*left:-461px;*/
+  /*top:-300px;*/
+  margin: 0 auto;
+}
+
+.flipbook-viewport .page{
+  width:461px;
+  height:600px;
+  background-color:white;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position: center;
+}
+
+.flipbook .page{
+  -webkit-box-shadow:0 0 20px rgba(0,0,0,0.2);
+  -moz-box-shadow:0 0 20px rgba(0,0,0,0.2);
+  -ms-box-shadow:0 0 20px rgba(0,0,0,0.2);
+  -o-box-shadow:0 0 20px rgba(0,0,0,0.2);
+  box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+.flipbook-viewport .page img{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin:0;
+}
+
+.flipbook-viewport .shadow{
+  -webkit-transition: -webkit-box-shadow 0.5s;
+  -moz-transition: -moz-box-shadow 0.5s;
+  -o-transition: -webkit-box-shadow 0.5s;
+  -ms-transition: -ms-box-shadow 0.5s;
+
+  -webkit-box-shadow:0 0 20px #ccc;
+  -moz-box-shadow:0 0 20px #ccc;
+  -o-box-shadow:0 0 20px #ccc;
+  -ms-box-shadow:0 0 20px #ccc;
+  box-shadow:0 0 20px #ccc;
+}
+
+
+/*fixed*/
+.fixed-block{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10vh;
+  background: #e8c9e1;
+}
+.arrow{
+  padding: 1vh;
+  display: inline-block;
+}
+.disabled{
+  opacity: 0.6;
+  color: #333;
+}
+.arrow-right{
+  float: right;
 }

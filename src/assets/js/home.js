@@ -12,9 +12,6 @@
         //    isLuckyDraw: false /*是否抽奖*/
         //};
 
-        this.user = userInfo;
-        this.isTransformedOld = userInfo.isOld; //For new follow user, if operate the gift page, then transform Old user and display old page view
-        this.disableClick = false;
     };
     //init
     controller.prototype.init = function(){
@@ -42,25 +39,7 @@
 
         var baseurl = ''+'/src/dist/images/';
         var imagesArray = [
-            baseurl + 'preload-flower.jpg',
-            baseurl + 'preload-bg.jpg',
-            baseurl + 'logo.png',
-            baseurl + 'ani-1.png',
-            baseurl + 'ani-2.png',
-            baseurl + 'ani-3.png',
-            baseurl + 'ani-5.png',
-            baseurl + 'bg.jpg',
-            baseurl + 'btn.png',
-            baseurl + 'tag-new.png',
-            baseurl + 'f-1.png',
-            baseurl + 'fleurs-2.png',
-            baseurl + 'fleurs.png',
-            baseurl + 'foreground-1.png',
-            baseurl + 'gift-flower.png',
-            baseurl + 'guide-share.png',
-            baseurl + 'landing-1.png',
-            baseurl + 'pop-bg.png',
-            baseurl + 'text.png'
+            baseurl + 'book-bg.png',
         ];
 
         var i = 0,j= 0;
@@ -88,20 +67,6 @@
         var self = this;
         $('.preload').remove();
         $('.wrapper').addClass('fade');
-
-        /* if the isOld is true and isLuckyDraw is true, directly go to the luckydraw result page */
-        if(self.user.isOld && self.user.isLuckyDraw && self.user.isSubmit){
-            Common.gotoPin(2); /*directly go to the luckydraw result page*/
-            $('#pin-result .prize-item').html('<h3 class="title">「恭喜您」</h3>KENZO果冻霜正装（50ML）一份<br> Miss K 将火速为您寄送礼品！<span class="tip">（每个微信ID仅限中奖一次）</span>');
-            $('.btn-getbigprize').addClass('hide');
-        }else{
-            Common.gotoPin(0); // landing page
-            if(self.user.isOld){
-                self.showLandingPage(2);
-            }else{
-                self.showLandingPage(1);
-            }
-        }
         //if(self.user.isOld){
         //    if(self.user.isLuckyDraw){
         //        Common.gotoPin(2);
@@ -111,12 +76,13 @@
         //}
 
         //console.log(self.hasShared);
-        self.bindEvent();
-        self.showAllProvince();
+        //self.bindEvent();
+        //self.showAllProvince();
 
         //test
         //Common.hashRoute();
         //self.gotoFormPage();
+        self.lexiconPage();
     };
 
     //bind Events
@@ -238,17 +204,6 @@
         });
 
 
-    //    share function
-        weixinshare({
-            title1: 'KENZO 关注有礼  | 全新果冻霜，夏日清爽礼赠',
-            des: 'KENZO白莲果冻霜，让你清爽一夏~',
-            link: window.location.origin,
-            img: window.location.origin+'/src/dist/images/share.jpg'
-        },function(){
-            self.shareSuccess();
-
-        });
-
     //    imitate share function on pc====test
     //    $('.share-popup .guide-share').on('touchstart',function(){
     //        self.shareSuccess();
@@ -330,6 +285,68 @@
             }
         });
 
+    };
+
+    //events for lexicon page
+    controller.prototype.lexiconPage = function(){
+        $('.flipbook').turn({
+            // Width
+
+            width:$(window).width()*0.8,
+
+            // Height
+
+            height:$(window).height()*0.8,
+
+            // Elevation
+
+            elevation: 50,
+
+            // Enable gradients
+
+            gradients: true,
+
+            // Auto center this flipbook
+
+            autoCenter: true,
+            display: 'single',
+
+        });
+
+
+        $('.arrow-left').on('touchstart',function(){
+            $(".flipbook").turn("previous");
+            if($('.arrow-right').hasClass('disabled')){
+                $('.arrow-right').removeClass('disabled');
+            }
+        });
+        $('.arrow-right').on('touchstart',function(){
+            $(".flipbook").turn("next");
+
+            if($('.arrow-left').hasClass('disabled')){
+                $('.arrow-left').removeClass('disabled');
+            }
+        });
+//    $(".flipbook").bind("first", function(event) {
+//        $('.arrow-left').addClass('disabled');
+//    });
+//    $(".flipbook").bind("last", function(event) {
+//        $('.arrow-right').addClass('disabled');
+//    });
+
+        $(".flipbook").bind("turning", function(event, page, pageObject) {
+            // Implementation
+            if(page==1){
+                $('.arrow-left').addClass('disabled');
+                $('.arrow-right').removeClass('disabled');
+            }else if(page>1 && page<$(".flipbook").turn("pages")){
+                $('.arrow-left').removeClass('disabled');
+                $('.arrow-right').removeClass('disabled');
+            }else{
+                $('.arrow-left').removeClass('disabled');
+                $('.arrow-right').addClass('disabled');
+            }
+        });
     };
 
     controller.prototype.showLandingPage = function(page){
@@ -610,7 +627,7 @@
     $(document).ready(function(){
 //    show form
         var newFollow = new controller();
-        newFollow.init();
+        newFollow.startUp();
 
     });
 
