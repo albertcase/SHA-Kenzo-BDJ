@@ -107,18 +107,6 @@ p {
   font-size: 0.28rem;
 }
 
-.logo {
-  position: absolute;
-  top: 0.4rem;
-  z-index: 10;
-  left: 50%;
-  -webkit-transform: translate(-50%);
-  -moz-transform: translate(-50%);
-  -ms-transform: translate(-50%);
-  -o-transform: translate(-50%);
-  transform: translate(-50%);
-}
-
 .btn {
   text-align: center;
   display: block;
@@ -706,8 +694,9 @@ body {
 }
 
 .logo {
-  width: 2.18rem;
-  height: 0.73rem;
+  width: 1.94rem;
+  height: 0.47rem;
+  margin: 0.5rem auto;
 }
 
 .terms-pop {
@@ -1252,7 +1241,7 @@ body {
 #pin-prize .p3-img img {
   width: auto;
   height: 100%;
-  max-width: 100%;
+  max-width: 6.54rem;
   margin: 0 auto;
 }
 #pin-prize .p3-btns {
@@ -1283,4 +1272,20 @@ body {
   font-size: 0.28rem;
   color: #292929;
   text-decoration: underline;
+}
+
+#pin-prize-details .p4-1 {
+  height: calc(100vh - 4rem);
+  margin: 0.5rem auto;
+}
+#pin-prize-details .p4-1 img {
+  width: auto;
+  height: 100%;
+  max-width: 6.54rem;
+  margin: 0 auto;
+}
+#pin-prize-details .btn {
+  background: url("../images/btn-prize-details.png") no-repeat;
+  background-size: 100%;
+  text-indent: -999em;
 }

@@ -52,7 +52,8 @@ body{
 }
 
 .logo{
-  @include size(2.18rem,0.73rem);
+  @include size(1.94rem,0.47rem);
+  margin: 0.5rem auto;
 }
 
 //for terms-pop
@@ -572,7 +573,7 @@ body{
     img{
       width: auto;
       height: 100%;
-      max-width: 100%;
+      max-width: 6.54rem;
       margin: 0 auto;
     }
   }
@@ -604,5 +605,25 @@ body{
     font-size: 0.28rem;
     color: #292929;
     text-decoration: underline;
+  }
+}
+
+//for pin-prize-details
+#pin-prize-details{
+  .p4-1{
+    height: calc(100vh - 4rem);
+    margin: 0.5rem auto;
+    img{
+      width: auto;
+      height: 100%;
+      max-width: 6.54rem;
+      margin: 0 auto;
+    }
+  }
+  .btn{
+    //btn-prize-details.png
+    background: url("../images/btn-prize-details.png") no-repeat;
+    background-size: 100%;
+    text-indent: -999em;
   }
 }

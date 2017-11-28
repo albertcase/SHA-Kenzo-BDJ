@@ -67,7 +67,7 @@
         var self = this;
         $('.preload').remove();
         $('.wrapper').addClass('fade');
-        Common.gotoPin(2);
+        Common.gotoPin(3);
         //self.bindEvent();
         //self.showAllProvince();
 
