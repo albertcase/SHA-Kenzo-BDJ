@@ -786,7 +786,7 @@ Api = {
         var self = this;
         $('.preload').remove();
         $('.wrapper').addClass('fade');
-        Common.gotoPin(1);
+        Common.gotoPin(2);
         //self.bindEvent();
         //self.showAllProvince();
 
