@@ -67,7 +67,7 @@
         var self = this;
         $('.preload').remove();
         $('.wrapper').addClass('fade');
-        Common.gotoPin(0);
+        Common.gotoPin(1);
         //self.bindEvent();
         //self.showAllProvince();
 
@@ -284,11 +284,12 @@
         $('.flipbook').turn({
             // Width
 
-            width:$(window).width()*0.8,
+            width:$(window).width()*0.82,
 
             // Height
 
-            height:$(window).height()*0.8,
+            height:$(window).width()*0.82*920/616,
+
 
             // Elevation
 
@@ -300,7 +301,7 @@
 
             // Auto center this flipbook
 
-            autoCenter: true,
+            autoCenter: false,
             display: 'single',
 
         });

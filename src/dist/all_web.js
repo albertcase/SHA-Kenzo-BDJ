@@ -786,15 +786,7 @@ Api = {
         var self = this;
         $('.preload').remove();
         $('.wrapper').addClass('fade');
-        //if(self.user.isOld){
-        //    if(self.user.isLuckyDraw){
-        //        Common.gotoPin(2);
-        //    }else{
-        //        Common.gotoPin(0);
-        //    }
-        //}
-
-        //console.log(self.hasShared);
+        Common.gotoPin(1);
         //self.bindEvent();
         //self.showAllProvince();
 
@@ -1011,11 +1003,11 @@ Api = {
         $('.flipbook').turn({
             // Width
 
-            width:$(window).width()*0.8,
+            width:$(window).width()*0.82,
 
             // Height
 
-            height:$(window).height()*0.8,
+            height:$(window).width()*0.82*920/616,
 
             // Elevation
 
