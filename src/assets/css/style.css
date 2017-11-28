@@ -655,7 +655,7 @@ html, body {
 }
 
 body {
-  background: url("../images/bg.jpg") center center no-repeat;
+  background: url("../images/bg.png") center center no-repeat;
   background-size: cover;
 }
 
@@ -787,12 +787,9 @@ body {
 .btn {
   text-align: center;
   display: block;
-  width: 4.12rem;
-  height: 1.22rem;
+  width: 3.91rem;
+  height: 1.02rem;
   margin: 0 auto;
-  padding-top: 0.15rem;
-  background: url("../images/btn.png") center center no-repeat;
-  background-size: cover;
   color: #fff;
   font-size: 0.32rem;
   box-sizing: border-box;
@@ -863,452 +860,49 @@ body {
   height: calc(100vh - 16px);
 }
 
-.pin-landing .title {
+#pin-landing .p1-1 {
   position: relative;
-  width: 3.49rem;
-  height: 1.31rem;
-  margin: 0.5rem auto 0;
+  padding-top: 0.2rem;
+  height: calc(100vh - 2rem);
 }
-.pin-landing .tag-new {
+#pin-landing .p1-1 img {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+#pin-landing .p1-1 .btn-playvideo {
   position: absolute;
-  left: -1rem;
-  top: -0.8rem;
-  width: 1.67rem;
-  height: 1.26rem;
-}
-.pin-landing .limit-quantity {
-  text-align: center;
-  color: #6b6b6b;
-  font-size: 0.26rem;
-}
-.pin-landing .des-wrap {
-  position: relative;
+  top: 50%;
+  left: 50%;
   z-index: 2;
-  margin: 0.4rem auto;
+  width: 0.98rem;
+  height: 0.98rem;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-image: url("../images/btn-play.png");
+  background-size: contain;
 }
-.pin-landing .des-wrap .des {
-  width: 100%;
+#pin-landing .btn-go {
+  background-image: url("../images/btn-lookup.png");
+  background-size: contain;
+  text-indent: -999em;
+  background-color: transparent;
+}
+#pin-landing .link-rule {
+  width: 3.91rem;
+  margin: 0 auto;
   text-align: center;
-  color: #676763;
   font-size: 0.28rem;
-  line-height: 2;
-}
-.pin-landing .btn {
-  position: relative;
-  z-index: 2;
-}
-.pin-landing .terms-link {
-  position: relative;
-  z-index: 3;
-  width: 3rem;
-  text-align: center;
-  margin: -0.2rem auto 0;
-  color: #6b6b6b;
-  font-size: 0.22rem;
+  color: #292929;
   text-decoration: underline;
 }
-.pin-landing .foreground .box-top {
-  opacity: 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 0.4rem;
-  left: 0.8rem;
-  width: 1.54rem;
-  height: 1.74rem;
-  -moz-transition: all 4s;
-  -o-transition: all 4s;
-  -webkit-transition: all 4s;
-  transition: all 4s;
-}
-.pin-landing .foreground .box-bottom {
-  opacity: 0;
-  position: absolute;
-  z-index: 2;
-  bottom: 0.5rem;
-  right: 0.8rem;
-  width: 2.28rem;
-  height: 3.78rem;
-  -moz-transition: all 4s;
-  -o-transition: all 4s;
-  -webkit-transition: all 4s;
-  transition: all 4s;
-}
-.pin-landing .foreground .product-demo {
-  position: absolute;
-  z-index: 1;
-  bottom: 1.8rem;
-  right: -2rem;
-  width: 1.54rem;
-  height: 2.01rem;
-}
-.pin-landing .foreground .product-name {
-  position: absolute;
-  left: 0;
-  bottom: -0.2rem;
-  width: 100%;
-}
-.pin-landing .flower {
-  position: absolute;
-  left: 0.4rem;
-  bottom: -5rem;
-  width: 1.02rem;
-  height: 5.2rem;
-  -moz-transition: bottom 2s 1000ms;
-  -o-transition: bottom 2s 1000ms;
-  -webkit-transition: bottom 2s;
-  -webkit-transition-delay: 1000ms;
-  transition: bottom 2s 1000ms;
-}
-.pin-landing .fleurs {
-  position: absolute;
-  right: 0.2rem;
-  bottom: -2rem;
-  width: 2.17rem;
-  height: 4.74rem;
-  -moz-transition: bottom 2s 1000ms;
-  -o-transition: bottom 2s 1000ms;
-  -webkit-transition: bottom 2s;
-  -webkit-transition-delay: 1000ms;
-  transition: bottom 2s 1000ms;
-}
-.pin-landing .fleurs .top-flower {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2.17rem;
-  height: 4.74rem;
-  transform-origin: 61% 40%;
-  z-index: 2;
-}
-.pin-landing .fleurs .bottom-flower {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 0.59rem;
-  height: 4.74rem;
-  transform-origin: 61% 40%;
-  z-index: 1;
-}
-.pin-landing .ani-petal {
-  position: absolute;
-  top: 0.6rem;
-  left: 100%;
-  opacity: 0;
-  z-index: 1;
-  width: 1.09rem;
-  height: 1.26rem;
-}
-.pin-landing.current .ani-petal {
-  -webkit-animation: petal 6s 1;
-  -moz-animation: petal 6s 1;
-  animation: petal 6s 1;
-}
-@-webkit-keyframes petal {
-  0% {
-    top: 0.6rem;
-    left: 100%;
-    opacity: 0;
-    -webkit-transform: rotate(0deg);
-  }
-  10% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-    top: 3rem;
-    left: -20%;
-    -webkit-transform: rotate(100deg);
-  }
-  55% {
-    opacity: 1;
-  }
-  100% {
-    top: 7rem;
-    left: 100%;
-    -webkit-transform: rotate(-100deg);
-    opacity: 0;
-  }
-}
-@-moz-keyframes petal {
-  0% {
-    top: 0.6rem;
-    left: 100%;
-    opacity: 0;
-    -moz-transform: rotate(0deg);
-  }
-  10% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-    top: 3rem;
-    left: -20%;
-    -moz-transform: rotate(100deg);
-  }
-  55% {
-    opacity: 1;
-  }
-  100% {
-    top: 7rem;
-    left: 100%;
-    -moz-transform: rotate(-100deg);
-    opacity: 0;
-  }
-}
-@-o-keyframes petal {
-  0% {
-    top: 0.6rem;
-    left: 100%;
-    opacity: 0;
-    -o-transform: rotate(0deg);
-  }
-  10% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-    top: 3rem;
-    left: -20%;
-    -o-transform: rotate(100deg);
-  }
-  55% {
-    opacity: 1;
-  }
-  100% {
-    top: 7rem;
-    left: 100%;
-    -o-transform: rotate(-100deg);
-    opacity: 0;
-  }
-}
-@keyframes petal {
-  0% {
-    top: 0.6rem;
-    left: 100%;
-    opacity: 0;
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  10% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-    top: 3rem;
-    left: -20%;
-    -webkit-transform: rotate(100deg);
-    transform: rotate(100deg);
-  }
-  55% {
-    opacity: 1;
-  }
-  100% {
-    top: 7rem;
-    left: 100%;
-    -webkit-transform: rotate(-100deg);
-    transform: rotate(-100deg);
-    opacity: 0;
-  }
-}
-.pin-landing.current .flower {
-  bottom: 0rem;
-}
-.pin-landing.current .fleurs {
-  bottom: 0rem;
-}
-.pin-landing.current .fleurs .top-flower {
-  -webkit-animation: fleursaction1 5s 1 forwards;
-  -moz-animation: fleursaction1 5s 1 forwards;
-  animation: fleursaction1 5s 1 forwards;
-}
-@-webkit-keyframes fleursaction1 {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  10% {
-    -webkit-transform: rotate(16deg);
-  }
-  50% {
-    -webkit-transform: rotate(30deg);
-  }
-  100% {
-    -webkit-transform: rotate(0deg);
-  }
-}
-@-moz-keyframes fleursaction1 {
-  0% {
-    -moz-transform: rotate(0deg);
-  }
-  10% {
-    -moz-transform: rotate(16deg);
-  }
-  50% {
-    -moz-transform: rotate(30deg);
-  }
-  100% {
-    -moz-transform: rotate(0deg);
-  }
-}
-@-o-keyframes fleursaction1 {
-  0% {
-    -o-transform: rotate(0deg);
-  }
-  10% {
-    -o-transform: rotate(16deg);
-  }
-  50% {
-    -o-transform: rotate(30deg);
-  }
-  100% {
-    -o-transform: rotate(0deg);
-  }
-}
-@keyframes fleursaction1 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  10% {
-    -webkit-transform: rotate(16deg);
-    transform: rotate(16deg);
-  }
-  50% {
-    -webkit-transform: rotate(30deg);
-    transform: rotate(30deg);
-  }
-  100% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-}
-.pin-landing.current .fleurs .bottom-flower {
-  -webkit-animation: fleursaction2 5s 1 forwards;
-  -moz-animation: fleursaction2 5s 1 forwards;
-  animation: fleursaction2 5s 1 forwards;
-}
-@-webkit-keyframes fleursaction2 {
-  0% {
-    transform: skewY(0deg);
-  }
-  60% {
-    transform: skewY(0deg);
-  }
-  100% {
-    transform: skewY(30deg);
-  }
-}
-@-moz-keyframes fleursaction2 {
-  0% {
-    transform: skewY(0deg);
-  }
-  60% {
-    transform: skewY(0deg);
-  }
-  100% {
-    transform: skewY(30deg);
-  }
-}
-@-o-keyframes fleursaction2 {
-  0% {
-    transform: skewY(0deg);
-  }
-  60% {
-    transform: skewY(0deg);
-  }
-  100% {
-    transform: skewY(30deg);
-  }
-}
-@keyframes fleursaction2 {
-  0% {
-    transform: skewY(0deg);
-  }
-  60% {
-    transform: skewY(0deg);
-  }
-  100% {
-    transform: skewY(30deg);
-  }
-}
-.pin-landing.current .foreground .box-top {
-  opacity: 1;
-  left: 3.2rem;
-}
-.pin-landing.current .foreground .box-bottom {
-  opacity: 1;
-  right: 2.2rem;
-}
-.pin-landing.current .foreground .product-demo {
-  -webkit-animation: fadefromright 2000ms 1000ms 1 forwards;
-  -moz-animation: fadefromright 2000ms 1000ms 1 forwards;
-  animation: fadefromright 2000ms 1000ms 1 forwards;
-}
-@-webkit-keyframes fadefromright {
-  0% {
-    bottom: 2.8rem;
-    right: -2rem;
-    -webkit-transform: rotate(15deg);
-  }
-  100% {
-    bottom: 1.8rem;
-    right: 2rem;
-    -webkit-transform: rotate(-15deg);
-  }
-}
-@-moz-keyframes fadefromright {
-  0% {
-    bottom: 2.8rem;
-    right: -2rem;
-    -moz-transform: rotate(15deg);
-  }
-  100% {
-    bottom: 1.8rem;
-    right: 2rem;
-    -moz-transform: rotate(-15deg);
-  }
-}
-@-o-keyframes fadefromright {
-  0% {
-    bottom: 2.8rem;
-    right: -2rem;
-    -o-transform: rotate(15deg);
-  }
-  100% {
-    bottom: 1.8rem;
-    right: 2rem;
-    -o-transform: rotate(-15deg);
-  }
-}
-@keyframes fadefromright {
-  0% {
-    bottom: 2.8rem;
-    right: -2rem;
-    -webkit-transform: rotate(15deg);
-    transform: rotate(15deg);
-  }
-  100% {
-    bottom: 1.8rem;
-    right: 2rem;
-    -webkit-transform: rotate(-15deg);
-    transform: rotate(-15deg);
-  }
-}
-@keyframes overandover {
-  0% {
-    -webkit-transform: translateY(2rem);
-    -moz-transform: translateY(2rem);
-    -ms-transform: translateY(2rem);
-    -o-transform: translateY(2rem);
-    transform: translateY(2rem);
-  }
-  100% {
-    -webkit-transform: translateY(-4.8rem);
-    -moz-transform: translateY(-4.8rem);
-    -ms-transform: translateY(-4.8rem);
-    -o-transform: translateY(-4.8rem);
-    transform: translateY(-4.8rem);
-  }
-}
+
 /*
   For pin-fillform
 */
@@ -1564,13 +1158,6 @@ body {
 }
 
 /* Basic sample */
-body {
-  overflow: hidden;
-  background-color: #fcfcfc;
-  margin: 0;
-  padding: 0;
-}
-
 .flipbook-viewport {
   overflow: hidden;
   width: 100%;

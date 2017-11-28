@@ -67,15 +67,7 @@
         var self = this;
         $('.preload').remove();
         $('.wrapper').addClass('fade');
-        //if(self.user.isOld){
-        //    if(self.user.isLuckyDraw){
-        //        Common.gotoPin(2);
-        //    }else{
-        //        Common.gotoPin(0);
-        //    }
-        //}
-
-        //console.log(self.hasShared);
+        Common.gotoPin(0);
         //self.bindEvent();
         //self.showAllProvince();
 
