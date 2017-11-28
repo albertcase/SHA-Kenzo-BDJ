@@ -8,13 +8,17 @@ use Lib\PDO;
 use Lib\UserAPI;
 use Lib\WechatAPI;
 use Lib\Redis;
+use Lib\Captcher;
 
 class ApiController extends Controller
 {
+    private $helper;
+    private $_pdo;
+
     public function __construct() 
     {
 
-   	global $user;
+   	    global $user;
 
         parent::__construct();
 
@@ -22,6 +26,7 @@ class ApiController extends Controller
         //     $this->statusPrint('100', 'access deny!');
         // }
         $this->_pdo = PDO::getInstance();
+        $this->helper = new Helper();
     }
 
     /**
@@ -89,6 +94,89 @@ class ApiController extends Controller
         } else {
             return false;
         }
+    }
+
+    /**
+     * 验证验证码是否正确
+     * 一次就失效
+     */
+    public function checkPictureAction()
+    {
+        $request = $this->request;
+        $fields = array(
+            'picture' => array('notnull', '120'),
+        );
+        $request->validation($fields);
+        $picture = $request->request->get('picture');
+        if(strtolower($picture) == strtolower($_SESSION['captcha-protection'])) {
+            $data = array('status' => 1, 'msg' => '验证码正确！');
+        } else {
+            $data = array('status' => 0, 'msg' => '验证码错误！');
+        }
+        unset($_SESSION['captcha-protection']);
+        $this->dataPrint($data);
+    }
+
+    /**
+     * 获取图片验证码
+     */
+    public function pictureCodeAction()
+    {
+        $captcha = new Captcher(150, 65);
+        $captchaImage = $captcha->generate();
+        $captchaText = $captcha->getCaptchaText();
+        $_SESSION['captcha-protection'] = $captchaText;
+        if($_SESSION['captcha-protection']) {
+            $picture = base64_encode($captchaImage);
+            $data = array('status' => 1, 'msg' => "获取成功！", 'picture' => $picture);
+        } else {
+            $data = array('status' => 0, 'msg' => "获取失败！");
+        }
+        $this->dataPrint($data);
+    }
+
+    /**
+     * 提交信息
+     */
+    public function submitAction()
+    {
+        $request = $this->request;
+        $fields = array(
+            'name' => array('notnull', '120'),
+            'phone' => array('cellphone', '121'),
+            'phonecode' => array('notnull', '120'),
+            'province' => array('notnull', '120'),
+            'city' => array('notnull', '120'),
+            'area' => array('notnull', '120'),
+            'address' => array('notnull', '120'),
+            'type' => array('notnull', '120'),
+        );
+        $request->validation($fields);
+        $name = $request->request->get('name');
+        $phone = $request->request->get('phone');
+        $phonecode = $request->request->get('phonecode');
+        $province = $request->request->get('province');
+        $city = $request->request->get('city');
+        $area = $request->request->get('area');
+        $address = $request->request->get('address');
+        $type = $request->request->get('type');
+
+        $submit = new \stdClass();
+        $submit->name = $name;
+        $submit->phone = $phone;
+        $submit->province = $province;
+        $submit->city = $city;
+        $submit->area = $area;
+        $submit->address = $address;
+        $submit->type = $type;
+        $submit->created = date('Y-m-d H:i:s');
+        $id = $this->helper->insertTable('gift_info', (array) $submit);
+        if($id) {
+            $data = array('status' => 1, 'msg' => "提交成功！");
+        } else {
+            $data = array('status' => 0, 'msg' => "提交失败！");
+        }
+        $this->dataPrint($data);
     }
 
 }
