@@ -33,8 +33,9 @@ var path = {
         //'./src/assets/js/home.js'
     ],
     wechatJs:[
-        './src/assets/js/lib/zepto.min.js',
+        './src/assets/js/lib/jquery.min.1.7.js',
         './src/assets/js/lib/pre-loader.js',
+        './src/assets/js/lib/turn.min.js',
         './src/assets/js/rem.js',
         //'./src/assets/js/region.js',
         './src/assets/js/common.js',
@@ -43,8 +44,9 @@ var path = {
         './src/assets/js/home_wechat.js',
     ],
     weiboJs:[
-        './src/assets/js/lib/zepto.min.js',
+        './src/assets/js/lib/jquery.min.1.7.js',
         './src/assets/js/lib/pre-loader.js',
+        './src/assets/js/lib/turn.min.js',
         './src/assets/js/rem.js',
         //'./src/assets/js/region.js',
         './src/assets/js/common.js',
@@ -53,8 +55,9 @@ var path = {
         './src/assets/js/home_weibo.js',
     ],
     webJs:[
-        './src/assets/js/lib/zepto.min.js',
+        './src/assets/js/lib/jquery.min.1.7.js',
         './src/assets/js/lib/pre-loader.js',
+        './src/assets/js/lib/turn.min.js',
         './src/assets/js/rem.js',
         './src/assets/js/common.js',
         './src/assets/js/api.js',
