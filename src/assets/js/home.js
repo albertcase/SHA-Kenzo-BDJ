@@ -74,7 +74,7 @@
         //self.showAllProvince();
 
         //test
-        //Common.hashRoute();
+        Common.hashRoute();
         //self.gotoFormPage();
 
     };

@@ -610,10 +610,10 @@ Api = {
 
     },
 
-    getGift:function(callback){
+    getStock:function(callback){
         Common.msgBox.add('loading...');
         $.ajax({
-            url:'/api/gift',
+            url:'/api/stock',
             type:'POST',
             dataType:'json',
             success:function(data){
@@ -653,7 +653,7 @@ Api = {
     getImgValidateCode:function(callback){
         Common.msgBox.add('loading...');
         $.ajax({
-            url:'/api/picturecode',
+            url:'/api/piccode',
             type:'POST',
             dataType:'json',
             success:function(data){
@@ -673,7 +673,7 @@ Api = {
     checkImgValidateCode:function(obj,callback){
         Common.msgBox.add('loading...');
         $.ajax({
-            url:'/api/checkpicture',
+            url:'/api/checkpiccode',
             type:'POST',
             dataType:'json',
             data:obj,
@@ -793,7 +793,7 @@ Api = {
         //self.showAllProvince();
 
         //test
-        //Common.hashRoute();
+        Common.hashRoute();
         //self.gotoFormPage();
 
     };
