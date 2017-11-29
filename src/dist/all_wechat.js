@@ -1073,6 +1073,10 @@ Api = {
             if($('.arrow-left').hasClass('disabled')){
                 $('.arrow-left').removeClass('disabled');
             }
+            if($('.arrow-right').hasClass('disabled')){
+                //    go prize page
+                Common.gotoPin(2);
+            }
         });
 //    $(".flipbook").bind("first", function(event) {
 //        $('.arrow-left').addClass('disabled');
@@ -1090,10 +1094,12 @@ Api = {
                 $('.arrow-left').removeClass('disabled');
                 $('.arrow-right').removeClass('disabled');
             }else{
-                $('.arrow-left').removeClass('disabled');
-                $('.arrow-right').addClass('disabled');
-            //    go prize page
-                Common.gotoPin(2);
+                //set timeout to click event
+                var aaa = setTimeout(function(){
+                    $('.arrow-left').removeClass('disabled');
+                    $('.arrow-right').addClass('disabled');
+                    clearTimeout(aaa);
+                },1000);
             }
         });
     };
