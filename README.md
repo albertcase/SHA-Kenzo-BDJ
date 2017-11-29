@@ -151,7 +151,7 @@ domain/api/submit
 ```
 ##### Get Parameter
 
-name=evenly&phone=13112311231&phonecode=1234&province=安徽&city=合肥&area=城区&address=好人大街&type=gift1
+name=evenly&phone=13112311231&phonecode=1234&province=安徽&city=合肥&area=城区&address=好人大街&type=gift1&refer=from_wechat
 
 ```javascript
 {
@@ -162,7 +162,8 @@ name=evenly&phone=13112311231&phonecode=1234&province=安徽&city=合肥&area=�
 	city: 合肥,
 	area: 城中区,
 	address: 好人大街,
-	type: gift1
+	type: gift1,
+	refer: from_wechat
 }
 
 ```
