@@ -12,6 +12,7 @@
         //    isLuckyDraw: false /*是否抽奖*/
         //};
         this.selectedGift = 1; //1 is hou,2 is hu
+        this.isStock = true; // if stock true, show form, else show qrcode
 
     };
     //init
@@ -68,7 +69,7 @@
         var self = this;
         $('.preload').remove();
         $('.wrapper').addClass('fade');
-        Common.gotoPin(0);
+        Common.gotoPin(3);
         self.bindEvent();
         //self.showAllProvince();
 
@@ -88,9 +89,11 @@
             self.lexiconPage();
         });
 
-        //selected relative gift,go prize details page to show relative content
-        $('.btn-get-gift').on('touchstart', function(){
+        //selected relative gift,go prize details page to show relative content,call api to show if there's stock
+        $('.btn-show-gift').on('touchstart', function(){
             self.selectedGift = $(this).index()+1;
+            console.log('call api');
+            //if there's stock, show '领见面礼'， else show "来晚了"
             if(self.selectedGift == 1){
                 $('.p4-1 img').attr('src','src/dist/images/prize-hou.png');
             }else{
@@ -99,6 +102,17 @@
             Common.gotoPin(3);
         });
 
+        //get gift, '领见面礼' or "来晚了"
+        $('.btn-get-gift').on('touchstart', function(){
+            console.log('call stock api again');
+            if(self.isStock){
+            //    go form page
+                Common.gotoPin(4);
+            }else{
+                //result page
+                Common.gotoPin(5);
+            }
+        });
 
 
         //show and hide terms pop
