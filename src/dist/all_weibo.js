@@ -730,6 +730,7 @@ Api = {
         //    isGift: false, /*是否领取了小样*/
         //    isLuckyDraw: false /*是否抽奖*/
         //};
+        this.selectedGift = 1; //1 is hou,2 is hu
 
     };
     //init
@@ -786,28 +787,48 @@ Api = {
         var self = this;
         $('.preload').remove();
         $('.wrapper').addClass('fade');
-        Common.gotoPin(4);
-        //self.bindEvent();
+        Common.gotoPin(0);
+        self.bindEvent();
         //self.showAllProvince();
 
         //test
         //Common.hashRoute();
         //self.gotoFormPage();
-        self.lexiconPage();
+
     };
 
     //bind Events
     controller.prototype.bindEvent = function(){
         var self = this;
+
+        //look up the dictionary, load turns js, go pin-lexicon page
+        $('.btn-go').on('touchstart', function(){
+            Common.gotoPin(1);
+            self.lexiconPage();
+        });
+
+        //selected relative gift,go prize details page to show relative content
+        $('.btn-get-gift').on('touchstart', function(){
+            self.selectedGift = $(this).index()+1;
+            if(self.selectedGift == 1){
+                $('.p4-1 img').attr('src','src/dist/images/prize-hou.png');
+            }else{
+                $('.p4-1 img').attr('src','src/dist/images/prize-hu.png');
+            }
+            Common.gotoPin(3);
+        });
+
+
+
         //show and hide terms pop
             //close terms popup
         $('body').on('touchstart','.btn-close',function(){
-            _hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
+            //_hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             $('.terms-pop').removeClass('show');
         });
         //    show terms pop
         $('.terms-link').on('touchstart',function(){
-            _hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
+            //_hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
             /**/
             var termContent = [
                 {
@@ -1026,13 +1047,13 @@ Api = {
         });
 
 
-        $('.arrow-left').on('touchstart',function(){
+        $('.arrow-left').on('click',function(){
             $(".flipbook").turn("previous");
             if($('.arrow-right').hasClass('disabled')){
                 $('.arrow-right').removeClass('disabled');
             }
         });
-        $('.arrow-right').on('touchstart',function(){
+        $('.arrow-right').on('click',function(){
             $(".flipbook").turn("next");
 
             if($('.arrow-left').hasClass('disabled')){
@@ -1057,6 +1078,8 @@ Api = {
             }else{
                 $('.arrow-left').removeClass('disabled');
                 $('.arrow-right').addClass('disabled');
+            //    go prize page
+                Common.gotoPin(2);
             }
         });
     };

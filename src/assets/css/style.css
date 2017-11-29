@@ -1254,7 +1254,7 @@ body {
 #pin-prize .p3-img img {
   width: auto;
   height: 100%;
-  max-width: 6.54rem;
+  max-width: 100%;
   margin: 0 auto;
 }
 #pin-prize .p3-btns {
@@ -1294,7 +1294,7 @@ body {
 #pin-prize-details .p4-1 img {
   width: auto;
   height: 100%;
-  max-width: 6.54rem;
+  max-width: 100%;
   margin: 0 auto;
 }
 #pin-prize-details .btn {
