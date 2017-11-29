@@ -31,11 +31,13 @@ Api = {
 
     },
 
-    getStock:function(callback){
+    //type: gift1
+    getStock:function(obj,callback){
         Common.msgBox.add('loading...');
         $.ajax({
             url:'/api/stock',
             type:'POST',
+            data:obj,
             dataType:'json',
             success:function(data){
                 Common.msgBox.remove();

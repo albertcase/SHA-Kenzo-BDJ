@@ -643,5 +643,8 @@ body{
     background: url("../images/btn-prize-details.png") no-repeat;
     background-size: 100%;
     text-indent: -999em;
+    &.sellout{
+      background-position: 0 100%;
+    }
   }
 }

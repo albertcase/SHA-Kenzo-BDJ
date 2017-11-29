@@ -1302,3 +1302,6 @@ body {
   background-size: 100%;
   text-indent: -999em;
 }
+#pin-prize-details .btn.sellout {
+  background-position: 0 100%;
+}

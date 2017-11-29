@@ -11,7 +11,7 @@
         //    isGift: false, /*是否领取了小样*/
         //    isLuckyDraw: false /*是否抽奖*/
         //};
-        this.selectedGift = 1; //1 is hou,2 is hu
+        this.selectedGift = 'gift1'; //1 is hou,2 is hu
         this.isStock = true; // if stock true, show form, else show qrcode
 
     };
@@ -71,11 +71,12 @@
         $('.wrapper').addClass('fade');
         Common.gotoPin(0);
         self.bindEvent();
-        //self.showAllProvince();
+        self.showAllProvince();
 
         //test
         Common.hashRoute();
         //self.gotoFormPage();
+        self.getValidateCode();
 
     };
 
@@ -91,27 +92,45 @@
 
         //selected relative gift,go prize details page to show relative content,call api to show if there's stock
         $('.btn-show-gift').on('touchstart', function(){
-            self.selectedGift = $(this).index()+1;
-            console.log('call api');
-            //if there's stock, show '领见面礼'， else show "来晚了"
-            if(self.selectedGift == 1){
-                $('.p4-1 img').attr('src','src/dist/images/prize-hou.png');
-            }else{
-                $('.p4-1 img').attr('src','src/dist/images/prize-hu.png');
-            }
-            Common.gotoPin(3);
+            self.selectedGift = 'gift'+parseInt($(this).index()+1);
+            //console.log('call api');
+            Api.getStock({type:self.selectedGift},function(data){
+                console.log(data);
+                if(data.status==0){
+                    $('#pin-prize-details .btn').addClass('sellout');
+                    self.isStock = false;
+                }else if(data.status==1){
+                    self.isStock = true;
+                }else{
+                    Common.alertBox.add(data.msg);
+                }
+                //if there's stock, show '领见面礼'， else show "来晚了"
+                if(self.selectedGift == 'gift1'){
+                    $('.p4-1 img').attr('src','src/dist/images/prize-hou.png');
+                }else{
+                    $('.p4-1 img').attr('src','src/dist/images/prize-hu.png');
+                }
+                Common.gotoPin(3);
+            });
+
         });
 
         //get gift, '领见面礼' or "来晚了"
         $('.btn-get-gift').on('touchstart', function(){
-            console.log('call stock api again');
-            if(self.isStock){
-            //    go form page
-                Common.gotoPin(4);
-            }else{
-                //result page
-                Common.gotoPin(5);
-            }
+            Api.getStock({type:self.selectedGift},function(data){
+                console.log(data);
+                if(data.status==0){
+                    self.isStock = false;
+                    //result page
+                    Common.gotoPin(5);
+                }else if(data.status==1){
+                    self.isStock = true;
+                    //    go form page
+                    Common.gotoPin(4);
+                }else{
+                    Common.alertBox.add(data.msg);
+                }
+            });
         });
 
 
@@ -156,7 +175,7 @@
         * If isTransformedOld is false and filled form, you directly go result page
         * */
         $('.btn-luckydraw').on('touchstart',function(){
-            _hmt.push(['_trackEvent', 'buttons', 'click', 'btnForLuckyDraw']);
+            //_hmt.push(['_trackEvent', 'buttons', 'click', 'btnForLuckyDraw']);
             if(self.isTransformedOld){
                 $('.share-popup').addClass('show');
             }else{
@@ -175,7 +194,7 @@
         * if isTransformedOld is false, submit it and then call gift api
         * */
         $('.btn-submit').on('touchstart',function(){
-            _hmt.push(['_trackEvent', 'buttons', 'click', 'btnForSubmitForm']);
+            //_hmt.push(['_trackEvent', 'buttons', 'click', 'btnForSubmitForm']);
             if(self.validateForm()){
                 //name mobile province city area address
                 var inputNameVal = $('#input-name').val(),
@@ -238,7 +257,7 @@
 
         //switch validate code
         $('.validate-code').on('touchstart', function(){
-            _hmt.push(['_trackEvent', 'buttons', 'click', 'getValidateCode']);
+            //_hmt.push(['_trackEvent', 'buttons', 'click', 'getValidateCode']);
             self.getValidateCode();
         });
 
@@ -248,7 +267,7 @@
         * if image validate code is right
         * */
         $('.btn-get-msg-code').on('touchstart', function(){
-            _hmt.push(['_trackEvent', 'buttons', 'click', 'getMsgValidateCode']);
+            //_hmt.push(['_trackEvent', 'buttons', 'click', 'getMsgValidateCode']);
             if(self.disableClick) return;
             if(!$('#input-mobile').val()){
                 Common.errorMsgBox.add('手机号码不能为空');
@@ -399,6 +418,7 @@
     * Countdown
     * Disabled click the button untill the end the countdown
     * */
+
     controller.prototype.countDown = function(){
         var self = this;
         self.disableClick = true;
@@ -530,7 +550,7 @@
 
     controller.prototype.gotoFormPage = function(){
         var self = this;
-        Common.gotoPin(1);
+        Common.gotoPin(4);
         self.getValidateCode();
     }
 
