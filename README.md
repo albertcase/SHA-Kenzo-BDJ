@@ -4,9 +4,9 @@
 ```
 1.domain/home.html ：入口文件
 2.API list
-    - 1.domain/api/phonecode :短信验证码
-    - 2.domain/api/piccode：图片验证码
-    - 3.domain/api/checkpiccode：验证图片验证码
+    - 1.domain/api/phonecode :短信验证码 (发短信已经集成到图片验证码里)
+    - 2.domain/api/piccode：图片验证码 (验证只要用过一次，不管成功还是失败都会失效)
+    - 3.domain/api/checkpiccode：验证图片验证码 
     - 4.domain/api/submit :提交表单
 ```
 
@@ -107,11 +107,12 @@ domain/api/checkpiccode
 ```
 ##### Get Parameter
 
-picture=1q2w
+picture=1q2w&phone=13112311231
 
 ```javascript
 {
-	picture: 1q2w 
+	picture: 1q2w,
+	phone: 13112311231
 }
 
 ```
@@ -191,6 +192,15 @@ name=evenly&phone=13112311231&phonecode=1234&province=安徽&city=合肥&area=�
 {
     status: '2',
     msg: '该礼品已经领过！',
+}
+```
+
+#####  status 3
+
+```javascript
+{
+    status: '3',
+    msg: '手机验证码错误！',
 }
 ```
 
