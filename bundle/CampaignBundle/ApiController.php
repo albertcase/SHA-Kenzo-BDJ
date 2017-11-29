@@ -66,26 +66,33 @@ class ApiController extends Controller
           'phone' => array('cellphone', '121'),
         );
         $request->validation($fields);
+        $phone = $request->request->get('phone');
+        if($this->sendSMS($phone)) {
+            $data = array('status' => 1, 'msg' => '发送成功！');
+        } else {
+            $data = array('status' => 0, 'msg' => '发送失败！');
+        }
+        $this->dataPrint($data);
+    }
 
+    public function sendSMS($phone)
+    {
         $ch = curl_init();
         $apikey = "b42c77ce5a2296dcc0199552012a4bd9";
-        $mobile = $request->request->get('phone');
         $code = rand(1000, 9999);
         $RedisAPI = new Redis();
-        $RedisAPI->setPhoneCode($mobile, $code, 60);
+        $RedisAPI->setPhoneCode($phone, $code, 60);
         $text = "【Kenzo凯卓】您的验证码是{$code}";
         $data = array(
-        	'text' => $text,
-        	'apikey' => $apikey,
-        	'mobile' => $mobile
-    	);
+            'text' => $text,
+            'apikey' => $apikey,
+            'mobile' => $phone
+        );
         curl_setopt ($ch, CURLOPT_URL, 'https://sms.yunpian.com/v2/sms/single_send.json');
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
         $json_data = curl_exec($ch);
-        $array = json_decode($json_data, true);
-        $data = array('status' => 1, 'msg' => '发送成功！');
-        $this->dataPrint($data);
+        return true;
     }
 
     /**
@@ -132,11 +139,15 @@ class ApiController extends Controller
         $request = $this->request;
         $fields = array(
             'picture' => array('notnull', '120'),
+            'phone' => array('cellphone', '121'),
         );
         $request->validation($fields);
         $picture = $request->request->get('picture');
+        $phone = $request->request->get('phone');
+
         $captcher = $this->getCaptcher();
         if(strtolower($picture) == strtolower($captcher)) {
+            $this->sendSMS($phone);
             $data = array('status' => 1, 'msg' => '验证码正确！');
         } else {
             $data = array('status' => 0, 'msg' => '验证码错误！');
@@ -152,7 +163,7 @@ class ApiController extends Controller
         $helper = new Helper();
         $text = base64_encode($helper->aes128_cbc_encrypt(ENCRYPT_KEY, $captcher, ENCRYPT_IV));
         if(USER_STORAGE == 'COOKIE') { 
-            setcookie('_captcher', $text, time() + 3600 * 24 * 100, '/', $request->getDomain());
+            setcookie('_captcher', $text, time() + 300, '/', $request->getDomain());
         } else {
             $_SESSION['_captcher'] = $text;
         }

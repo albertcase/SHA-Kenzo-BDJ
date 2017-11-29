@@ -4,9 +4,9 @@
 ```
 1.domain/home.html ：入口文件
 2.API list
-    - 1.domain/api/phonecode :短信验证码
-    - 2.domain/api/piccode：图片验证码
-    - 3.domain/api/checkpiccode：验证图片验证码
+    - 1.domain/api/phonecode :短信验证码 (发短信已经集成到图片验证码里)
+    - 2.domain/api/piccode：图片验证码 (验证只要用过一次，不管成功还是失败都会失效)
+    - 3.domain/api/checkpiccode：验证图片验证码 
     - 4.domain/api/submit :提交表单
 ```
 
@@ -107,11 +107,12 @@ domain/api/checkpiccode
 ```
 ##### Get Parameter
 
-picture=1q2w
+picture=1q2w&phone=13112311231
 
 ```javascript
 {
-	picture: 1q2w 
+	picture: 1q2w,
+	phone: 13112311231
 }
 
 ```
