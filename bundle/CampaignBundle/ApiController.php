@@ -29,6 +29,33 @@ class ApiController extends Controller
         $this->helper = new Helper();
     }
 
+    public function checkgiftAction()
+    {
+        $request = $this->request;
+        $fields = array(
+            'type' => array('notnull', '120'),
+        );
+        $request->validation($fields);
+        $type = $request->request->get('type');
+        if($this->checkGiftNum($type)) {
+            $data = array('status' => 1, 'msg' => '有库存！');
+        } else {
+            $data = array('status' => 0, 'msg' => '没库存！');
+        }
+        $this->dataPrint($data);
+    }
+
+    public function checkGiftNum($type)
+    {
+        $redis = new Redis();
+        $num = (int) $redis->hGet('quality', $type);
+        if($num > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
     /**
      * 发送短信验证码
      */
@@ -108,13 +135,48 @@ class ApiController extends Controller
         );
         $request->validation($fields);
         $picture = $request->request->get('picture');
-        if(strtolower($picture) == strtolower($_SESSION['captcha-protection'])) {
+        $captcher = $this->getCaptcher();
+        if(strtolower($picture) == strtolower($captcher)) {
             $data = array('status' => 1, 'msg' => '验证码正确！');
         } else {
             $data = array('status' => 0, 'msg' => '验证码错误！');
         }
-        unset($_SESSION['captcha-protection']);
+        $this->delCaptcher();
         $this->dataPrint($data);
+    }
+
+    public function setCaptcher($captcher)
+    {
+        $this->delCaptcher();
+        $request = $this->request;
+        $helper = new Helper();
+        $text = base64_encode($helper->aes128_cbc_encrypt(ENCRYPT_KEY, $captcher, ENCRYPT_IV));
+        if(USER_STORAGE == 'COOKIE') { 
+            setcookie('_captcher', $text, time() + 3600 * 24 * 100, '/', $request->getDomain());
+        } else {
+            $_SESSION['_captcher'] = $text;
+        }
+        return $text;
+    }
+
+    public function getCaptcher()
+    {
+        $helper = new Helper();
+        if(USER_STORAGE == 'COOKIE') { 
+            $text = $helper->aes128_cbc_decrypt(ENCRYPT_KEY, base64_decode($_COOKIE['_captcher']), ENCRYPT_IV);
+        } else {
+            $text = $helper->aes128_cbc_decrypt(ENCRYPT_KEY, base64_decode($_SESSION['_captcher']), ENCRYPT_IV);
+        }
+        return $text;
+    }
+
+    public function delCaptcher()
+    {
+        if(USER_STORAGE == 'COOKIE') { 
+            unset($_COOKIE['_captcher']);
+        } else {
+            unset($_SESSION['_captcher']);
+        }
     }
 
     /**
@@ -125,8 +187,7 @@ class ApiController extends Controller
         $captcha = new Captcher(150, 65);
         $captchaImage = $captcha->generate();
         $captchaText = $captcha->getCaptchaText();
-        $_SESSION['captcha-protection'] = $captchaText;
-        if($_SESSION['captcha-protection']) {
+        if($this->setCaptcher($captchaText)) {
             $picture = base64_encode($captchaImage);
             $data = array('status' => 1, 'msg' => "获取成功！", 'picture' => $picture);
         } else {
@@ -161,6 +222,23 @@ class ApiController extends Controller
         $address = $request->request->get('address');
         $type = $request->request->get('type');
 
+        if(!$this->checkGiftNum($type)) {
+            $data = array('status' => -1, 'msg' => "库存已空！");
+            $this->dataPrint($data);
+        }
+
+        //手机验证码错误！
+        if(!$this->checkMsgCode($phone, $phonecode)) {
+            $data = array('status' => 3, 'msg' => "手机验证码错误！");
+            $this->dataPrint($data);
+        }
+
+        //已经领过礼品！
+        if($this->findGiftByPhone($phone, $type)) {
+            $data = array('status' => 2, 'msg' => "该礼品已经领过！");
+            $this->dataPrint($data);
+        }
+
         $submit = new \stdClass();
         $submit->name = $name;
         $submit->phone = $phone;
@@ -170,13 +248,32 @@ class ApiController extends Controller
         $submit->address = $address;
         $submit->type = $type;
         $submit->created = date('Y-m-d H:i:s');
+
+        if(!$this->checkGiftNum($type)) {
+            $data = array('status' => -1, 'msg' => "库存已空！");
+            $this->dataPrint($data);
+        }
+
         $id = $this->helper->insertTable('gift_info', (array) $submit);
         if($id) {
+
             $data = array('status' => 1, 'msg' => "提交成功！");
         } else {
             $data = array('status' => 0, 'msg' => "提交失败！");
         }
         $this->dataPrint($data);
+    }
+
+    public function findGiftByPhone($phone, $type)
+    {
+        $sql = "SELECT `id`, `name` FROM `gift_info` WHERE `phone` = :phone AND `type` = :type";
+        $query = $this->_pdo->prepare($sql);
+        $query->execute(array(':phone' => $phone, ':type' => $type));
+        $row = $query->fetch(\PDO::FETCH_ASSOC);
+        if($row) {
+            return  TRUE;
+        }
+        return FALSE;
     }
 
 }

@@ -194,6 +194,15 @@ name=evenly&phone=13112311231&phonecode=1234&province=安徽&city=合肥&area=�
 }
 ```
 
+#####  status 3
+
+```javascript
+{
+    status: '3',
+    msg: '手机验证码错误！',
+}
+```
+
 #####  status -1
 
 ```javascript
