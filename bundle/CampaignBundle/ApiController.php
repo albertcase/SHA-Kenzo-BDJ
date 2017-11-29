@@ -22,9 +22,13 @@ class ApiController extends Controller
 
         parent::__construct();
 
-        // if(!$user->uid) {
-        //     $this->statusPrint('100', 'access deny!');
-        // }
+        // ajax 请求的处理方式 
+        if(isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"])=="xmlhttprequest"){ 
+            //@TODO ? 
+        } else{ 
+            $this->statusPrint('100', 'access deny!');
+        }
+
         $this->_pdo = PDO::getInstance();
         $this->helper = new Helper();
     }
