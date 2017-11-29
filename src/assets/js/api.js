@@ -116,7 +116,7 @@ Api = {
 
 
     //sent message validate code
-    //mobile
+    //phone
     sendMsgValidateCode:function(obj,callback){
         Common.msgBox.add('loading...');
         $.ajax({

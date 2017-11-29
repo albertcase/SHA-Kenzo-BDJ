@@ -204,24 +204,55 @@
                     selectProvinceVal = $('#select-province').val(),
                     selectCityVal = $('#select-city').val(),
                     selectDistrictVal = $('#select-district').val();
+                //{
+                //    name: evenly,
+                //        phone: 13112311231,
+                //    phonecode: 1234,
+                //    province: 安徽,
+                //    city: 合肥,
+                //    area: 城中区,
+                //    address: 好人大街,
+                //    type: gift1,
+                //    refer: from_wechat
+                //}
                 Api.submitForm({
                     name:inputNameVal,
-                    mobile:inputMobileVal,
+                    phone:inputMobileVal,
                     province:selectProvinceVal,
                     city:selectCityVal,
-                    msgCode:inputMsgCodeVal,
+                    phonecode:inputMsgCodeVal,
                     area:selectDistrictVal,
-                    address:inputAddressVal
+                    address:inputAddressVal,
+                    type: self.selectedGift,
+                    refer: 'from_wechat' //三种来源，分别是from_wechat，from_weibo,from_web
                 },function(data){
                     if(data.status==1){
-                        self.user.isSubmit = data.userStatus.issubmit;
-                        if(self.isTransformedOld){
-                            //Call lottery
-                            self.callLotteryApi();
-                        }else{
-                            //Call gift
-                            Common.gotoPin(2);
-                        }
+                        Common.gotoPin(5);
+                        //STATUS 1
+                        //{
+                        //    "status": 1,
+                        //    "msg": "提交成功！",
+                        //}
+                        //STATUS 0
+                        //{
+                        //    status: '0',
+                        //        msg: '提交失败！',
+                        //}
+                        //STATUS 2
+                        //{
+                        //    status: '2',
+                        //        msg: '该礼品已经领过！',
+                        //}
+                        //STATUS 3
+                        //{
+                        //    status: '3',
+                        //        msg: '手机验证码错误！',
+                        //}
+                        //STATUS -1
+                        //{
+                        //    status: '-1',
+                        //        msg: '库存已空！',
+                        //}
                     }else{
                         Common.alertBox.add(data.msg);
                     }
@@ -282,12 +313,13 @@
                         return;
                     }
                     Api.checkImgValidateCode({
-                        picture:$('#input-validate-code').val()
+                        picture:$('#input-validate-code').val(),
+                        phone:$('#input-mobile').val()
                     },function(data){
                         if(data.status == 1){
                             //start to count down and sent message to your phone
                             Api.sendMsgValidateCode({
-                                mobile:$('#input-mobile').val()
+                                phone:$('#input-mobile').val()
                             },function(json){
                                 if(json.status==1){
                                     //console.log('开始倒计时');
@@ -457,7 +489,6 @@
         Api.getGift(function(json){
             //console.log(json);
             Common.gotoPin(2); //go result page
-            self.user.isSubmit = json.userStatus.issubmit;
             switch (json.status){
                 case 1:
                     //msg: '小样领取成功'
