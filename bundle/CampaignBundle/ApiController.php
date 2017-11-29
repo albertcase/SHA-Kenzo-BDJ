@@ -233,6 +233,17 @@ class ApiController extends Controller
         $address = $request->request->get('address');
         $type = $request->request->get('type');
 
+        //lock 10s
+        $redis = new Redis();
+        $lockKey = $name . $phone;
+        if($redis->get($lockKey)) {
+            $data = array('status' => 4, 'msg' => "您的操作过于频繁！请稍后再试！");
+            $this->dataPrint($data);
+        } else {
+            $redis->set($lockKey, 1);
+            $redis->setTimeout($lockKey, 10);
+        }
+
         if(!$this->checkGiftNum($type)) {
             $data = array('status' => -1, 'msg' => "库存已空！");
             $this->dataPrint($data);
@@ -267,11 +278,15 @@ class ApiController extends Controller
 
         $id = $this->helper->insertTable('gift_info', (array) $submit);
         if($id) {
-
+            $redis->hInCrby('quality', $type, -1);
             $data = array('status' => 1, 'msg' => "提交成功！");
         } else {
             $data = array('status' => 0, 'msg' => "提交失败！");
         }
+
+        //dellock
+        $redis->setTimeout($lockKey, 0);
+
         $this->dataPrint($data);
     }
 

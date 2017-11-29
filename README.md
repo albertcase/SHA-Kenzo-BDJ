@@ -155,7 +155,7 @@ name=evenly&phone=13112311231&phonecode=1234&province=安徽&city=合肥&area=�
 ```javascript
 {
 	name: evenly,
-	phone: 13112311231，
+	phone: 13112311231,
 	phonecode: 1234,
 	province: 安徽,
 	city: 合肥,
