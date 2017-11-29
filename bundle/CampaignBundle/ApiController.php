@@ -235,7 +235,8 @@ class ApiController extends Controller
 
         //lock 10s
         $redis = new Redis();
-        $lockKey = $name . $phone;
+        //一个手机号每款礼品 10秒钟之内不允许重复抢！
+        $lockKey = $name . $phone . $type;
         if($redis->get($lockKey)) {
             $data = array('status' => 4, 'msg' => "您的操作过于频繁！请稍后再试！");
             $this->dataPrint($data);

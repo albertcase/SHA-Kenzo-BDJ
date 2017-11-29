@@ -21,4 +21,4 @@ $routers['/api/phonecode'] = array('CampaignBundle\Api', 'phoneCode');
 $routers['/api/piccode'] = array('CampaignBundle\Api', 'pictureCode');
 $routers['/api/checkpiccode'] = array('CampaignBundle\Api', 'checkPicture');
 $routers['/api/submit'] = array('CampaignBundle\Api', 'submit');
-$routers['/api/checkgift'] = array('CampaignBundle\Api', 'checkgift');
+$routers['/api/stock'] = array('CampaignBundle\Api', 'checkgift');

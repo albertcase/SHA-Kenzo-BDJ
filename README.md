@@ -4,10 +4,11 @@
 ```
 1.domain/home.html ：入口文件
 2.API list
-    - 1.domain/api/phonecode :短信验证码 (发短信已经集成到图片验证码里)
-    - 2.domain/api/piccode：图片验证码 (验证只要用过一次，不管成功还是失败都会失效)
-    - 3.domain/api/checkpiccode：验证图片验证码 
-    - 4.domain/api/submit :提交表单
+    - 1.domain/api/phonecode : 短信验证码 (发短信已经集成到图片验证码里)
+    - 2.domain/api/piccode : 图片验证码 (验证只要用过一次，不管成功还是失败都会失效)
+    - 3.domain/api/checkpiccode : 验证图片验证码 
+    - 4.domain/api/submit : 提交表单
+    - 5.domain/api/stock : 判断库存
 ```
 
 ---
@@ -210,5 +211,47 @@ name=evenly&phone=13112311231&phonecode=1234&province=安徽&city=合肥&area=�
 {
     status: '-1',
     msg: '库存已空！',
+}
+```
+
+---
+
+### 5. 判断库存API
+
+Method: POST
+
+##### API URL: 
+
+```html
+domain/api/stock
+```
+##### Get Parameter
+
+type=gift1
+
+```javascript
+{
+	type: gift1
+}
+
+```
+
+##### Response
+
+##### status 1
+
+```javascript
+{
+  "status": 1,
+  "msg": "有库存！",
+}
+```
+
+#####  status 0
+
+```javascript
+{
+    status: 0,
+    msg: '没库存！',
 }
 ```
