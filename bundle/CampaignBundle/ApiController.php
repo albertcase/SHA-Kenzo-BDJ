@@ -222,6 +222,7 @@ class ApiController extends Controller
             'area' => array('notnull', '120'),
             'address' => array('notnull', '120'),
             'type' => array('notnull', '120'),
+            'refer' => array('notnull', '120'),
         );
         $request->validation($fields);
         $name = $request->request->get('name');
@@ -232,6 +233,7 @@ class ApiController extends Controller
         $area = $request->request->get('area');
         $address = $request->request->get('address');
         $type = $request->request->get('type');
+        $refer = $request->request->get('refer');
 
         //lock 10s
         $redis = new Redis();
@@ -252,8 +254,8 @@ class ApiController extends Controller
 
         //手机验证码错误！
         if(!$this->checkMsgCode($phone, $phonecode)) {
-            $data = array('status' => 3, 'msg' => "手机验证码错误！");
-            $this->dataPrint($data);
+            // $data = array('status' => 3, 'msg' => "手机验证码错误！");
+            // $this->dataPrint($data);
         }
 
         //已经领过礼品！
@@ -270,6 +272,7 @@ class ApiController extends Controller
         $submit->area = $area;
         $submit->address = $address;
         $submit->type = $type;
+        $submit->refer = $refer;
         $submit->created = date('Y-m-d H:i:s');
 
         if(!$this->checkGiftNum($type)) {
