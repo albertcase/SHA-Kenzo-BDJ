@@ -138,22 +138,29 @@ picture=1q2w
 
 ---
 
-### 4. 验证图片验证码API
+### 4. 提交信息API
 
 Method: POST
 
 ##### API URL: 
 
 ```html
-domain/api/checkpiccode
+domain/api/submit
 ```
 ##### Get Parameter
 
-picture=1q2w
+name=evenly&phone=13112311231&phonecode=1234&province=安徽&city=合肥&area=城区&address=好人大街&type=gift1
 
 ```javascript
 {
-	picture: 1q2w 
+	name: evenly,
+	phone: 13112311231，
+	phonecode: 1234,
+	province: 安徽,
+	city: 合肥,
+	area: 城中区,
+	address: 好人大街,
+	type: gift1
 }
 
 ```
@@ -165,7 +172,7 @@ picture=1q2w
 ```javascript
 {
   "status": 1,
-  "msg": "验证码正确！",
+  "msg": "提交成功！",
 }
 ```
 
@@ -174,6 +181,24 @@ picture=1q2w
 ```javascript
 {
     status: '0',
-    msg: '验证码错误！',
+    msg: '提交失败！',
+}
+```
+
+#####  status 2
+
+```javascript
+{
+    status: '2',
+    msg: '该礼品已经领过！',
+}
+```
+
+#####  status -1
+
+```javascript
+{
+    status: '-1',
+    msg: '库存已空！',
 }
 ```
