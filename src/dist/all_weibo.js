@@ -1746,6 +1746,24 @@ Api = {
     controller.prototype.bindEvent = function(){
         var self = this;
 
+        //play video and close video
+        if(!(navigator.userAgent.indexOf('iPhone')>-1)){
+        //    not iphone,will andriod
+            $('body').addClass('device-andriod');
+        }
+        var myVideo = document.getElementById('myvideo');
+        //play video
+        $('.btn-playvideo').on('touchstart', function(){
+            $('.video-wrap').addClass('show');
+            myVideo.play();
+        });
+        //close video, pause video
+        $('.btn-closevideo').on('touchstart', function(){
+            myVideo.pause();
+            $('.video-wrap').removeClass('show');
+        });
+
+
         //look up the dictionary, load turns js, go pin-lexicon page
         $('.btn-go').on('touchstart', function(){
             Common.gotoPin(1);
