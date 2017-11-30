@@ -919,7 +919,7 @@ body {
 #pin-fillform #form-contact {
   position: relative;
   z-index: 2;
-  width: 80vw;
+  width: 6rem;
   margin: 0 auto;
   font-size: 0.26rem;
   color: #6b6b6b;
@@ -927,24 +927,37 @@ body {
 #pin-fillform #form-contact .input-box {
   position: relative;
   margin-bottom: 0.2rem;
-  text-align: center;
+  height: 0.6rem;
 }
 #pin-fillform #form-contact .input-box input[type="text"],
 #pin-fillform #form-contact .input-box input[type="tel"],
 #pin-fillform #form-contact .input-box select {
   display: inline-block;
   width: 100%;
-  padding: 0.15rem 0;
+  padding: 0;
+  height: 0.6rem;
+  line-height: 0.6rem;
   font-size: 0.26rem;
-  text-align: center;
+  text-align: left;
   border: #8b5890 1px solid;
   background: transparent;
   color: #7e4983;
 }
+#pin-fillform #form-contact .input-box input[type="text"],
+#pin-fillform #form-contact .input-box input[type="tel"] {
+  padding-left: 1.4rem;
+  box-sizing: border-box;
+}
 #pin-fillform #form-contact .input-box label {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 0.15rem;
+  width: 1.2rem;
+  height: 0.3rem;
+  line-height: 0.3rem;
+  text-align: center;
+  border-right: #8b5890 1px solid;
+  padding-right: 0;
 }
 #pin-fillform #form-contact .select-box {
   position: relative;
@@ -960,6 +973,11 @@ body {
   z-index: 2;
   opacity: 0;
 }
+#pin-fillform #form-contact .select-box.select-box-2 {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 #pin-fillform #form-contact .input-box-city-district .select-box {
   display: inline-block;
   width: 48%;
@@ -968,13 +986,15 @@ body {
   margin-top: 0.6rem;
 }
 #pin-fillform #form-contact .input-box-validate-code #input-validate-code {
-  width: 2.8rem;
+  width: 3.5rem;
   display: inline-block;
   margin-right: 0.2rem;
 }
 #pin-fillform #form-contact .input-box-validate-code .validate-code {
-  position: relative;
-  width: 2.4rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2.1rem;
   display: inline-block;
   text-align: center;
 }
@@ -982,8 +1002,10 @@ body {
   display: block;
 }
 #pin-fillform #form-contact .input-box-validate-code .validate-code-img {
-  width: 2rem;
-  margin: 0 auto;
+  height: 0.6rem;
+}
+#pin-fillform #form-contact .input-box-validate-code .validate-code-img img {
+  height: 100%;
 }
 #pin-fillform #form-contact .input-box-validate-code .code-text {
   position: absolute;
@@ -993,20 +1015,21 @@ body {
   font-size: 0.18rem;
 }
 #pin-fillform #form-contact .input-box-validate-message-code #input-validate-message-code {
-  width: 2.8rem;
+  width: 3.5rem;
   margin-right: 0.2rem;
   display: inline-block;
 }
 #pin-fillform #form-contact .input-box-validate-message-code .btn-get-msg-code {
-  position: relative;
-  width: 2.8rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2.1rem;
   display: inline-block;
   font-size: .26rem;
   background-size: 100% 100%;
-  height: 1rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
   text-align: center;
-  padding-top: 0.12rem;
-  padding-left: 0.14rem;
   box-sizing: border-box;
 }
 #pin-fillform #form-contact .input-box-validate-message-code .btn-get-msg-code span {
