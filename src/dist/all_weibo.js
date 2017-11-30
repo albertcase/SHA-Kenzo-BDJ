@@ -1738,7 +1738,8 @@ Api = {
         //test
         Common.hashRoute();
         //self.gotoFormPage();
-        //self.getValidateCode();
+        self.getValidateCode();
+        
 
     };
 

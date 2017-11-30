@@ -891,6 +891,10 @@ body {
   background-size: 100% 100%;
   color: #99578a;
 }
+#pin-fillform .logo {
+  margin-top: 1rem;
+  margin-bottom: 0.39rem;
+}
 #pin-fillform .msgbox {
   position: absolute;
   top: 0;
@@ -905,7 +909,7 @@ body {
   font-size: 0.26rem;
   color: #99578a;
   text-align: center;
-  margin: 0.3rem auto 0.6rem;
+  margin: .3rem auto .6rem;
 }
 #pin-fillform .title strong {
   font-size: 0.38rem;
@@ -955,8 +959,10 @@ body {
   width: 1.2rem;
   height: 0.3rem;
   line-height: 0.3rem;
+  font-size: 0.26rem;
   text-align: center;
   border-right: #8b5890 1px solid;
+  color: #7e4983;
   padding-right: 0;
 }
 #pin-fillform #form-contact .select-box {
@@ -965,6 +971,9 @@ body {
 #pin-fillform #form-contact .select-box input[type="text"] {
   position: relative;
   z-index: 1;
+  background: red;
+  background: url("../images/arrow-down.png") right center no-repeat;
+  background-size: 0.3rem;
 }
 #pin-fillform #form-contact .select-box select {
   position: absolute;
@@ -983,7 +992,13 @@ body {
   width: 48%;
 }
 #pin-fillform #form-contact .btn-submit {
-  margin-top: 0.6rem;
+  margin-top: 0.2rem;
+  background: url("../images/btn-submit.png") no-repeat;
+  background-size: 100%;
+  text-indent: -999em;
+}
+#pin-fillform #form-contact .input-box-validate-code {
+  margin-bottom: 0.5rem;
 }
 #pin-fillform #form-contact .input-box-validate-code #input-validate-code {
   width: 3.5rem;
@@ -1030,6 +1045,8 @@ body {
   height: 0.6rem;
   line-height: 0.6rem;
   text-align: center;
+  background: #ebb5e0;
+  color: #99578a;
   box-sizing: border-box;
 }
 #pin-fillform #form-contact .input-box-validate-message-code .btn-get-msg-code span {
