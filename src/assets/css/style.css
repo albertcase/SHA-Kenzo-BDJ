@@ -850,7 +850,7 @@ body {
   z-index: 1;
   width: auto;
   height: 100%;
-  max-width: 100%;
+  max-height: 10.38rem;
   margin: 0 auto;
 }
 #pin-landing .p1-1 .btn-playvideo {
@@ -1294,7 +1294,7 @@ body {
 #pin-prize .p3-img img {
   width: auto;
   height: 100%;
-  max-width: 100%;
+  max-height: 7.29rem;
   margin: 0 auto;
 }
 #pin-prize .p3-btns {
@@ -1334,7 +1334,7 @@ body {
 #pin-prize-details .p4-1 img {
   width: auto;
   height: 100%;
-  max-width: 100%;
+  max-height: 8.58rem;
   margin: 0 auto;
 }
 #pin-prize-details .btn {
