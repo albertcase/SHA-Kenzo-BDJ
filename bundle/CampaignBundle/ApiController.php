@@ -71,11 +71,12 @@ class ApiController extends Controller
         );
         $request->validation($fields);
         $phone = $request->request->get('phone');
-        if($this->sendSMS($phone)) {
-            $data = array('status' => 1, 'msg' => '发送成功！');
-        } else {
-            $data = array('status' => 0, 'msg' => '发送失败！');
-        }
+        // if($this->sendSMS($phone)) {
+        //     $data = array('status' => 1, 'msg' => '发送成功！');
+        // } else {
+        //     $data = array('status' => 0, 'msg' => '发送失败！');
+        // }
+        $data = array('status' => 1, 'msg' => '发送成功！');
         $this->dataPrint($data);
     }
 
@@ -128,6 +129,7 @@ class ApiController extends Controller
         $RedisAPI = new Redis();
         $code = $RedisAPI->get($mobile);
         if($code == $msgCode) {
+            $RedisAPI->setTimeout($mobile, 0);
             return true;
         } else {
             return false;
@@ -187,8 +189,10 @@ class ApiController extends Controller
 
     public function delCaptcher()
     {
+        $request = $this->request;
         if(USER_STORAGE == 'COOKIE') { 
             unset($_COOKIE['_captcher']);
+            setcookie('_captcher', '', time(), '/', $request->getDomain());
         } else {
             unset($_SESSION['_captcher']);
         }
