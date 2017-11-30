@@ -129,7 +129,7 @@ class ApiController extends Controller
         $RedisAPI = new Redis();
         $code = $RedisAPI->get($mobile);
         if($code == $msgCode) {
-            $this->_redis->setTimeout($mobile, 0);
+            $RedisAPI->setTimeout($mobile, 0);
             return true;
         } else {
             return false;
@@ -189,7 +189,7 @@ class ApiController extends Controller
 
     public function delCaptcher()
     {
-               $request = $this->request;
+        $request = $this->request;
         if(USER_STORAGE == 'COOKIE') { 
             unset($_COOKIE['_captcher']);
             setcookie('_captcher', '', time(), '/', $request->getDomain());
@@ -233,7 +233,6 @@ class ApiController extends Controller
             'refer' => array('notnull', '120'),
         );
         $request->validation($fields);
-        var_dump($request);exit;
         $name = $request->request->get('name');
         $phone = $request->request->get('phone');
         $phonecode = $request->request->get('phonecode');
