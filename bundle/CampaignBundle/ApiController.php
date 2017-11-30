@@ -233,6 +233,7 @@ class ApiController extends Controller
             'refer' => array('notnull', '120'),
         );
         $request->validation($fields);
+        var_dump($request);exit;
         $name = $request->request->get('name');
         $phone = $request->request->get('phone');
         $phonecode = $request->request->get('phonecode');
