@@ -150,6 +150,6 @@ gulp.task('watch', ['clean'],function() {
 });
 
 // Default Task
-gulp.task('default', ['watch', 'css','scripts_wechat','scripts_weibo','scripts_web','tinypng','browser-sync']);
+gulp.task('default', ['watch', 'css','scripts_wechat','scripts_weibo','scripts_web','browser-sync']);
 
 
