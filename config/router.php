@@ -17,7 +17,7 @@ $routers['/'] = array('CampaignBundle\Page', 'index');
 // $routers['/initialization'] = array('CampaignBundle\Page', 'login');
 
 //Api
-// $routers['/api/phonecode'] = array('CampaignBundle\Api', 'phoneCode');
+$routers['/api/phonecode'] = array('CampaignBundle\Api', 'phoneCode');
 $routers['/api/piccode'] = array('CampaignBundle\Api', 'pictureCode');
 $routers['/api/checkpiccode'] = array('CampaignBundle\Api', 'checkPicture');
 $routers['/api/submit'] = array('CampaignBundle\Api', 'submit');
