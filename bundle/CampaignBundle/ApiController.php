@@ -86,6 +86,7 @@ class ApiController extends Controller
         $code = rand(1000, 9999);
         $RedisAPI = new Redis();
         $RedisAPI->setPhoneCode($phone, $code, 60);
+        var_dump($RedisAPI->get($phone));exit;
         $text = "【Kenzo凯卓】您的验证码是{$code}";
         $data = array(
             'text' => $text,
