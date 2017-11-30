@@ -9,6 +9,8 @@
     - 3.domain/api/checkpiccode : 验证图片验证码 
     - 4.domain/api/submit : 提交表单
     - 5.domain/api/stock : 判断库存
+3.JSSDK分享 : http://kenzowechat.samesamechina.com/weixin/jssdkforsite
+  - mini : http://kenzowechat.samesamechina.com/weixin/jssdkforsitemin
 ```
 
 ---
