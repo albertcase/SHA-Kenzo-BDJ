@@ -1738,7 +1738,7 @@ Api = {
         //test
         Common.hashRoute();
         //self.gotoFormPage();
-        self.getValidateCode();
+        //self.getValidateCode();
 
     };
 
@@ -1902,37 +1902,6 @@ Api = {
                         $("#pin-result .title").html(self.resultTips[4].msg);
                         $("#pin-result .des").html(self.resultTips[4].des);
                         Common.gotoPin(5);
-                    }else{
-                        Common.alertBox.add(data.msg);
-                    }
-
-                    if(data.status==1){
-
-                        //STATUS 1
-                        //{
-                        //    "status": 1,
-                        //    "msg": "提交成功！",
-                        //}
-                        //STATUS 0
-                        //{
-                        //    status: '0',
-                        //        msg: '提交失败！',
-                        //}
-                        //STATUS 2
-                        //{
-                        //    status: '2',
-                        //        msg: '该礼品已经领过！',
-                        //}
-                        //STATUS 3
-                        //{
-                        //    status: '3',
-                        //        msg: '手机验证码错误！',
-                        //}
-                        //STATUS -1
-                        //{
-                        //    status: '-1',
-                        //        msg: '库存已空！',
-                        //}
                     }else{
                         Common.alertBox.add(data.msg);
                     }
