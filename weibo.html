@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>KENZOKI</title>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="src/dist/css/style.css"/>
+    <!--<script type="text/javascript" src="src/assets/js/lib/jquery.min.1.7.js"></script>-->
+    <!--<script type="text/javascript" src="src/assets/js/lib/modernizr.2.5.3.min.js"></script>-->
+    <!--<script type="text/javascript" src="src/assets/js/lib/turn.js"></script>-->
+    <!--<script type="text/javascript" src="src/assets/js/lib/turn.html4.min.js"></script>-->
+    <script type="text/javascript" src="src/dist/js/all_wechat.min.js"></script>
+    <!--<script src="http://kenzowechat.samesamechina.com/weixin/jssdkforsite"></script>-->
+</head>
+<body class="page-home">
+<div id="orientLayer" class="mod-orient-layer">
+    <div class="mod-orient-layer__content">
+        <i class="icon mod-orient-layer__icon-orient"></i>
+        <div class="mod-orient-layer__desc">请在解锁模式下使用竖屏浏览</div>
+    </div>
+</div>
+<div class="preload hide">
+    <div class="animate-flower">
+        <!--<img src="../src/dist/images/preload-flower.jpg" alt="kenzo"/>-->
+    </div>
+    <div class="loading-num">
+        ...<span class="num">10</span>%
+    </div>
+</div>
+<!--main content-->
+<div class="wrapper">
+    <!--landing page-->
+    <div class="pin pin-1 " id="pin-landing">
+        <div class="p1-1">
+            <img src="src/dist/images/p1-img1.png" alt=""/>
+            <div class="btn-playvideo"></div>
+        </div>
+        <div class="btn btn-go">翻阅词典</div>
+        <div class="link-rule">活动详情</div>
+    </div>
+    <!-- lexicon page -->
+    <div class="pin pin-2" id="pin-lexicon">
+        <div class="flipbook-viewport">
+            <div class="container">
+                <div class="flipbook">
+                    <div class="item">
+                        <img src="src/dist/images/book-cover-1.png" alt=""/>
+                    </div>
+                    <div class="item">
+                        <img src="src/dist/images/book-cover-2.png" alt=""/>
+                    </div>
+                    <div class="item">
+                        <img src="src/dist/images/book-cover-3.png" alt=""/>
+                    </div>
+                    <div class="item">
+                        <img src="src/dist/images/book-cover-4.png" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="fixed-block">
+                <div class="arrow arrow-left disabled">上一页</div>
+                <div class="arrow arrow-right">下一页</div>
+                <div class="btn-play-audio"></div>
+            </div>
+
+        </div>
+    </div>
+    <!-- 领取礼物 -->
+    <div class="pin pin-3" id="pin-prize">
+        <div class="p3-img">
+            <img src="src/dist/images/p3-img1.png" alt=""/>
+        </div>
+        <div class="p3-btns">
+            <div class="btn btn-show-gift btn-hou">侯明昊花颜见面礼</div>
+            <div class="btn btn-show-gift btn-hu">胡冰卿花颜见面礼</div>
+            <div class="btn btn-buy">
+                <a href="#">即刻购买</a>
+            </div>
+            <div class="link-share">科普好友</div>
+        </div>
+    </div>
+    <!-- 礼物详情-->
+    <div class="pin pin-4" id="pin-prize-details">
+        <div class="logo">
+            <img src="src/dist/images/logo.png" alt=""/>
+        </div>
+        <div class="p4-1">
+            <img src="src/dist/images/prize-hou.png" alt=""/>
+        </div>
+        <div class="btn btn-get-gift">
+            <!--领见面礼-->
+            来晚了
+        </div>
+    </div>
+
+    <!-- 填写表单选项-->
+    <div class="pin pin-5" id="pin-fillform">
+        <div class="logo">
+            <img src="src/dist/images/logo.png" alt=""/>
+        </div>
+        <h3 class="title">
+            <strong>填写信息</strong><br>
+            赠品将以快递的形式送达<br>
+            请如实填写
+        </h3>
+        <form id="form-contact">
+            <div class="form-information">
+                <div class="input-box input-box-name">
+                    <label for="input-name">姓名</label>
+                    <input type="text" id="input-name"/>
+                </div>
+                <div class="input-box input-box-mobile">
+                    <label for="input-mobile">手机</label>
+                    <input type="tel" maxlength="11" id="input-mobile"/>
+                </div>
+                <div class="input-box input-box-validate-code">
+                    <label for="input-validate-code">验证字符</label>
+                    <input type="text" id="input-validate-code"/>
+                    <div class="validate-code">
+                        <span class="validate-code-img"></span>
+                        <span class="code-text">看不清楚？换张图片</span>
+                    </div>
+                </div>
+                <div class="input-box input-box-validate-message-code">
+                    <label for="input-validate-message-code">验证码</label>
+                    <input type="text" id="input-validate-message-code" placeholder="输入短信验证码"/>
+                    <div class="btn btn-get-msg-code">
+                        <div class="tt">获取验证码<span class="second">(60s)</span></div>
+                    </div>
+                </div>
+                <div class="input-box input-box-province select-box">
+                    <label for="input-text-province">省份</label>
+                    <input type="text" id="input-text-province"/>
+                    <select name="province" id="select-province">
+                        <option value="">省份</option>
+                    </select>
+                </div>
+                <div class="input-box input-box-city-district">
+                    <div class="select-box">
+                        <label for="input-text-city">城市</label>
+                        <input type="text" id="input-text-city"/>
+                        <select name="city" id="select-city">
+                            <option value="">城市</option>
+                        </select>
+                    </div>
+                    <div class="select-box select-box-2">
+                        <label for="input-text-district">区县</label>
+                        <input type="text" id="input-text-district"/>
+                        <select name="district" id="select-district">
+                            <option value="">区县</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-box input-box-address">
+                    <label for="input-address">地址</label>
+                    <input type="text" id="input-address"/>
+                </div>
+            </div>
+            <p class="tips">
+                填写以上信息并点击“确认提交”即代表您同意我们收集和使用您的个人信息
+                并且我们仅为本次活动的目的收集和使用您的个人信息
+            </p>
+            <div class="btn btn-submit">
+                <div class="tt">提 交</div>
+            </div>
+        </form>
+    </div>
+    <!-- 提交结果 -->
+    <div class="pin pin-3" id="pin-result">
+        <div class="v-content">
+            <h3 class="title">「提交成功」</h3>
+            <div class="des">
+                Miss K将会在30个工作日内<br>
+                将花颜舒柔夜间修护面膜（75ml）寄出<br>
+                请您耐心等候哦~<br>
+                云朵般的面膜质地，悠享睡美人的梦幻夜
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!--share pop-->
+<div class="popup share-popup">
+    <div class="guide-share right-star">
+        <img src="../src/dist/images/guide-share.png" alt=""/>
+    </div>
+    <div class="des">
+        <span class="bigfont">·向好友传递清爽礼赠·</span>
+        即刻获得一次<br>
+        KENZO白莲果冻霜正装（50ML）<br>
+        抽奖机会
+    </div>
+</div>
+
+<!-- z-index is high-->
+<div class="popup terms-pop">
+    <div class="inner">
+        <h3 class="title">活动条款</h3>
+        <div class="pcontent">
+            <h4 class="subtitle">活动时间</h4>
+            <p class="des activity-time">
+                2017年X月X日至2017年X月X日
+            </p>
+            <h4 class="subtitle">参与条件</h4>
+            <p class="des activity-requirement">
+                活动期间，首次关注KenzoParfums凯卓官方微信的<br>
+                用户即可参与申领，每个微信ID仅限申领一次，<br>
+                奖品限量5000份。每天份额限量，详情请见活动主页<br>
+                （先到先得）
+            </p>
+            <h4 class="subtitle">奖品内容</h4>
+            <p class="des activity-prize">
+                奖品为KENZO舒缓白莲清爽保湿霜体验装（2ml）<br>
+                根据用户填写的邮寄地址在中奖后的30个工作日内寄送
+            </p>
+            <p class="product-name">* KENZO花颜舒柔夜间修护面膜</p>
+        </div>
+        <div class="btn-close">X</div>
+    </div>
+</div>
+
+</body>
+</html>
