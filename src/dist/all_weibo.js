@@ -1647,6 +1647,34 @@ Api = {
         //};
         this.selectedGift = 'gift1'; //1 is hou,2 is hu
         this.isStock = true; // if stock true, show form, else show qrcode
+        this.resultTips = [
+            {
+                status:0,
+                msg: '提交失败！',
+                des:'请检查信息是否填写正确'
+            },
+            {
+                status: 1,
+                msg: "提交成功！",
+                des:'请耐心等待礼物送达<br>扫码关注KENZO公众号<br>发现更多精彩活动'
+            },
+            {
+                status: '2',
+                msg: '您已领取过礼物！',
+                des:'请耐心等待礼物送达<br>扫码关注KENZO公众号<br>发现更多精彩活动'
+            },
+            {
+                status: '3',
+                msg: '手机验证码错误！',
+            },
+            {
+                status: '-1',
+                msg: '礼物已派送结束！',
+                des:'扫码关注KENZO公众号<br>发现更多精彩活动'
+            }
+        ];
+
+
 
     };
     //init
@@ -1824,8 +1852,6 @@ Api = {
 
         /*
         * submit the form
-        * if isTransformedOld is true, submit it and then call lottery api
-        * if isTransformedOld is false, submit it and then call gift api
         * */
         $('.btn-submit').on('touchstart',function(){
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'btnForSubmitForm']);
@@ -1861,7 +1887,27 @@ Api = {
                     refer: 'from_wechat' //三种来源，分别是from_wechat，from_weibo,from_web
                 },function(data){
                     if(data.status==1){
+                        $("#pin-result .title").html(self.resultTips[1].msg);
+                        $("#pin-result .des").html(self.resultTips[1].des);
                         Common.gotoPin(5);
+                    }else if(data.status==0){
+                        $("#pin-result .title").html(self.resultTips[0].msg);
+                        $("#pin-result .des").html(self.resultTips[0].des);
+                        Common.gotoPin(5);
+                    }else if(data.status==2){
+                        $("#pin-result .title").html(self.resultTips[2].msg);
+                        $("#pin-result .des").html(self.resultTips[2].des);
+                        Common.gotoPin(5);
+                    }else if(data.status == -1){
+                        $("#pin-result .title").html(self.resultTips[4].msg);
+                        $("#pin-result .des").html(self.resultTips[4].des);
+                        Common.gotoPin(5);
+                    }else{
+                        Common.alertBox.add(data.msg);
+                    }
+
+                    if(data.status==1){
+
                         //STATUS 1
                         //{
                         //    "status": 1,
