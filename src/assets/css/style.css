@@ -751,6 +751,10 @@ body {
   width: 0.6rem;
   height: 0.6rem;
 }
+.terms-pop .tips {
+  color: #713463;
+  font-size: 0.22rem;
+}
 
 .pin {
   opacity: 0;

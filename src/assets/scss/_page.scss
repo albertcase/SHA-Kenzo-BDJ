@@ -106,6 +106,10 @@ body{
     border-radius: 100%;
     @include size(0.6rem,0.6rem);
   }
+  .tips{
+    color: #713463;
+    font-size: 0.22rem;
+  }
 }
 
 .pin{
