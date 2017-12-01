@@ -4,59 +4,18 @@
 ```
 1.domain/home.html ：入口文件
 2.API list
-    - 1.domain/api/phonecode : 短信验证码 (发短信已经集成到图片验证码里)
-    - 2.domain/api/piccode : 图片验证码 (验证只要用过一次，不管成功还是失败都会失效)
-    - 3.domain/api/checkpiccode : 验证图片验证码 
-    - 4.domain/api/submit : 提交表单
-    - 5.domain/api/stock : 判断库存
+    - 1.domain/api/piccode : 图片验证码 (验证只要用过一次，不管成功还是失败都会失效)
+    - 2.domain/api/checkpiccode : 验证图片验证码 
+    - 3.domain/api/submit : 提交表单
+    - 4.domain/api/stock : 判断库存
 3.JSSDK分享 : http://kenzowechat.samesamechina.com/weixin/jssdkforsite
   - mini : http://kenzowechat.samesamechina.com/weixin/jssdkforsitemin
 ```
 
 ---
 
-### 1. 短信验证码API
 
-Method: POST
-
-##### API URL: 
-
-```html
-domain/api/phonecode
-```
-##### Get Parameter
-
-phone:13112311231
-
-```javascript
-{
-    phone : 13112311231
-}
-```
-
-##### Response
-
-##### status 1
-
-```javascript
-{
-    status: '1',
-    msg: '发送成功！',
-}
-```
-
-#####  status 0
-
-```javascript
-{
-    status: '0',
-    msg: '发送失败！',
-}
-```
-
----
-
-### 2. 图片验证码API
+### 1. 图片验证码API
 
 Method: POST
 
@@ -99,7 +58,7 @@ null
 
 ---
 
-### 3. 验证图片验证码API
+### 2. 验证图片验证码API
 
 Method: POST
 
@@ -142,7 +101,7 @@ picture=1q2w&phone=13112311231
 
 ---
 
-### 4. 提交信息API
+### 3. 提交信息API
 
 Method: POST
 
@@ -219,7 +178,7 @@ name=evenly&phone=13112311231&phonecode=1234&province=安徽&city=合肥&area=�
 
 ---
 
-### 5. 判断库存API
+### 4. 判断库存API
 
 Method: POST
 
