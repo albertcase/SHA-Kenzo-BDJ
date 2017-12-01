@@ -489,9 +489,9 @@
 
         //play current audio
         var audioList = [
-            'src/media/hyz.aac',
-            'src/media/hlh.aac',
             'src/media/hwy.aac',
+            'src/media/hlh.aac',
+            'src/media/hyz.aac',
             'src/media/hmj.aac'
         ];
 

@@ -2123,10 +2123,10 @@ Api = {
 
         //play current audio
         var audioList = [
-            'src/media/hyz.aac',
-            'src/media/hlh.aac',
             'src/media/hwy.aac',
-            'src/media/胡-面基.aac'
+            'src/media/hlh.aac',
+            'src/media/hyz.aac',
+            'src/media/hmj.aac'
         ];
 
         $('.btn-play-audio').on('touchstart', function(){
