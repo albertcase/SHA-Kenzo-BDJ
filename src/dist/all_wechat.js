@@ -1798,14 +1798,16 @@ Api = {
         //get gift, '领见面礼' or "来晚了"
         $('.btn-get-gift').on('touchstart', function(){
             Api.getStock({type:self.selectedGift},function(data){
-                console.log(data);
                 if(data.status==0){
                     self.isStock = false;
                     //result page
+                    $("#pin-result .title").html(self.resultTips[4].msg);
+                    $("#pin-result .des").html(self.resultTips[4].des);
                     Common.gotoPin(5);
                 }else if(data.status==1){
                     self.isStock = true;
                     //    go form page
+                    location.hash = '#page=4';
                     Common.gotoPin(4);
                 }else{
                     Common.alertBox.add(data.msg);
@@ -1908,14 +1910,17 @@ Api = {
                         $("#pin-result .title").html(self.resultTips[1].msg);
                         $("#pin-result .des").html(self.resultTips[1].des);
                         Common.gotoPin(5);
+                        location.hash = '';
                     }else if(data.status==0){
                         $("#pin-result .title").html(self.resultTips[0].msg);
                         $("#pin-result .des").html(self.resultTips[0].des);
                         Common.gotoPin(5);
+                        location.hash = '';
                     }else if(data.status==2){
                         $("#pin-result .title").html(self.resultTips[2].msg);
                         $("#pin-result .des").html(self.resultTips[2].des);
                         Common.gotoPin(5);
+                        location.hash = '';
                     }else if(data.status == -1){
                         $("#pin-result .title").html(self.resultTips[4].msg);
                         $("#pin-result .des").html(self.resultTips[4].des);
@@ -2030,6 +2035,11 @@ Api = {
             }
         });
 
+    //    btn-back
+        $('.btn-back').on('touchstart', function(){
+            Common.gotoPin(0);
+        });
+
     };
 
     //events for lexicon page
@@ -2064,7 +2074,6 @@ Api = {
         var myAudio = document.getElementById('myaudio');
         $('.arrow-left').on('click',function(){
             myAudio.pause();
-            
             $(".flipbook").turn("previous");
             if($('.arrow-right').hasClass('disabled')){
                 $('.arrow-right').removeClass('disabled');
