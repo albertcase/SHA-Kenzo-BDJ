@@ -725,8 +725,8 @@ body {
 }
 .terms-pop .pcontent .subtitle {
   display: inline-block;
-  background: #a5a8e0;
-  color: #fff;
+  background: #ebb5e0;
+  color: #99578a;
   font-size: 0.3rem;
   font-weight: normal;
   padding: 0.04rem 0.2rem;
@@ -734,7 +734,7 @@ body {
   margin-bottom: 0.1rem;
 }
 .terms-pop .pcontent .des {
-  color: #6b6b6b;
+  color: #713463;
   font-size: 0.24rem;
   line-height: 1.8;
 }
@@ -746,7 +746,7 @@ body {
   top: auto;
   bottom: 1rem;
   left: 50%;
-  background: #9eaee5;
+  background: #ebb5e0;
   border-radius: 100%;
   width: 0.6rem;
   height: 0.6rem;
