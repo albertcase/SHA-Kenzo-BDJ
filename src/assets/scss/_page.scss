@@ -58,11 +58,11 @@ body{
 
 //for terms-pop
 .terms-pop{
-  background: transparent;
+  background: rgba(77,56,72,0.4) url("../images/form-bg.png") no-repeat;
+  background-size: 100% 100%;
   .inner{
     @include size(7.5rem,10.79rem);
-    background: url("../images/pop-bg.png") no-repeat;
-    background-size: 100%;
+    background: transparent;
     box-sizing: border-box;
     padding-top: 1rem;
     background-position: -0.05rem 0;

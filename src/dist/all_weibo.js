@@ -1673,6 +1673,7 @@ Api = {
                 des:'扫码关注KENZO公众号<br>发现更多精彩活动'
             }
         ];
+        this.disableClick = false;
 
 
 
@@ -1823,7 +1824,7 @@ Api = {
             $('.terms-pop').removeClass('show');
         });
         //    show terms pop
-        $('.terms-link').on('touchstart',function(){
+        $('.link-rule').on('touchstart',function(){
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
             /**/
             var termContent = [
@@ -1925,6 +1926,7 @@ Api = {
                         $("#pin-result .title").html(self.resultTips[4].msg);
                         $("#pin-result .des").html(self.resultTips[4].des);
                         Common.gotoPin(5);
+                        location.hash = '';
                     }else{
                         Common.alertBox.add(data.msg);
                     }
@@ -1990,17 +1992,18 @@ Api = {
                     },function(data){
                         if(data.status == 1){
                             //start to count down and sent message to your phone
-                            Api.sendMsgValidateCode({
-                                phone:$('#input-mobile').val()
-                            },function(json){
-                                if(json.status==1){
-                                    //console.log('开始倒计时');
-                                    self.countDown();
-                                    self.disableClick = true;
-                                }else{
-                                    Common.alertBox.add(json.msg);
-                                }
-                            });
+                            //Api.sendMsgValidateCode({
+                            //    phone:$('#input-mobile').val()
+                            //},function(json){
+                            //    if(json.status==1){
+                            //        //console.log('开始倒计时');
+                            //
+                            //    }else{
+                            //        Common.alertBox.add(json.msg);
+                            //    }
+                            //});
+                            self.countDown();
+                            self.disableClick = true;
                         }else{
                             Common.alertBox.add('验证码输入错误，请重新输入');
                             self.getValidateCode();
@@ -2120,9 +2123,9 @@ Api = {
 
         //play current audio
         var audioList = [
-            'src/media/猴-颜值.aac',
-            'src/media/胡-莲花.aac',
-            'src/media/猴-温油.aac',
+            'src/media/hyz.aac',
+            'src/media/hlh.aac',
+            'src/media/hwy.aac',
             'src/media/胡-面基.aac'
         ];
 

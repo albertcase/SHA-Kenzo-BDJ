@@ -39,6 +39,7 @@
                 des:'扫码关注KENZO公众号<br>发现更多精彩活动'
             }
         ];
+        this.disableClick = false;
 
 
 
@@ -189,7 +190,7 @@
             $('.terms-pop').removeClass('show');
         });
         //    show terms pop
-        $('.terms-link').on('touchstart',function(){
+        $('.link-rule').on('touchstart',function(){
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
             /**/
             var termContent = [
@@ -357,17 +358,18 @@
                     },function(data){
                         if(data.status == 1){
                             //start to count down and sent message to your phone
-                            Api.sendMsgValidateCode({
-                                phone:$('#input-mobile').val()
-                            },function(json){
-                                if(json.status==1){
-                                    //console.log('开始倒计时');
-                                    self.countDown();
-                                    self.disableClick = true;
-                                }else{
-                                    Common.alertBox.add(json.msg);
-                                }
-                            });
+                            //Api.sendMsgValidateCode({
+                            //    phone:$('#input-mobile').val()
+                            //},function(json){
+                            //    if(json.status==1){
+                            //        //console.log('开始倒计时');
+                            //
+                            //    }else{
+                            //        Common.alertBox.add(json.msg);
+                            //    }
+                            //});
+                            self.countDown();
+                            self.disableClick = true;
                         }else{
                             Common.alertBox.add('验证码输入错误，请重新输入');
                             self.getValidateCode();
@@ -487,10 +489,10 @@
 
         //play current audio
         var audioList = [
-            'src/media/猴-颜值.aac',
-            'src/media/胡-莲花.aac',
-            'src/media/猴-温油.aac',
-            'src/media/胡-面基.aac'
+            'src/media/hyz.aac',
+            'src/media/hlh.aac',
+            'src/media/hwy.aac',
+            'src/media/hmj.aac'
         ];
 
         $('.btn-play-audio').on('touchstart', function(){
