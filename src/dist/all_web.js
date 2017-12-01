@@ -1746,6 +1746,24 @@ Api = {
     controller.prototype.bindEvent = function(){
         var self = this;
 
+        //play video and close video
+        if(!(navigator.userAgent.indexOf('iPhone')>-1)){
+        //    not iphone,will andriod
+            $('body').addClass('device-andriod');
+        }
+        var myVideo = document.getElementById('myvideo');
+        //play video
+        $('.btn-playvideo').on('touchstart', function(){
+            $('.video-wrap').addClass('show');
+            myVideo.play();
+        });
+        //close video, pause video
+        $('.btn-closevideo').on('touchstart', function(){
+            myVideo.pause();
+            $('.video-wrap').removeClass('show');
+        });
+
+
         //look up the dictionary, load turns js, go pin-lexicon page
         $('.btn-go').on('touchstart', function(){
             Common.gotoPin(1);
@@ -2016,6 +2034,8 @@ Api = {
 
     //events for lexicon page
     controller.prototype.lexiconPage = function(){
+        var curSlideIndex = 1;
+
         $('.flipbook').turn({
             // Width
 
@@ -2067,6 +2087,8 @@ Api = {
 //    });
 
         $(".flipbook").bind("turning", function(event, page, pageObject) {
+            //console.log(page);
+            curSlideIndex = page;
             // Implementation
             if(page==1){
                 $('.arrow-left').addClass('disabled');
@@ -2082,6 +2104,19 @@ Api = {
                     clearTimeout(aaa);
                 },1000);
             }
+        });
+
+        //play current audio
+        var myAudio = document.getElementById('myaudio');
+        $('.btn-play-audio').on('touchstart', function(){
+            console.log(curSlideIndex);
+            console.log(1);
+            myAudio.src = 'src/media/胡-莲花.aac';
+            myAudio.load();
+
+            myAudio.play();
+
+
         });
     };
 

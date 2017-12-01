@@ -2034,6 +2034,8 @@ Api = {
 
     //events for lexicon page
     controller.prototype.lexiconPage = function(){
+        var curSlideIndex = 1;
+
         $('.flipbook').turn({
             // Width
 
@@ -2085,6 +2087,8 @@ Api = {
 //    });
 
         $(".flipbook").bind("turning", function(event, page, pageObject) {
+            //console.log(page);
+            curSlideIndex = page;
             // Implementation
             if(page==1){
                 $('.arrow-left').addClass('disabled');
@@ -2100,6 +2104,22 @@ Api = {
                     clearTimeout(aaa);
                 },1000);
             }
+        });
+
+        //play current audio
+        var audioList = [
+            'src/media/猴-颜值.aac',
+            'src/media/胡-莲花.aac',
+            'src/media/猴-温油.aac',
+            'src/media/胡-面基.aac'
+        ];
+        var myAudio = document.getElementById('myaudio');
+        $('.btn-play-audio').on('touchstart', function(){
+            console.log(curSlideIndex);
+            var audioIndex = curSlideIndex - 1;
+            myAudio.src = audioList[audioIndex];
+            myAudio.load();
+            myAudio.play();
         });
     };
 
