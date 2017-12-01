@@ -88,7 +88,7 @@ class ApiController extends Controller
 
         $RedisAPI = new Redis();
         $RedisAPI->set($phone, $code);
-        $RedisAPI->setTimeout($phone, 60);
+        $RedisAPI->setTimeout($phone, 120);
 
         $text = "【Kenzo凯卓】您的验证码是{$code}";
         $data = array(
