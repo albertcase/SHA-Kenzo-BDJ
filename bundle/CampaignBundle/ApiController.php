@@ -85,8 +85,11 @@ class ApiController extends Controller
         $ch = curl_init();
         $apikey = "b42c77ce5a2296dcc0199552012a4bd9";
         $code = rand(1000, 9999);
+        
         $RedisAPI = new Redis();
-        $RedisAPI->setPhoneCode($phone, $code, 60);
+        $RedisAPI->set($phone, $code);
+        $RedisAPI->setTimeout($phone, 60);
+
         $text = "【Kenzo凯卓】您的验证码是{$code}";
         $data = array(
             'text' => $text,
