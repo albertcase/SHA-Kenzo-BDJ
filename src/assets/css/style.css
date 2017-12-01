@@ -1062,62 +1062,40 @@ body {
   height: 4.57rem;
 }
 
+#pin-result {
+  background: url(../images/form-bg.png) no-repeat;
+  background-size: 100% 100%;
+}
+#pin-result .logo {
+  margin-top: 1rem;
+}
+#pin-result .v-content {
+  width: 100%;
+}
 #pin-result .title {
-  color: #6b6b6b;
+  color: #99578a;
   font-size: 0.4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 #pin-result .des {
-  top: 35%;
-  width: 100%;
   text-align: center;
   font-size: 0.26rem;
+  color: #99578a;
 }
-#pin-result .des2 {
-  top: 40%;
+#pin-result .qrcode {
+  width: 2.84rem;
+  height: 2.85rem;
+  margin: 0.7rem auto 0;
 }
-#pin-result .prize-item {
-  color: #6b6b6b;
-}
-#pin-result .prize-item.show {
-  display: block;
-}
-#pin-result .prize-item .tip {
-  display: block;
-  margin-top: 0.5rem;
-  font-size: 0.22rem;
-}
-#pin-result .btn-getbigprize {
-  position: relative;
-  margin-top: 1.5rem;
-}
-#pin-result .btn-getbigprize .product-name-2 {
+#pin-result .btn-back {
   position: absolute;
-  bottom: -0.22rem;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: #6b6b6b;
-  font-size: 0.22rem;
-}
-#pin-result .btn-getbigprize .num {
-  font-size: 0.22rem;
-}
-#pin-result .b-img {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-#pin-result .name {
-  margin-top: 0.8rem;
-  font-size: 0.22rem;
-  color: #6b6b6b;
-}
-#pin-result .btn-getproduct {
-  width: 4.6rem;
-  height: 1.4rem;
-  box-sizing: border-box;
-  padding-top: 0.22rem;
+  bottom: 1.2rem;
+  left: 50%;
+  width: 3.91rem;
+  height: 1.02rem;
+  margin-left: -2rem;
 }
 
 .guide-share {

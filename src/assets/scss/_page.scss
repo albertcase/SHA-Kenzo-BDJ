@@ -409,63 +409,36 @@ body{
 
 //for pin-gift
 #pin-result{
+  background: url(../images/form-bg.png) no-repeat;
+  background-size: 100% 100%;
+  .logo{
+    margin-top: 1rem;
+  }
+  .v-content{
+    width: 100%;
+  }
   .title{
-    color: #6b6b6b;
+    color: #99578a;
     font-size: 0.4rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align: center;
   }
   .des{
-    top: 35%;
-    width: 100%;
     text-align: center;
     font-size: 0.26rem;
+    color: #99578a;
   }
-  .des2{
-    top: 40%;
+  .qrcode{
+    @include size(2.84rem,2.85rem);
+    margin: 0.7rem auto 0;
   }
-  .prize-item{
-    //display: none;
-    color: #6b6b6b;
-    &.show{
-      display: block;
-    }
-    .tip{
-      display: block;
-      margin-top: 0.5rem;
-      font-size: 0.22rem;
-    }
-  }
-  .btn-getbigprize{
-    position: relative;
-    margin-top: 1.5rem;
-    .product-name-2{
-      position: absolute;
-      bottom: -0.22rem;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      color: #6b6b6b;
-      font-size: 0.22rem;
-    }
-    .num{
-      font-size: 0.22rem;
-    }
-  }
-  .b-img{
+  .btn-back{
     position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-  }
-  .name{
-    margin-top: 0.8rem;
-    font-size: 0.22rem;
-    color: #6b6b6b;
-  }
-  .btn-getproduct{
-    width: 4.6rem;
-    height: 1.4rem;
-    box-sizing: border-box;
-    padding-top: 0.22rem;
+    bottom: 1.2rem;
+    left: 50%;
+    @include size(3.91rem,1.02rem);
+    margin-left: -2rem;
   }
 }
 .guide-share{
