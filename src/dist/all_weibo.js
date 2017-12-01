@@ -2061,14 +2061,17 @@ Api = {
 
         });
 
-
+        var myAudio = document.getElementById('myaudio');
         $('.arrow-left').on('click',function(){
+            myAudio.pause();
+            
             $(".flipbook").turn("previous");
             if($('.arrow-right').hasClass('disabled')){
                 $('.arrow-right').removeClass('disabled');
             }
         });
         $('.arrow-right').on('click',function(){
+            myAudio.pause();
             $(".flipbook").turn("next");
 
             if($('.arrow-left').hasClass('disabled')){
@@ -2113,7 +2116,7 @@ Api = {
             'src/media/猴-温油.aac',
             'src/media/胡-面基.aac'
         ];
-        var myAudio = document.getElementById('myaudio');
+
         $('.btn-play-audio').on('touchstart', function(){
             console.log(curSlideIndex);
             var audioIndex = curSlideIndex - 1;
