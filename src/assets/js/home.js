@@ -182,6 +182,7 @@
                     $('#pin-prize-details .btn').addClass('sellout');
                     self.isStock = false;
                 }else if(data.status==1){
+                    $('#pin-prize-details .btn').removeClass('sellout');
                     self.isStock = true;
                 }else{
                     Common.alertBox.add(data.msg);

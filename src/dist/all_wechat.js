@@ -1874,6 +1874,7 @@ $(document).ready(function(){
                     $('#pin-prize-details .btn').addClass('sellout');
                     self.isStock = false;
                 }else if(data.status==1){
+                    $('#pin-prize-details .btn').addClass('sellout');
                     self.isStock = true;
                 }else{
                     Common.alertBox.add(data.msg);
