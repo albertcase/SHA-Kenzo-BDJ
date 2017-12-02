@@ -1897,7 +1897,7 @@ Api = {
                     area:selectDistrictVal,
                     address:inputAddressVal,
                     type: self.selectedGift,
-                    refer: 'from_wechat' //三种来源，分别是from_wechat，from_weibo,from_web
+                    refer: from //三种来源，分别是from_wechat，from_weibo,from_web,from 变量写在静态页头中
                 },function(data){
                     if(data.status==1){
                         $("#pin-result .title").html(self.resultTips[1].msg);
