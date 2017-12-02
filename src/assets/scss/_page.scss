@@ -421,6 +421,9 @@ body{
   .qrcode{
     @include size(2.84rem,2.85rem);
     margin: 0.7rem auto 0;
+    .browser-weibo &{
+      display: none;
+    }
   }
   .btn-back{
     position: absolute;

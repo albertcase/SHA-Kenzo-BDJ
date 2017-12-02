@@ -1078,6 +1078,9 @@ body {
   height: 2.85rem;
   margin: 0.7rem auto 0;
 }
+.browser-weibo #pin-result .qrcode {
+  display: none;
+}
 #pin-result .btn-back {
   position: absolute;
   bottom: 1.2rem;
