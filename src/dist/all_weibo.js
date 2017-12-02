@@ -2037,7 +2037,6 @@ Api = {
         * */
         $('.share-popup').on('touchstart', function(e){
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
-            
             if(e.target.className.indexOf('.share-popup')){
                 $('.share-popup').removeClass('show');
             }

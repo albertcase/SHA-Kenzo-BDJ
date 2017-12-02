@@ -1673,6 +1673,7 @@ Api = {
                 des:'扫码关注KENZO公众号<br>发现更多精彩活动'
             }
         ];
+        this.disableClick = false;
 
 
 
@@ -1798,14 +1799,16 @@ Api = {
         //get gift, '领见面礼' or "来晚了"
         $('.btn-get-gift').on('touchstart', function(){
             Api.getStock({type:self.selectedGift},function(data){
-                console.log(data);
                 if(data.status==0){
                     self.isStock = false;
                     //result page
+                    $("#pin-result .title").html(self.resultTips[4].msg);
+                    $("#pin-result .des").html(self.resultTips[4].des);
                     Common.gotoPin(5);
                 }else if(data.status==1){
                     self.isStock = true;
                     //    go form page
+                    location.hash = '#page=4';
                     Common.gotoPin(4);
                 }else{
                     Common.alertBox.add(data.msg);
@@ -1821,7 +1824,7 @@ Api = {
             $('.terms-pop').removeClass('show');
         });
         //    show terms pop
-        $('.terms-link').on('touchstart',function(){
+        $('.link-rule').on('touchstart',function(){
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
             /**/
             var termContent = [
@@ -1908,18 +1911,22 @@ Api = {
                         $("#pin-result .title").html(self.resultTips[1].msg);
                         $("#pin-result .des").html(self.resultTips[1].des);
                         Common.gotoPin(5);
+                        location.hash = '';
                     }else if(data.status==0){
                         $("#pin-result .title").html(self.resultTips[0].msg);
                         $("#pin-result .des").html(self.resultTips[0].des);
                         Common.gotoPin(5);
+                        location.hash = '';
                     }else if(data.status==2){
                         $("#pin-result .title").html(self.resultTips[2].msg);
                         $("#pin-result .des").html(self.resultTips[2].des);
                         Common.gotoPin(5);
+                        location.hash = '';
                     }else if(data.status == -1){
                         $("#pin-result .title").html(self.resultTips[4].msg);
                         $("#pin-result .des").html(self.resultTips[4].des);
                         Common.gotoPin(5);
+                        location.hash = '';
                     }else{
                         Common.alertBox.add(data.msg);
                     }
@@ -1985,17 +1992,18 @@ Api = {
                     },function(data){
                         if(data.status == 1){
                             //start to count down and sent message to your phone
-                            Api.sendMsgValidateCode({
-                                phone:$('#input-mobile').val()
-                            },function(json){
-                                if(json.status==1){
-                                    //console.log('开始倒计时');
-                                    self.countDown();
-                                    self.disableClick = true;
-                                }else{
-                                    Common.alertBox.add(json.msg);
-                                }
-                            });
+                            //Api.sendMsgValidateCode({
+                            //    phone:$('#input-mobile').val()
+                            //},function(json){
+                            //    if(json.status==1){
+                            //        //console.log('开始倒计时');
+                            //
+                            //    }else{
+                            //        Common.alertBox.add(json.msg);
+                            //    }
+                            //});
+                            self.countDown();
+                            self.disableClick = true;
                         }else{
                             Common.alertBox.add('验证码输入错误，请重新输入');
                             self.getValidateCode();
@@ -2020,14 +2028,23 @@ Api = {
 
         });
 
+        $('.link-share').on('touchstart', function(){
+            $('.share-popup').addClass('show');
+        });
+
         /*
         * For share tips overlay,click will disappear
         * */
         $('.share-popup').on('touchstart', function(e){
-            _hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
+            //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
             if(e.target.className.indexOf('.share-popup')){
                 $('.share-popup').removeClass('show');
             }
+        });
+
+    //    btn-back
+        $('.btn-back').on('touchstart', function(){
+            Common.gotoPin(0);
         });
 
     };
@@ -2061,14 +2078,21 @@ Api = {
 
         });
 
-
+        var myAudio = document.getElementById('myaudio');
+        var isAudioPlay = false;
         $('.arrow-left').on('click',function(){
+            myAudio.pause();
             $(".flipbook").turn("previous");
             if($('.arrow-right').hasClass('disabled')){
                 $('.arrow-right').removeClass('disabled');
-            }
+            };
+            //if($('.arrow-left').hasClass('disabled')){
+            //    Common.gotoPin(0);
+            //}
         });
+
         $('.arrow-right').on('click',function(){
+            myAudio.pause();
             $(".flipbook").turn("next");
 
             if($('.arrow-left').hasClass('disabled')){
@@ -2079,6 +2103,10 @@ Api = {
                 Common.gotoPin(2);
             }
         });
+
+        myAudio.onpause = function(){
+            $('.btn-play-audio .icon-audio').removeClass('play');
+        };
 //    $(".flipbook").bind("first", function(event) {
 //        $('.arrow-left').addClass('disabled');
 //    });
@@ -2107,15 +2135,26 @@ Api = {
         });
 
         //play current audio
-        var myAudio = document.getElementById('myaudio');
+        var audioList = [
+            'src/media/hwy.aac',
+            'src/media/hlh.aac',
+            'src/media/hyz.aac',
+            'src/media/hmj.aac'
+        ];
+
         $('.btn-play-audio').on('touchstart', function(){
-            console.log(curSlideIndex);
-            console.log(1);
-            myAudio.src = 'src/media/胡-莲花.aac';
-            myAudio.load();
-
-            myAudio.play();
-
+            //console.log(curSlideIndex);
+            if(!isAudioPlay){
+                isAudioPlay = true;
+                var audioIndex = curSlideIndex - 1;
+                myAudio.src = audioList[audioIndex];
+                myAudio.load();
+                myAudio.play();
+                $('.btn-play-audio .icon-audio').addClass('play');
+            }else{
+                isAudioPlay = false;
+                myAudio.pause();
+            }
 
         });
     };
