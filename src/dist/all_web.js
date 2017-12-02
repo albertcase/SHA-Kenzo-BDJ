@@ -259,7 +259,7 @@ this.data();b.effect&&b.effect.stop();if(a){a.to.length||(a.to=[a.to]);a.from.le
       };
     recalc();
     if (!doc.addEventListener) return;
-    win.addEventListener(resizeEvt, recalc, false);
+    //win.addEventListener(resizeEvt, recalc, false);
 })(document, window);
 var region = [
     {
@@ -1905,7 +1905,7 @@ Api = {
                     area:selectDistrictVal,
                     address:inputAddressVal,
                     type: self.selectedGift,
-                    refer: 'from_wechat' //三种来源，分别是from_wechat，from_weibo,from_web
+                    from: 'from_wechat' //三种来源，分别是from_wechat，from_weibo,from_web
                 },function(data){
                     if(data.status==1){
                         $("#pin-result .title").html(self.resultTips[1].msg);
