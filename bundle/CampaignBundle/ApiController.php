@@ -82,7 +82,7 @@ class ApiController extends Controller
 
     public function getPhoneKey($phone)
     {
-        return md5('sms:' . $phone);
+        return 'sms:' . $phone;
     }
 
     public function sendSMS($phone)
