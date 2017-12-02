@@ -302,6 +302,13 @@ p {
 .video-wrap .btn-closevideo:hover:after, .video-wrap .btn-closevideo:hover:before {
   background: #fff;
 }
+.video-wrap p {
+  position: absolute;
+  width: 3rem;
+  right: 0;
+  color: #bfbfbf;
+  top: 0.16rem;
+}
 
 @media screen and (orientation: portrait) {
   .show-on-landscape {
