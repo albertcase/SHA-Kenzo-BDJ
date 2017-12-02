@@ -49,7 +49,7 @@ $(document).ready(function(){
     weixinshare({
         title1: '全新KENZO花颜舒柔',
         des: '花颜挚友侯明昊、胡冰卿的花“颜”巧“语”',
-        link: window.location.origin,
+        link: window.location.origin+location.pathname,
         img: window.location.origin+'/src/dist/images/share.png'
     },function(){
         console.log('sharesuccess');
