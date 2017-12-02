@@ -1824,10 +1824,7 @@ $(document).ready(function(){
         Common.gotoPin(0);
         self.bindEvent();
         self.showAllProvince();
-
-        //test
         Common.hashRoute();
-        //self.gotoFormPage();
         if(location.hash == '#page=4'){
             self.getValidateCode();
         }
