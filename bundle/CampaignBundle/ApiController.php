@@ -249,7 +249,7 @@ class ApiController extends Controller
         $area = $request->request->get('area');
         $address = $request->request->get('address');
         $type = $request->request->get('type');
-        $refer = $request->request->get('refer');
+        $from = $request->request->get('refer');
 
         //lock 10s
         $redis = new Redis();
@@ -291,7 +291,7 @@ class ApiController extends Controller
         $submit->area = $area;
         $submit->address = $address;
         $submit->type = $type;
-        $submit->refer = $refer;
+        $submit->from = $from;
         $submit->created = date('Y-m-d H:i:s');
 
         if(!$this->checkGiftNum($type)) {
