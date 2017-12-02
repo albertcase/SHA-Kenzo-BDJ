@@ -1858,6 +1858,11 @@ $(document).ready(function(){
             self.lexiconPage();
         });
 
+        $('.p1-1').on('touchstart', function(){
+            Common.gotoPin(1);
+            self.lexiconPage();
+        });
+
         //selected relative gift,go prize details page to show relative content,call api to show if there's stock
         $('.btn-show-gift').on('touchstart', function(){
             self.selectedGift = 'gift'+parseInt($(this).index()+1);
@@ -2139,6 +2144,12 @@ $(document).ready(function(){
             }
         });
 
+        $('.flipbook-viewport').on('touchstart', function(){
+            if(curSlideIndex==4){
+                Common.gotoPin(2);
+            }
+        });
+
         myAudio.onpause = function(){
             isAudioPlay = false;
             $('.btn-play-audio .icon-audio').removeClass('play');
@@ -2213,6 +2224,7 @@ $(document).ready(function(){
             }
 
         });
+
     };
 
     controller.prototype.showLandingPage = function(page){
