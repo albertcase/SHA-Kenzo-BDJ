@@ -447,7 +447,10 @@
             $(".flipbook").turn("previous");
             if($('.arrow-right').hasClass('disabled')){
                 $('.arrow-right').removeClass('disabled');
-            }
+            };
+            //if($('.arrow-left').hasClass('disabled')){
+            //    Common.gotoPin(0);
+            //}
         });
 
         $('.arrow-right').on('click',function(){
