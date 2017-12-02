@@ -47,10 +47,10 @@ function weixinshare(obj,successCallBack){
 
 $(document).ready(function(){
     weixinshare({
-        title1: 'KENZO 关注有礼  | 全新果冻霜，夏日清爽礼赠 ',
-        des: 'KENZO白莲果冻霜，让你清爽一夏~',
+        title1: '全新KENZO花颜舒柔',
+        des: '听花颜挚友侯明昊 胡冰卿细诉花颜巧语',
         link: window.location.origin,
-        img: window.location.origin+'/src/dist/images/share.jpg'
+        img: window.location.origin+'/src/dist/images/share.png'
     },function(){
         console.log('sharesuccess');
     });

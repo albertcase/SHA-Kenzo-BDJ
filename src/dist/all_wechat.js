@@ -1632,6 +1632,64 @@ Api = {
 
 
 };
+//;(function(){
+//
+//    this.weixinshare = weixinshare;
+//}).call(this);
+function weixinshare(obj,successCallBack){
+    //wx.config({
+    //    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    //    appId: data.appId, // 必填，公众号的唯一标识
+    //    timestamp: data.timestamp, // 必填，生成签名的时间戳
+    //    nonceStr: data.nonceStr, // 必填，生成签名的随机串
+    //    signature: data.signature,// 必填，签名，见附录1
+    //    jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    //});
+    wx.ready(function(){
+
+        // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+        wx.onMenuShareAppMessage({
+            title: obj.title1,
+            desc: obj.des,
+            link: obj.link,
+            imgUrl: obj.img,
+            type: '',
+            dataUrl: '',
+            success: function () {
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'onMenuShareAppMessage']);
+                successCallBack();
+
+            },
+            cancel: function () {
+
+            }
+        });
+        wx.onMenuShareTimeline({
+            title: obj.title1,
+            link: obj.link,
+            imgUrl: obj.img,
+            success: function () {
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'onMenuShareTimeline']);
+                successCallBack();
+            },
+            cancel: function () {
+
+            }
+        });
+    });
+};
+
+$(document).ready(function(){
+    weixinshare({
+        title1: '全新KENZO花颜舒柔',
+        des: '听花颜挚友侯明昊 胡冰卿细诉花颜巧语',
+        link: window.location.origin,
+        img: window.location.origin+'/src/dist/images/share.png'
+    },function(){
+        console.log('sharesuccess');
+    });
+
+});
 /*For join page
  * Inclue two function, one is load new qr for each person, another is show rule popup
  * */
@@ -1825,51 +1883,9 @@ Api = {
         });
         //    show terms pop
         $('.link-rule').on('touchstart',function(){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
-            /**/
-            var termContent = [
-                {
-                    time:'2017年8月15日到2017年8月19日',
-                    condition:'活动期间，首次关注KenzoParfums凯卓官方微信的用户即可参与申领，每个微信ID仅限申领一次，奖品共5000份。活动期间，每日上午10点起限量申领，每日份额详见活动主页（先到先得）',
-                    prize:'奖品为KENZO舒缓白莲清爽保湿霜体验装（2ml）<br>根据用户填写的邮寄地址在中奖后的30个工作日内寄送'
-                },
-                {
-                    time:'2017年8月15日到2017年8月19日',
-                    condition:'活动期间，关注KenzoParfums凯卓官方微信的用户将活动分享给好友，即可参与抽奖（随机抽取）。每个微信ID仅限中奖一次，奖品限量100份。中奖名单将于活动结束后公布。',
-                    prize:'奖品为KENZO舒缓白莲清爽保湿霜正装（50ml）<br>根据用户填写的邮寄地址在中奖后的30个工作日内寄送'
-                }
-            ];
-            if(self.isTransformedOld){
-                $('.activity-time').html(termContent[1].time);
-                $('.activity-requirement').html(termContent[1].condition);
-                $('.activity-prize').html(termContent[1].prize);
-            }else{
-                $('.activity-time').html(termContent[0].time);
-                $('.activity-requirement').html(termContent[0].condition);
-                $('.activity-prize').html(termContent[0].prize);
-            }
             $('.terms-pop').addClass('show');
-
         });
 
-        /*
-        * If isTransformedOld is true, show share popup
-        * If isTransformedOld is false and not fill form, you need fill form first
-        * If isTransformedOld is false and filled form, you directly go result page
-        * */
-        $('.btn-luckydraw').on('touchstart',function(){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'btnForLuckyDraw']);
-            if(self.isTransformedOld){
-                $('.share-popup').addClass('show');
-            }else{
-                //if(self.user.isSubshare-popupmit){
-                //
-                //}else{
-                //    self.gotoFormPage();
-                //}
-                self.callGiftApi(); //go result page
-            }
-        });
 
         /*
         * submit the form

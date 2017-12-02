@@ -1825,51 +1825,9 @@ Api = {
         });
         //    show terms pop
         $('.link-rule').on('touchstart',function(){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
-            /**/
-            var termContent = [
-                {
-                    time:'2017年8月15日到2017年8月19日',
-                    condition:'活动期间，首次关注KenzoParfums凯卓官方微信的用户即可参与申领，每个微信ID仅限申领一次，奖品共5000份。活动期间，每日上午10点起限量申领，每日份额详见活动主页（先到先得）',
-                    prize:'奖品为KENZO舒缓白莲清爽保湿霜体验装（2ml）<br>根据用户填写的邮寄地址在中奖后的30个工作日内寄送'
-                },
-                {
-                    time:'2017年8月15日到2017年8月19日',
-                    condition:'活动期间，关注KenzoParfums凯卓官方微信的用户将活动分享给好友，即可参与抽奖（随机抽取）。每个微信ID仅限中奖一次，奖品限量100份。中奖名单将于活动结束后公布。',
-                    prize:'奖品为KENZO舒缓白莲清爽保湿霜正装（50ml）<br>根据用户填写的邮寄地址在中奖后的30个工作日内寄送'
-                }
-            ];
-            if(self.isTransformedOld){
-                $('.activity-time').html(termContent[1].time);
-                $('.activity-requirement').html(termContent[1].condition);
-                $('.activity-prize').html(termContent[1].prize);
-            }else{
-                $('.activity-time').html(termContent[0].time);
-                $('.activity-requirement').html(termContent[0].condition);
-                $('.activity-prize').html(termContent[0].prize);
-            }
             $('.terms-pop').addClass('show');
-
         });
 
-        /*
-        * If isTransformedOld is true, show share popup
-        * If isTransformedOld is false and not fill form, you need fill form first
-        * If isTransformedOld is false and filled form, you directly go result page
-        * */
-        $('.btn-luckydraw').on('touchstart',function(){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'btnForLuckyDraw']);
-            if(self.isTransformedOld){
-                $('.share-popup').addClass('show');
-            }else{
-                //if(self.user.isSubshare-popupmit){
-                //
-                //}else{
-                //    self.gotoFormPage();
-                //}
-                self.callGiftApi(); //go result page
-            }
-        });
 
         /*
         * submit the form
