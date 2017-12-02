@@ -1704,7 +1704,38 @@ Api = {
 
         var baseurl = ''+'/src/dist/images/';
         var imagesArray = [
+            baseurl + 'bg.png',
             baseurl + 'book-bg.png',
+            baseurl + 'book-cover-1.png',
+            baseurl + 'book-cover-2.png',
+            baseurl + 'book-cover-3.png',
+            baseurl + 'book-cover-4.png',
+            baseurl + 'btn-audio.png',
+            baseurl + 'btn-back.png',
+            baseurl + 'btn-hou-audio.png',
+            baseurl + 'btn-lookup.png',
+            baseurl + 'btn-play.png',
+            baseurl + 'btn-prize-details.png',
+            baseurl + 'btn-submit.png',
+            baseurl + 'form-bg.png',
+            baseurl + 'logo.png',
+            baseurl + 'p1-img1.png',
+            baseurl + 'p3-btn-1.png',
+            baseurl + 'p3-img1.png',
+            baseurl + 'prize-hou.png',
+            baseurl + 'prize-hu.png',
+            baseurl + 'qrcode.png',
+            baseurl + 'share-guide.png',
+            baseurl + 'share.png',
+            baseurl + 'arrow-down.png',
+            baseurl + 'arrow-left.png',
+            baseurl + 'arrow-right.png',
+            baseurl + 'audio.png',
+        //    audio
+            '/src/media/' + 'hlh.aac',
+            '/src/media/' + 'hmj.aac',
+            '/src/media/' + 'hwy.aac',
+            '/src/media/' + 'hyz.aac',
         ];
 
         var i = 0,j= 0;
@@ -1739,7 +1770,9 @@ Api = {
         //test
         Common.hashRoute();
         //self.gotoFormPage();
-        self.getValidateCode();
+        if(location.hash == '#page=4'){
+            self.getValidateCode();
+        }
 
     };
 
@@ -1809,6 +1842,7 @@ Api = {
                     self.isStock = true;
                     //    go form page
                     location.hash = '#page=4';
+                    self.getValidateCode();
                     Common.gotoPin(4);
                 }else{
                     Common.alertBox.add(data.msg);
@@ -1863,7 +1897,7 @@ Api = {
                     area:selectDistrictVal,
                     address:inputAddressVal,
                     type: self.selectedGift,
-                    from: 'from_wechat' //三种来源，分别是from_wechat，from_weibo,from_web
+                    refer: 'from_wechat' //三种来源，分别是from_wechat，from_weibo,from_web
                 },function(data){
                     if(data.status==1){
                         $("#pin-result .title").html(self.resultTips[1].msg);
@@ -1972,19 +2006,6 @@ Api = {
 
         });
 
-        /*If the user get the gift, then go to the lottery page*/
-        $('.btn-getbigprize').on('touchstart', function(){
-            _hmt.push(['_trackEvent', 'buttons', 'click', 'btnGoLuckydraw']);
-            self.isTransformedOld = 1;
-            if(self.user.isLuckyDraw){
-                Common.gotoPin(2); /*directly go to the luckydraw result page*/
-                $('#pin-result .prize-item').html('<h3 class="title">「恭喜您」</h3>KENZO果冻霜正装（50ML）一份<br> Miss K 将火速为您寄送礼品！<span class="tip">（每个微信ID仅限中奖一次）</span>');
-                $('.btn-getbigprize').addClass('hide');
-            }else{
-                self.showLandingPage(2);
-            }
-
-        });
 
         $('.link-share').on('touchstart', function(){
             $('.share-popup').addClass('show');
@@ -2002,9 +2023,9 @@ Api = {
 
     //    btn-back
         $('.btn-back').on('touchstart', function(){
-            Common.gotoPin(0);
+            //reload first page again,init all element
+            window.location.href = window.location.origin+location.pathname;
         });
-
     };
 
     //events for lexicon page
@@ -2075,34 +2096,39 @@ Api = {
         $(".flipbook").bind("turning", function(event, page, pageObject) {
             //console.log(page);
             curSlideIndex = page;
-            // Implementation
-            if(page==1){
-                $('.arrow-left').addClass('disabled');
-                $('.arrow-right').removeClass('disabled');
-            }else if(page>1 && page<$(".flipbook").turn("pages")){
-                $('.arrow-left').removeClass('disabled');
-                $('.arrow-right').removeClass('disabled');
-                if(page==2){
-                    //$('.btn-play-audio').addClass('')
-                }
-            }else{
-                //set timeout to click event
-                var aaa = setTimeout(function(){
-                    $('.arrow-left').removeClass('disabled');
-                    $('.arrow-right').addClass('disabled');
-                    clearTimeout(aaa);
-                },1000);
-            };
-
-            //switch  case()
-            switch(n)
-            {
+            switch(page) {
                 case 1:
-
+                    $('.arrow-left').addClass('disabled');
+                    $('.arrow-right').removeClass('disabled');
+                    $('.btn-play-audio').removeClass('hu');
                     break;
                 case 2:
+                    $('.arrow-left').removeClass('disabled');
+                    $('.arrow-right').removeClass('disabled');
+                    $('.btn-play-audio').addClass('hu');
+                    break;
+                case 3:
+                    $('.arrow-left').removeClass('disabled');
+                    $('.arrow-right').removeClass('disabled');
+                    $('.btn-play-audio').removeClass('hu');
+                    break;
+                case 4:
+                    //set timeout to click event
+                    $('.btn-play-audio').addClass('hu');
+                    var aaa = setTimeout(function(){
+                        $('.arrow-left').removeClass('disabled');
+                        $('.arrow-right').addClass('disabled');
+                        clearTimeout(aaa);
+                    },1000);
                     break;
                 default:
+                    $('.btn-play-audio').removeClass('hu');
+                    //set timeout to click event
+                    var aaa = setTimeout(function(){
+                        $('.arrow-left').removeClass('disabled');
+                        $('.arrow-right').addClass('disabled');
+                        clearTimeout(aaa);
+                    },1000);
 
             }
         });
@@ -2163,102 +2189,6 @@ Api = {
                 clearInterval(aaa);
             }
         },1000);
-    };
-
-    //call gift api and show different view
-    controller.prototype.callGiftApi = function(){
-        var self = this;
-        var resultHtmlObj = [
-            {
-                name:'小样领取成功',
-                rhtml:'<h3 class="title">「恭喜您」</h3>获得KENZO果冻霜* 体验装（2ml）一份<br> Miss K 将火速为您寄送礼品！<span class="tip">（每个微信ID仅限申领一次）</span>'
-            },
-            {
-                name:'今天小样已经领取完毕，请明天再来',
-                rhtml:'<h3 class="title">「很遗憾」</h3>小伙伴们手速太快，就像龙卷风<br>今日体验装份额已全部申领完毕！<br>没申领到的小伙伴别心急~<br>体验装免费申领将于明天10点准时重启<br>不见不散哦！'
-            },
-            {
-                name:'小样已经全部领空',
-                rhtml:'本次体验装申领活动（共5000份）已全部发放完毕！<br>没申领到的小伙伴们别心急~<br>请持续关注KENZO官方微信，更多福利等着你！<br>'
-            }
-        ];
-        Api.getGift(function(json){
-            //console.log(json);
-            Common.gotoPin(2); //go result page
-            switch (json.status){
-                case 1:
-                    //msg: '小样领取成功'
-                    $('#pin-result .prize-item').html(resultHtmlObj[0].rhtml);
-                    if(!self.user.isSubmit){
-                        self.gotoFormPage();
-                    }
-                    break;
-                case 2:
-                    //msg: '今天小样已经领取完毕，请明天再来。',
-                    $('#pin-result .prize-item').html(resultHtmlObj[1].rhtml);
-                    break;
-                case 3:
-                    //msg: '小样已经全部领空。',
-                    $('#pin-result .prize-item').html(resultHtmlObj[2].rhtml);
-                    break;
-                case 4:
-                    //msg: '对不起，您已经领取过小样！',
-                    $('#pin-result .prize-item').html(resultHtmlObj[0].rhtml);
-                    if(!self.user.isSubmit){
-                        self.gotoFormPage();
-                    }
-                    break;
-                default :
-                    Common.gotoPin(0);
-                    Common.alertBox.add(json.msg);
-            }
-        });
-    }
-    //show the prize result, if prize, show prize msg, if not, show sorry msg
-    controller.prototype.callLotteryApi = function(){
-        var self = this;
-        var resultHtmlObj = [
-            {
-                name:'',
-                rhtml:'<h3 class="title">「恭喜您」</h3>KENZO果冻霜正装（50ML）一份<br> Miss K 将火速为您寄送礼品！<span class="tip">（每个微信ID仅限中奖一次）</span>'
-            },
-            {
-                name:'您没有中奖',
-                rhtml:'<h3 class="title">「很遗憾」</h3>您没有中奖<br>点击右上角，向好友发出幸运邀请<br>即可获得再一次的抽奖机会哦！'
-            },
-            {
-                name:'小样已经全部领空',
-                rhtml:'本次KENZO果冻霜正装（共100份）<br>的抽奖活动已结束<br>请持续关注KENZO官方微信，更多福利等着你！<br>'
-            }
-        ];
-
-        Api.lottery(function(json){
-            Common.gotoPin(2); //go result page
-            $('.btn-getbigprize').addClass('hide');
-            switch (json.status){
-                case 0:
-                    //msg: '遗憾未中奖',
-                    $('#pin-result .prize-item').html(resultHtmlObj[1].rhtml);
-                    break;
-                case 1:
-                    //msg: '恭喜中奖'
-                    $('#pin-result .prize-item').html(resultHtmlObj[0].rhtml);
-
-                    break;
-                case 2:
-                    //msg: '今天的奖品已经发没，请明天再来！',
-                    $('#pin-result .prize-item').html(resultHtmlObj[1].rhtml);
-                    break;
-                case 3:
-                    //msg: '您已获奖',
-                    $('#pin-result .prize-item').html(resultHtmlObj[0].rhtml);
-                    break;
-                default :
-                    Common.alertBox.add(json.msg);
-            }
-        });
-
-
     };
 
     controller.prototype.getValidateCode = function(){
@@ -2410,7 +2340,13 @@ Api = {
     $(document).ready(function(){
 //    show form
         var newFollow = new controller();
-        newFollow.startUp();
+        if(location.hash.indexOf('#page=')>-1){
+            console.log('start');
+            newFollow.startUp();
+        }else{
+            console.log('init');
+            newFollow.init();
+        }
 
     });
 

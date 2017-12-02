@@ -147,7 +147,7 @@ gulp.task('watch', ['clean'],function() {
     gulp.watch(path.wechatJs,['scripts_wechat']);
     gulp.watch(path.weiboJs,['scripts_weibo']);
     gulp.watch(path.web,['scripts_web']);
-    gulp.watch(path.images,['tinypng']);
+    //gulp.watch(path.images,['tinypng']);
 });
 
 // Default Task
