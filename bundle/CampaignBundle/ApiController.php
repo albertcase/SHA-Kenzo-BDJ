@@ -254,7 +254,7 @@ class ApiController extends Controller
         //lock 10s
         $redis = new Redis();
         //一个手机号每款礼品 10秒钟之内不允许重复抢！
-        $lockKey = $name . $phone . $type;
+        $lockKey = md5($name . $phone . $type);
         if($redis->get($lockKey)) {
             $data = array('status' => 4, 'msg' => "您的操作过于频繁！请稍后再试！");
             $this->dataPrint($data);
@@ -293,12 +293,6 @@ class ApiController extends Controller
         $submit->type = $type;
         $submit->from = $from;
         $submit->created = date('Y-m-d H:i:s');
-
-        if(!$this->checkGiftNum($type)) {
-            $redis->setTimeout($lockKey, 0);
-            $data = array('status' => -1, 'msg' => "库存已空！");
-            $this->dataPrint($data);
-        }
 
         $id = $this->helper->insertTable('gift_info', (array) $submit);
         if($id) {
