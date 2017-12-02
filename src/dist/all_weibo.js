@@ -1839,6 +1839,7 @@ Api = {
 
         //get gift, '领见面礼' or "来晚了"
         $('.btn-get-gift').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'getPrize']);
             Api.getStock({type:self.selectedGift},function(data){
                 if(data.status==0){
                     self.isStock = false;
@@ -1862,11 +1863,13 @@ Api = {
         //show and hide terms pop
             //close terms popup
         $('body').on('touchstart','.btn-close',function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             $('.terms-pop').removeClass('show');
         });
         //    show terms pop
         $('.link-rule').on('touchstart',function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
             $('.terms-pop').addClass('show');
         });
 
@@ -1875,7 +1878,7 @@ Api = {
         * submit the form
         * */
         $('.btn-submit').on('touchstart',function(){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'btnForSubmitForm']);
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'btnForSubmitForm']);
             if(self.validateForm()){
                 //name mobile province city area address
                 var inputNameVal = $('#input-name').val(),
@@ -1962,7 +1965,7 @@ Api = {
 
         //switch validate code
         $('.validate-code').on('touchstart', function(){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'getValidateCode']);
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'getValidateCode']);
             self.getValidateCode();
         });
 
@@ -1972,7 +1975,7 @@ Api = {
         * if image validate code is right
         * */
         $('.btn-get-msg-code').on('touchstart', function(){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'getMsgValidateCode']);
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'getMsgValidateCode']);
             if(self.disableClick) return;
             if(!$('#input-mobile').val()){
                 Common.errorMsgBox.add('手机号码不能为空');
@@ -2016,6 +2019,7 @@ Api = {
 
 
         $('.link-share').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
             $('.share-popup').addClass('show');
         });
 
@@ -2023,7 +2027,7 @@ Api = {
         * For share tips overlay,click will disappear
         * */
         $('.share-popup').on('touchstart', function(e){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'RemoveSharePop']);
             if(e.target.className.indexOf('.share-popup')){
                 $('.share-popup').removeClass('show');
             }
@@ -2031,6 +2035,7 @@ Api = {
 
     //    btn-back
         $('.btn-back').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'Back']);
             //reload first page again,init all element
             //window.location.href = window.location.origin+location.pathname;
             //back to third page
