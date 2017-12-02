@@ -8,6 +8,6 @@ use Lib\Redis;
 $phone = $argv[1];
 
 $redis = new Redis();
-var_dump($redis->get($phone));
+var_dump($redis->get(md5('sms:' . $phone)));
 
 exit;

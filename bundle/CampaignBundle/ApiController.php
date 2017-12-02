@@ -80,6 +80,11 @@ class ApiController extends Controller
         $this->dataPrint($data);
     }
 
+    public function getPhoneKey($phone)
+    {
+        return md5('sms:' . $phone);
+    }
+
     public function sendSMS($phone)
     {
         $ch = curl_init();
@@ -87,8 +92,9 @@ class ApiController extends Controller
         $code = rand(1000, 9999);
 
         $RedisAPI = new Redis();
-        $RedisAPI->set($phone, $code);
-        $RedisAPI->setTimeout($phone, 120);
+        $key = $this->getPhoneKey($phone);
+        $RedisAPI->set($key, $code);
+        $RedisAPI->setTimeout($key, 120);
 
         $text = "【Kenzo凯卓】您的验证码是{$code}";
         $data = array(
@@ -130,9 +136,10 @@ class ApiController extends Controller
     private function checkMsgCode($mobile, $msgCode) 
     {
         $RedisAPI = new Redis();
-        $code = $RedisAPI->get($mobile);
+        $key = $this->getPhoneKey($mobile);
+        $code = $RedisAPI->get($key);
         if($code == $msgCode) {
-            $RedisAPI->setTimeout($mobile, 0);
+            $RedisAPI->setTimeout($key, 0);
             return true;
         } else {
             return false;
@@ -158,7 +165,8 @@ class ApiController extends Controller
         if(strtolower($picture) == strtolower($captcher)) {
             //code failed send sms code
             $redis = new Redis();
-            if(!$redis->get($phone)) {
+            $key = $this->getPhoneKey($phone);
+            if(!$redis->get($key)) {
                 $this->sendSMS($phone);
             }
 
@@ -258,16 +266,10 @@ class ApiController extends Controller
         if($redis->get($lockKey)) {
             $data = array('status' => 4, 'msg' => "您的操作过于频繁！请稍后再试！");
             $this->dataPrint($data);
-        } else {
-            $redis->set($lockKey, 1);
-            $redis->setTimeout($lockKey, 10);
         }
 
-        if(!$this->checkGiftNum($type)) {
-            $redis->setTimeout($lockKey, 0);
-            $data = array('status' => -1, 'msg' => "库存已空！");
-            $this->dataPrint($data);
-        }
+        $redis->set($lockKey, 1);
+        $redis->setTimeout($lockKey, 10);
 
         //手机验证码错误！
         if(!$this->checkMsgCode($phone, $phonecode)) {
@@ -283,6 +285,12 @@ class ApiController extends Controller
             $this->dataPrint($data);
         }
 
+        if(!$this->checkGiftNum($type)) {
+            $redis->setTimeout($lockKey, 0);
+            $data = array('status' => -1, 'msg' => "库存已空！");
+            $this->dataPrint($data);
+        }
+    
         $submit = new \stdClass();
         $submit->name = $name;
         $submit->phone = $phone;
