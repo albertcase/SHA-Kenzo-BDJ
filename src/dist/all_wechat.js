@@ -1951,7 +1951,7 @@ $(document).ready(function(){
                     area:selectDistrictVal,
                     address:inputAddressVal,
                     type: self.selectedGift,
-                    refer: from //三种来源，分别是from_wechat，from_weibo,from_web,from 变量写在静态页头中
+                    refer: from || 'web'//三种来源，分别是wechat，weibo,web,from 变量写在静态页头中
                 },function(data){
                     if(data.status==1){
                         $("#pin-result .title").html(self.resultTips[1].msg);
@@ -2078,7 +2078,9 @@ $(document).ready(function(){
     //    btn-back
         $('.btn-back').on('touchstart', function(){
             //reload first page again,init all element
-            window.location.href = window.location.origin+location.pathname;
+            //window.location.href = window.location.origin+location.pathname;
+            //back to third page
+            Common.gotoPin(2);
         });
     };
 
