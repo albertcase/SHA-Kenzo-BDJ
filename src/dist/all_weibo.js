@@ -259,7 +259,7 @@ this.data();b.effect&&b.effect.stop();if(a){a.to.length||(a.to=[a.to]);a.from.le
       };
     recalc();
     if (!doc.addEventListener) return;
-    win.addEventListener(resizeEvt, recalc, false);
+    //win.addEventListener(resizeEvt, recalc, false);
 })(document, window);
 var region = [
     {

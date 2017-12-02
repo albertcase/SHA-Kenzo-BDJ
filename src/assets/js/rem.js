@@ -29,5 +29,5 @@
       };
     recalc();
     if (!doc.addEventListener) return;
-    win.addEventListener(resizeEvt, recalc, false);
+    //win.addEventListener(resizeEvt, recalc, false);
 })(document, window);
