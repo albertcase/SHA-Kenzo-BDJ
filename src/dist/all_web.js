@@ -2082,6 +2082,9 @@ Api = {
             }else if(page>1 && page<$(".flipbook").turn("pages")){
                 $('.arrow-left').removeClass('disabled');
                 $('.arrow-right').removeClass('disabled');
+                if(page==2){
+                    //$('.btn-play-audio').addClass('')
+                }
             }else{
                 //set timeout to click event
                 var aaa = setTimeout(function(){
@@ -2089,6 +2092,18 @@ Api = {
                     $('.arrow-right').addClass('disabled');
                     clearTimeout(aaa);
                 },1000);
+            };
+
+            //switch  case()
+            switch(n)
+            {
+                case 1:
+
+                    break;
+                case 2:
+                    break;
+                default:
+
             }
         });
 

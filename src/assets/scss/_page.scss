@@ -588,6 +588,9 @@ body{
   @include size(3.91rem,1.02rem);
   background: url("../images/btn-audio.png") no-repeat;
   background-size: 100%;
+  &.hu{
+    background-position: 0 100%;
+  }
   .icon-audio{
     content: '';
     display: block;

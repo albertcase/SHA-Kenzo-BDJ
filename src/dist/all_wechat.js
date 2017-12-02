@@ -2133,20 +2133,40 @@ $(document).ready(function(){
         $(".flipbook").bind("turning", function(event, page, pageObject) {
             //console.log(page);
             curSlideIndex = page;
-            // Implementation
-            if(page==1){
-                $('.arrow-left').addClass('disabled');
-                $('.arrow-right').removeClass('disabled');
-            }else if(page>1 && page<$(".flipbook").turn("pages")){
-                $('.arrow-left').removeClass('disabled');
-                $('.arrow-right').removeClass('disabled');
-            }else{
-                //set timeout to click event
-                var aaa = setTimeout(function(){
+            switch(page) {
+                case 1:
+                    $('.arrow-left').addClass('disabled');
+                    $('.arrow-right').removeClass('disabled');
+                    $('.btn-play-audio').removeClass('hu');
+                    break;
+                case 2:
                     $('.arrow-left').removeClass('disabled');
-                    $('.arrow-right').addClass('disabled');
-                    clearTimeout(aaa);
-                },1000);
+                    $('.arrow-right').removeClass('disabled');
+                    $('.btn-play-audio').addClass('hu');
+                    break;
+                case 3:
+                    $('.arrow-left').removeClass('disabled');
+                    $('.arrow-right').removeClass('disabled');
+                    $('.btn-play-audio').removeClass('hu');
+                    break;
+                case 4:
+                    //set timeout to click event
+                    $('.btn-play-audio').addClass('hu');
+                    var aaa = setTimeout(function(){
+                        $('.arrow-left').removeClass('disabled');
+                        $('.arrow-right').addClass('disabled');
+                        clearTimeout(aaa);
+                    },1000);
+                    break;
+                default:
+                    $('.btn-play-audio').removeClass('hu');
+                    //set timeout to click event
+                    var aaa = setTimeout(function(){
+                        $('.arrow-left').removeClass('disabled');
+                        $('.arrow-right').addClass('disabled');
+                        clearTimeout(aaa);
+                    },1000);
+
             }
         });
 

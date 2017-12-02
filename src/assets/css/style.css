@@ -1227,6 +1227,9 @@ body {
   background: url("../images/btn-audio.png") no-repeat;
   background-size: 100%;
 }
+.btn-play-audio.hu {
+  background-position: 0 100%;
+}
 .btn-play-audio .icon-audio {
   content: '';
   display: block;
