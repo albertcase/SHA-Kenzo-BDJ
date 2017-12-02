@@ -1858,7 +1858,7 @@ $(document).ready(function(){
             self.lexiconPage();
         });
 
-        $('.p1-1').on('touchstart', function(){
+        $('.p1-1 img').on('touchstart', function(){
             Common.gotoPin(1);
             self.lexiconPage();
         });
