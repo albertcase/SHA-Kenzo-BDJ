@@ -177,11 +177,21 @@ body{
       position: absolute;
       top: 50%;
       left: 50%;
-      z-index: 2;
-      @include size(0.98rem,0.98rem);
+      z-index: 3;
+      //@include size(0.98rem,0.98rem);
+      @include size(7.5rem,3.5rem);
       @include transform(translate(-50%,-50%));
       background-image: url('../images/btn-play.png');
-      background-size: contain;
+      background-size: 0.98rem;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    .block-gonext{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      @include size(7.5rem,3rem);
     }
   }
   .btn-go{

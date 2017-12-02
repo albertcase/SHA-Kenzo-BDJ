@@ -1858,7 +1858,8 @@ $(document).ready(function(){
             self.lexiconPage();
         });
 
-        $('.p1-1 img').on('touchstart', function(){
+        //the book area
+        $('.block-gonext').on('touchstart', function(){
             Common.gotoPin(1);
             self.lexiconPage();
         });
