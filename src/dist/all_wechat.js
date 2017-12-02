@@ -2063,7 +2063,6 @@ $(document).ready(function(){
             //reload first page again,init all element
             window.location.href = window.location.origin+location.pathname;
         });
-
     };
 
     //events for lexicon page
