@@ -136,6 +136,8 @@
         if(location.hash == '#page=4'){
             self.getValidateCode();
         }
+    //    test
+        self.lexiconPage();
 
     };
 
@@ -447,6 +449,7 @@
         });
 
         myAudio.onpause = function(){
+            isAudioPlay = false;
             $('.btn-play-audio .icon-audio').removeClass('play');
         };
 //    $(".flipbook").bind("first", function(event) {
@@ -459,6 +462,7 @@
         $(".flipbook").bind("turning", function(event, page, pageObject) {
             //console.log(page);
             curSlideIndex = page;
+            myAudio.pause();
             switch(page) {
                 case 1:
                     $('.arrow-left').addClass('disabled');
@@ -505,7 +509,6 @@
         ];
 
         $('.btn-play-audio').on('touchstart', function(){
-            //console.log(curSlideIndex);
             if(!isAudioPlay){
                 isAudioPlay = true;
                 var audioIndex = curSlideIndex - 1;

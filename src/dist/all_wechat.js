@@ -1656,7 +1656,7 @@ function weixinshare(obj,successCallBack){
             type: '',
             dataUrl: '',
             success: function () {
-                _hmt.push(['_trackEvent', 'buttons', 'click', 'onMenuShareAppMessage']);
+                //_hmt.push(['_trackEvent', 'buttons', 'click', 'onMenuShareAppMessage']);
                 successCallBack();
 
             },
@@ -1669,7 +1669,7 @@ function weixinshare(obj,successCallBack){
             link: obj.link,
             imgUrl: obj.img,
             success: function () {
-                _hmt.push(['_trackEvent', 'buttons', 'click', 'onMenuShareTimeline']);
+                //_hmt.push(['_trackEvent', 'buttons', 'click', 'onMenuShareTimeline']);
                 successCallBack();
             },
             cancel: function () {
@@ -1828,6 +1828,8 @@ $(document).ready(function(){
         if(location.hash == '#page=4'){
             self.getValidateCode();
         }
+    //    test
+        self.lexiconPage();
 
     };
 
@@ -2139,6 +2141,7 @@ $(document).ready(function(){
         });
 
         myAudio.onpause = function(){
+            isAudioPlay = false;
             $('.btn-play-audio .icon-audio').removeClass('play');
         };
 //    $(".flipbook").bind("first", function(event) {
@@ -2151,6 +2154,7 @@ $(document).ready(function(){
         $(".flipbook").bind("turning", function(event, page, pageObject) {
             //console.log(page);
             curSlideIndex = page;
+            myAudio.pause();
             switch(page) {
                 case 1:
                     $('.arrow-left').addClass('disabled');
@@ -2197,7 +2201,6 @@ $(document).ready(function(){
         ];
 
         $('.btn-play-audio').on('touchstart', function(){
-            //console.log(curSlideIndex);
             if(!isAudioPlay){
                 isAudioPlay = true;
                 var audioIndex = curSlideIndex - 1;
