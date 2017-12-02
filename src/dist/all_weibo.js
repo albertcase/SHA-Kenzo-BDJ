@@ -2087,7 +2087,7 @@ Api = {
             }
         });
 
-        $('.flipbook-viewport').on('touchstart', function(){
+        $('.flipbook-viewport .container').on('touchstart', function(){
             if(curSlideIndex==4){
                 Common.gotoPin(2);
             }
