@@ -136,9 +136,6 @@
         if(location.hash == '#page=4'){
             self.getValidateCode();
         }
-    //    test
-        self.lexiconPage();
-
     };
 
     //bind Events
