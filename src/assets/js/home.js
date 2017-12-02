@@ -177,7 +177,6 @@
             self.selectedGift = 'gift'+parseInt($(this).index()+1);
             //console.log('call api');
             Api.getStock({type:self.selectedGift},function(data){
-                console.log(data);
                 if(data.status==0){
                     $('#pin-prize-details .btn').addClass('sellout');
                     self.isStock = false;

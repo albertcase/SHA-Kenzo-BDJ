@@ -1869,12 +1869,11 @@ $(document).ready(function(){
             self.selectedGift = 'gift'+parseInt($(this).index()+1);
             //console.log('call api');
             Api.getStock({type:self.selectedGift},function(data){
-                console.log(data);
                 if(data.status==0){
                     $('#pin-prize-details .btn').addClass('sellout');
                     self.isStock = false;
                 }else if(data.status==1){
-                    $('#pin-prize-details .btn').addClass('sellout');
+                    $('#pin-prize-details .btn').removeClass('sellout');
                     self.isStock = true;
                 }else{
                     Common.alertBox.add(data.msg);
