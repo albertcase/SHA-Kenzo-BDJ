@@ -271,7 +271,7 @@
                     area:selectDistrictVal,
                     address:inputAddressVal,
                     type: self.selectedGift,
-                    refer: 'from_wechat' //三种来源，分别是from_wechat，from_weibo,from_web
+                    from: 'from_wechat' //三种来源，分别是from_wechat，from_weibo,from_web
                 },function(data){
                     if(data.status==1){
                         $("#pin-result .title").html(self.resultTips[1].msg);
