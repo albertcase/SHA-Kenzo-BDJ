@@ -447,23 +447,10 @@ body{
 }
 .guide-share{
   position: absolute;
-  top: -2rem;
+  top: 0;
   right: 0;
-  @include transform(translate(-20px,20px));
-  @include size(1.59rem,1.39rem);
-  @include transform-origin(50% 0);
-  @include animation(lefttoright 2s 1 forwards);
-  @include keyframes(lefttoright){
-    0%{
-      @include transform(translate(-20px,20px));
-    }
-    50%{
-      //@include transform(rotate(-10deg));
-    }
-    100%{
-      @include transform(translate(0px,0px));
-    }
-  }
+  width: 100%;
+
 }
 
 //for share-popup

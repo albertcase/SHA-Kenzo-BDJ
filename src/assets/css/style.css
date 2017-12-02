@@ -1104,58 +1104,11 @@ body {
 
 .guide-share {
   position: absolute;
-  top: -2rem;
+  top: 0;
   right: 0;
-  -webkit-transform: translate(-20px, 20px);
-  -moz-transform: translate(-20px, 20px);
-  -ms-transform: translate(-20px, 20px);
-  -o-transform: translate(-20px, 20px);
-  transform: translate(-20px, 20px);
-  width: 1.59rem;
-  height: 1.39rem;
-  -webkit-transform-origin: 50% 0;
-  -moz-transform-origin: 50% 0;
-  -ms-transform-origin: 50% 0;
-  -o-transform-origin: 50% 0;
-  transform-origin: 50% 0;
-  -webkit-animation: lefttoright 2s 1 forwards;
-  -moz-animation: lefttoright 2s 1 forwards;
-  animation: lefttoright 2s 1 forwards;
+  width: 100%;
 }
-@-webkit-keyframes lefttoright {
-  0% {
-    -webkit-transform: translate(-20px, 20px);
-  }
-  100% {
-    -webkit-transform: translate(0px, 0px);
-  }
-}
-@-moz-keyframes lefttoright {
-  0% {
-    -moz-transform: translate(-20px, 20px);
-  }
-  100% {
-    -moz-transform: translate(0px, 0px);
-  }
-}
-@-o-keyframes lefttoright {
-  0% {
-    -o-transform: translate(-20px, 20px);
-  }
-  100% {
-    -o-transform: translate(0px, 0px);
-  }
-}
-@keyframes lefttoright {
-  0% {
-    -webkit-transform: translate(-20px, 20px);
-    transform: translate(-20px, 20px);
-  }
-  100% {
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
-  }
-}
+
 .share-popup .right-star {
   right: 0.7rem;
   top: 0.7rem;

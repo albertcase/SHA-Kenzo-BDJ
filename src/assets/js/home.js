@@ -394,11 +394,15 @@
 
         });
 
+        $('.link-share').on('touchstart', function(){
+            $('.share-popup').addClass('show');
+        });
+
         /*
         * For share tips overlay,click will disappear
         * */
         $('.share-popup').on('touchstart', function(e){
-            _hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
+            //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
             if(e.target.className.indexOf('.share-popup')){
                 $('.share-popup').removeClass('show');
             }
