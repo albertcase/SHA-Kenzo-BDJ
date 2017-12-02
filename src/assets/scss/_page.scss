@@ -395,6 +395,10 @@ body{
         //padding-top: 0.12rem;
         //padding-left: 0.14rem;
         box-sizing: border-box;
+        &.disabled{
+          background: #e6e6e6;
+          color: #666;
+        }
         span{
           display: inline-block;
           font-size: 0.2rem;
