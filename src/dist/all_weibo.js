@@ -1784,11 +1784,13 @@ Api = {
         var myVideo = document.getElementById('myvideo');
         //play video
         $('.btn-playvideo').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'videoplay']);
             $('.video-wrap').addClass('show');
             myVideo.play();
         });
         //close video, pause video
         $('.btn-closevideo').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'videoclose']);
             myVideo.pause();
             $('.video-wrap').removeClass('show');
         });
@@ -1796,18 +1798,22 @@ Api = {
 
         //look up the dictionary, load turns js, go pin-lexicon page
         $('.btn-go').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'dictstart']);
             Common.gotoPin(1);
             self.lexiconPage();
         });
 
         //the book area
         $('.block-gonext').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'dictstart']);
             Common.gotoPin(1);
             self.lexiconPage();
         });
 
         //selected relative gift,go prize details page to show relative content,call api to show if there's stock
         $('.btn-show-gift').on('touchstart', function(){
+            var trackingGiftName = ['hougift','huname'];
+            _hmt.push(['_trackEvent', 'buttons', 'click', trackingGiftName[$(this).index()]]);
             self.selectedGift = 'gift'+parseInt($(this).index()+1);
             //console.log('call api');
             Api.getStock({type:self.selectedGift},function(data){
@@ -2152,8 +2158,9 @@ Api = {
             'src/media/hyz.aac',
             'src/media/hmj.aac'
         ];
-
+        var trackingName = ['wyvoice','lhvoice','yzvoice','mjvoice'];
         $('.btn-play-audio').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', trackingName[curSlideIndex - 1]]);
             if(!isAudioPlay){
                 isAudioPlay = true;
                 var audioIndex = curSlideIndex - 1;
@@ -2170,16 +2177,6 @@ Api = {
 
     };
 
-    controller.prototype.showLandingPage = function(page){
-        Common.gotoPin(0);
-        if(page == 1){
-            $('.btn-luckydraw').text('即刻领取体验装');
-            $('.limit-quantity').removeClass('hide');
-        }else if(page == 2){
-            $('.btn-luckydraw').text('即刻赢取礼赠');
-            $('.limit-quantity').addClass('hide');
-        }
-    };
     /*
     * Countdown
     * Disabled click the button untill the end the countdown
