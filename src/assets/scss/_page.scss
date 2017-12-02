@@ -601,6 +601,31 @@ body{
   @include size(3.91rem,1.02rem);
   background: url("../images/btn-audio.png") no-repeat;
   background-size: 100%;
+  .icon-audio{
+    content: '';
+    display: block;
+    @include size(0.47rem,0.39rem);
+    background: url("../images/audio.png") no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 0.26rem;
+    left: 0.38rem;
+    &.play{
+      @include animation(aniAudio steps(2) 1s infinite);
+      @include keyframes(aniAudio){
+        0%{
+          background-position:0 0;
+        }
+        50%{
+          //background-position:0 100%;
+        }
+        100%{
+          background-position:0 100%;
+
+        }
+      }
+    }
+  }
 }
 
 //for pin-prize

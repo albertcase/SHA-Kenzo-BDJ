@@ -441,6 +441,7 @@
         });
 
         var myAudio = document.getElementById('myaudio');
+        var isAudioPlay = false;
         $('.arrow-left').on('click',function(){
             myAudio.pause();
             $(".flipbook").turn("previous");
@@ -448,6 +449,7 @@
                 $('.arrow-right').removeClass('disabled');
             }
         });
+
         $('.arrow-right').on('click',function(){
             myAudio.pause();
             $(".flipbook").turn("next");
@@ -460,6 +462,10 @@
                 Common.gotoPin(2);
             }
         });
+
+        myAudio.onpause = function(){
+            $('.btn-play-audio .icon-audio').removeClass('play');
+        };
 //    $(".flipbook").bind("first", function(event) {
 //        $('.arrow-left').addClass('disabled');
 //    });
@@ -496,11 +502,19 @@
         ];
 
         $('.btn-play-audio').on('touchstart', function(){
-            console.log(curSlideIndex);
-            var audioIndex = curSlideIndex - 1;
-            myAudio.src = audioList[audioIndex];
-            myAudio.load();
-            myAudio.play();
+            //console.log(curSlideIndex);
+            if(!isAudioPlay){
+                isAudioPlay = true;
+                var audioIndex = curSlideIndex - 1;
+                myAudio.src = audioList[audioIndex];
+                myAudio.load();
+                myAudio.play();
+                $('.btn-play-audio .icon-audio').addClass('play');
+            }else{
+                isAudioPlay = false;
+                myAudio.pause();
+            }
+
         });
     };
 
