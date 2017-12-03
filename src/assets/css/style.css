@@ -1319,6 +1319,11 @@ body {
 #pin-prize .p3-btns .btn.btn-buy {
   background-position: 0 100%;
 }
+#pin-prize .p3-btns .btn.btn-buy a {
+  display: block;
+  width: 3.91rem;
+  height: 1.02rem;
+}
 #pin-prize .link-share {
   width: 3.91rem;
   margin: 0 auto;

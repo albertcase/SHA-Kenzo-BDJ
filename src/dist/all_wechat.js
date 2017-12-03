@@ -1741,10 +1741,7 @@ $(document).ready(function(){
                 item.des = item.des_weibo;
             });
         }
-        //console.log(this.resultTips);
         this.disableClick = false;
-
-
 
     };
     //init
@@ -1915,11 +1912,6 @@ $(document).ready(function(){
                     //result page
                     $("#pin-result .title").html(self.resultTips[4].msg);
                     $("#pin-result .des").html(self.resultTips[4].des);
-                    if(from == 'weibo'){
-                        $("#pin-result .des").html(self.resultTips[4].des_weibo);
-                    }else{
-
-                    }
                     Common.gotoPin(5);
                 }else if(data.status==1){
                     self.isStock = true;

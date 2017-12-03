@@ -49,10 +49,7 @@
                 item.des = item.des_weibo;
             });
         }
-        //console.log(this.resultTips);
         this.disableClick = false;
-
-
 
     };
     //init
