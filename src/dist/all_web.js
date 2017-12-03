@@ -1766,14 +1766,10 @@ Api = {
         Common.gotoPin(0);
         self.bindEvent();
         self.showAllProvince();
-
-        //test
         Common.hashRoute();
-        //self.gotoFormPage();
         if(location.hash == '#page=4'){
             self.getValidateCode();
         }
-
     };
 
     //bind Events
@@ -1788,11 +1784,13 @@ Api = {
         var myVideo = document.getElementById('myvideo');
         //play video
         $('.btn-playvideo').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'videoplay']);
             $('.video-wrap').addClass('show');
             myVideo.play();
         });
         //close video, pause video
         $('.btn-closevideo').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'videoclose']);
             myVideo.pause();
             $('.video-wrap').removeClass('show');
         });
@@ -1800,20 +1798,30 @@ Api = {
 
         //look up the dictionary, load turns js, go pin-lexicon page
         $('.btn-go').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'dictstart']);
+            Common.gotoPin(1);
+            self.lexiconPage();
+        });
+
+        //the book area
+        $('.block-gonext').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'dictstart']);
             Common.gotoPin(1);
             self.lexiconPage();
         });
 
         //selected relative gift,go prize details page to show relative content,call api to show if there's stock
         $('.btn-show-gift').on('touchstart', function(){
+            var trackingGiftName = ['hougift','huname'];
+            _hmt.push(['_trackEvent', 'buttons', 'click', trackingGiftName[$(this).index()]]);
             self.selectedGift = 'gift'+parseInt($(this).index()+1);
             //console.log('call api');
             Api.getStock({type:self.selectedGift},function(data){
-                console.log(data);
                 if(data.status==0){
                     $('#pin-prize-details .btn').addClass('sellout');
                     self.isStock = false;
                 }else if(data.status==1){
+                    $('#pin-prize-details .btn').removeClass('sellout');
                     self.isStock = true;
                 }else{
                     Common.alertBox.add(data.msg);
@@ -1831,6 +1839,7 @@ Api = {
 
         //get gift, '领见面礼' or "来晚了"
         $('.btn-get-gift').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'getPrize']);
             Api.getStock({type:self.selectedGift},function(data){
                 if(data.status==0){
                     self.isStock = false;
@@ -1854,11 +1863,13 @@ Api = {
         //show and hide terms pop
             //close terms popup
         $('body').on('touchstart','.btn-close',function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             $('.terms-pop').removeClass('show');
         });
         //    show terms pop
         $('.link-rule').on('touchstart',function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
             $('.terms-pop').addClass('show');
         });
 
@@ -1867,7 +1878,7 @@ Api = {
         * submit the form
         * */
         $('.btn-submit').on('touchstart',function(){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'btnForSubmitForm']);
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'btnForSubmitForm']);
             if(self.validateForm()){
                 //name mobile province city area address
                 var inputNameVal = $('#input-name').val(),
@@ -1897,7 +1908,7 @@ Api = {
                     area:selectDistrictVal,
                     address:inputAddressVal,
                     type: self.selectedGift,
-                    refer: 'from_wechat' //三种来源，分别是from_wechat，from_weibo,from_web
+                    refer: from || 'web'//三种来源，分别是wechat，weibo,web,from 变量写在静态页头中
                 },function(data){
                     if(data.status==1){
                         $("#pin-result .title").html(self.resultTips[1].msg);
@@ -1954,7 +1965,7 @@ Api = {
 
         //switch validate code
         $('.validate-code').on('touchstart', function(){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'getValidateCode']);
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'getValidateCode']);
             self.getValidateCode();
         });
 
@@ -1964,7 +1975,7 @@ Api = {
         * if image validate code is right
         * */
         $('.btn-get-msg-code').on('touchstart', function(){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'getMsgValidateCode']);
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'getMsgValidateCode']);
             if(self.disableClick) return;
             if(!$('#input-mobile').val()){
                 Common.errorMsgBox.add('手机号码不能为空');
@@ -2008,6 +2019,7 @@ Api = {
 
 
         $('.link-share').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
             $('.share-popup').addClass('show');
         });
 
@@ -2015,7 +2027,7 @@ Api = {
         * For share tips overlay,click will disappear
         * */
         $('.share-popup').on('touchstart', function(e){
-            //_hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'RemoveSharePop']);
             if(e.target.className.indexOf('.share-popup')){
                 $('.share-popup').removeClass('show');
             }
@@ -2023,8 +2035,11 @@ Api = {
 
     //    btn-back
         $('.btn-back').on('touchstart', function(){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'Back']);
             //reload first page again,init all element
-            window.location.href = window.location.origin+location.pathname;
+            //window.location.href = window.location.origin+location.pathname;
+            //back to third page
+            Common.gotoPin(2);
         });
     };
 
@@ -2083,7 +2098,14 @@ Api = {
             }
         });
 
+        $('.flipbook-viewport .container').on('touchstart', function(){
+            if(curSlideIndex==4){
+                Common.gotoPin(2);
+            }
+        });
+
         myAudio.onpause = function(){
+            isAudioPlay = false;
             $('.btn-play-audio .icon-audio').removeClass('play');
         };
 //    $(".flipbook").bind("first", function(event) {
@@ -2096,6 +2118,7 @@ Api = {
         $(".flipbook").bind("turning", function(event, page, pageObject) {
             //console.log(page);
             curSlideIndex = page;
+            myAudio.pause();
             switch(page) {
                 case 1:
                     $('.arrow-left').addClass('disabled');
@@ -2140,9 +2163,9 @@ Api = {
             'src/media/hyz.aac',
             'src/media/hmj.aac'
         ];
-
+        var trackingName = ['wyvoice','lhvoice','yzvoice','mjvoice'];
         $('.btn-play-audio').on('touchstart', function(){
-            //console.log(curSlideIndex);
+            _hmt.push(['_trackEvent', 'buttons', 'click', trackingName[curSlideIndex - 1]]);
             if(!isAudioPlay){
                 isAudioPlay = true;
                 var audioIndex = curSlideIndex - 1;
@@ -2156,18 +2179,9 @@ Api = {
             }
 
         });
+
     };
 
-    controller.prototype.showLandingPage = function(page){
-        Common.gotoPin(0);
-        if(page == 1){
-            $('.btn-luckydraw').text('即刻领取体验装');
-            $('.limit-quantity').removeClass('hide');
-        }else if(page == 2){
-            $('.btn-luckydraw').text('即刻赢取礼赠');
-            $('.limit-quantity').addClass('hide');
-        }
-    };
     /*
     * Countdown
     * Disabled click the button untill the end the countdown
