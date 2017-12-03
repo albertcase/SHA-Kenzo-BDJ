@@ -1651,17 +1651,20 @@ Api = {
             {
                 status:0,
                 msg: '提交失败！',
-                des:'请检查信息是否填写正确'
+                des:'请检查信息是否填写正确',
+                des_weibo:'关注KENZO微博发现更多精彩活动'
             },
             {
                 status: 1,
                 msg: "提交成功！",
-                des:'请耐心等待礼物送达<br>扫码关注KENZO公众号<br>发现更多精彩活动'
+                des:'请耐心等待礼物送达<br>扫码关注KENZO公众号<br>发现更多精彩活动',
+                des_weibo:'关注KENZO微博发现更多精彩活动'
             },
             {
                 status: '2',
                 msg: '您已领取过礼物！',
-                des:'请耐心等待礼物送达<br>扫码关注KENZO公众号<br>发现更多精彩活动'
+                des:'请耐心等待礼物送达<br>扫码关注KENZO公众号<br>发现更多精彩活动',
+                des_weibo:'关注KENZO微博发现更多精彩活动'
             },
             {
                 status: '3',
@@ -1670,7 +1673,8 @@ Api = {
             {
                 status: '-1',
                 msg: '礼物已派送结束！',
-                des:'扫码关注KENZO公众号<br>发现更多精彩活动'
+                des:'扫码关注KENZO公众号<br>发现更多精彩活动',
+                des_weibo:'关注KENZO微博发现更多精彩活动'
             }
         ];
         this.disableClick = false;

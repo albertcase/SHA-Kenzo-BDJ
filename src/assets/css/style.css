@@ -1098,13 +1098,25 @@ body {
 .browser-weibo #pin-result .qrcode {
   display: none;
 }
+#pin-result .follow-weibo {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 50%;
+  display: none;
+  width: 3.91rem;
+  height: 1.02rem;
+  margin-left: -2rem;
+}
+.browser-weibo #pin-result .follow-weibo {
+  display: block;
+}
 #pin-result .btn-back {
   position: absolute;
   bottom: 1.2rem;
   left: 50%;
+  margin-left: -2rem;
   width: 3.91rem;
   height: 1.02rem;
-  margin-left: -2rem;
 }
 
 .guide-share {

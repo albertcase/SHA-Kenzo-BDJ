@@ -435,13 +435,25 @@ body{
       display: none;
     }
   }
+  .follow-weibo{
+    position: absolute;
+    bottom: 2.2rem;
+    left: 50%;
+    display: none;
+    @include size(3.91rem,1.02rem);
+    margin-left: -2rem;
+    .browser-weibo &{
+      display: block;
+    }
+  }
   .btn-back{
     position: absolute;
     bottom: 1.2rem;
     left: 50%;
-    @include size(3.91rem,1.02rem);
     margin-left: -2rem;
+    @include size(3.91rem,1.02rem);
   }
+
 }
 .guide-share{
   position: absolute;
