@@ -1632,8 +1632,8 @@ Api = {
 
 
 };
-/*For join page
- * Inclue two function, one is load new qr for each person, another is show rule popup
+/*
+ * Just for weibo page
  * */
 ;(function(){
     var controller = function(){
@@ -1739,7 +1739,7 @@ Api = {
             baseurl + 'arrow-left.png',
             baseurl + 'arrow-right.png',
             baseurl + 'audio.png',
-        //    audio
+            //    audio
             '/src/media/' + 'hlh.aac',
             '/src/media/' + 'hmj.aac',
             '/src/media/' + 'hwy.aac',
@@ -1786,7 +1786,7 @@ Api = {
 
         //play video and close video
         if(!(navigator.userAgent.indexOf('iPhone')>-1)){
-        //    not iphone,will andriod
+            //    not iphone,will andriod
             $('body').addClass('device-andriod');
         }
         var myVideo = document.getElementById('myvideo');
@@ -1869,7 +1869,7 @@ Api = {
 
 
         //show and hide terms pop
-            //close terms popup
+        //close terms popup
         $('body').on('touchstart','.btn-close',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
@@ -1883,8 +1883,8 @@ Api = {
 
 
         /*
-        * submit the form
-        * */
+         * submit the form
+         * */
         $('.btn-submit').on('touchstart',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'btnForSubmitForm']);
             if(self.validateForm()){
@@ -1946,7 +1946,7 @@ Api = {
 
         });
 
-    //    switch the province
+        //    switch the province
         var curProvinceIndex = 0;
         $('#select-province').on('change',function(){
             curProvinceIndex = document.getElementById('select-province').selectedIndex;
@@ -1966,10 +1966,10 @@ Api = {
         });
 
 
-    //    imitate share function on pc====test
-    //    $('.share-popup .guide-share').on('touchstart',function(){
-    //        self.shareSuccess();
-    //    });
+        //    imitate share function on pc====test
+        //    $('.share-popup .guide-share').on('touchstart',function(){
+        //        self.shareSuccess();
+        //    });
 
         //switch validate code
         $('.validate-code').on('touchstart', function(){
@@ -1978,10 +1978,10 @@ Api = {
         });
 
         /*
-        * validate phonenumber first
-        * Get message validate code,check image validate code
-        * if image validate code is right
-        * */
+         * validate phonenumber first
+         * Get message validate code,check image validate code
+         * if image validate code is right
+         * */
         $('.btn-get-msg-code').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'getMsgValidateCode']);
             if(self.disableClick) return;
@@ -2032,8 +2032,8 @@ Api = {
         });
 
         /*
-        * For share tips overlay,click will disappear
-        * */
+         * For share tips overlay,click will disappear
+         * */
         $('.share-popup').on('touchstart', function(e){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'RemoveSharePop']);
             if(e.target.className.indexOf('.share-popup')){
@@ -2041,7 +2041,7 @@ Api = {
             }
         });
 
-    //    btn-back
+        //    btn-back
         $('.btn-back').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'Back']);
             //reload first page again,init all element
@@ -2191,9 +2191,9 @@ Api = {
     };
 
     /*
-    * Countdown
-    * Disabled click the button untill the end the countdown
-    * */
+     * Countdown
+     * Disabled click the button untill the end the countdown
+     * */
 
     controller.prototype.countDown = function(){
         var self = this;
@@ -2373,4 +2373,3 @@ Api = {
     });
 
 })();
-console.log('weibo');

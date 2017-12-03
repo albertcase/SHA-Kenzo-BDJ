@@ -52,7 +52,6 @@ var path = {
         './src/assets/js/region.js',
         './src/assets/js/common.js',
         './src/assets/js/api.js',
-        './src/assets/js/home.js',
         './src/assets/js/home_weibo.js',
     ],
     webJs:[
