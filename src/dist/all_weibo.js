@@ -1778,9 +1778,6 @@ Api = {
         if(location.hash == '#page=4'){
             self.getValidateCode();
         }
-
-    //    test
-        self.lexiconPage();
     };
 
     //bind Events
@@ -2128,7 +2125,6 @@ Api = {
 //    });
 
         $(".flipbook").bind("turning", function(event, page, pageObject) {
-            //console.log(page);
             curSlideIndex = page;
             myAudio.pause();
             switch(page) {
