@@ -496,8 +496,11 @@ body{
 .flipbook-viewport{
   position: relative;
   overflow:hidden;
-  width:100vw;
-  height:134vw;
+  //width:100vw;
+  //height:134vw;
+  width: 7.5rem;
+  height: 14.3rem;
+  margin: 0 auto;
   margin-top: 0.2rem;
   background: url("../images/book-bg.png") no-repeat;
   background-size: 100%;

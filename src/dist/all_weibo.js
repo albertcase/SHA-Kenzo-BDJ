@@ -1477,7 +1477,7 @@ noBounce.init({
 $(document).ready(function(){
 
 //	close alert pop
-	$('body').on('touchstart','.btn-alert-ok',function(){
+	$('body').on('click','.btn-alert-ok',function(){
 		$(this).parent().parent('.alertpop').remove();
 	});
 	//Common.overscroll(document.querySelector('.wrapper'));
@@ -1778,6 +1778,9 @@ Api = {
         if(location.hash == '#page=4'){
             self.getValidateCode();
         }
+
+    //    test
+        self.lexiconPage();
     };
 
     //bind Events
@@ -1791,13 +1794,13 @@ Api = {
         }
         var myVideo = document.getElementById('myvideo');
         //play video
-        $('.btn-playvideo').on('touchstart', function(){
+        $('.btn-playvideo').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'videoplay']);
             $('.video-wrap').addClass('show');
             myVideo.play();
         });
         //close video, pause video
-        $('.btn-closevideo').on('touchstart', function(){
+        $('.btn-closevideo').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'videoclose']);
             myVideo.pause();
             $('.video-wrap').removeClass('show');
@@ -1805,21 +1808,21 @@ Api = {
 
 
         //look up the dictionary, load turns js, go pin-lexicon page
-        $('.btn-go').on('touchstart', function(){
+        $('.btn-go').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'dictstart']);
             Common.gotoPin(1);
             self.lexiconPage();
         });
 
         //the book area
-        $('.block-gonext').on('touchstart', function(){
+        $('.block-gonext').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'dictstart']);
             Common.gotoPin(1);
             self.lexiconPage();
         });
 
         //selected relative gift,go prize details page to show relative content,call api to show if there's stock
-        $('.btn-show-gift').on('touchstart', function(){
+        $('.btn-show-gift').on('click', function(){
             var trackingGiftName = ['hougift','huname'];
             _hmt.push(['_trackEvent', 'buttons', 'click', trackingGiftName[$(this).index()]]);
             self.selectedGift = 'gift'+parseInt($(this).index()+1);
@@ -1846,7 +1849,7 @@ Api = {
         });
 
         //get gift, '领见面礼' or "来晚了"
-        $('.btn-get-gift').on('touchstart', function(){
+        $('.btn-get-gift').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'getPrize']);
             Api.getStock({type:self.selectedGift},function(data){
                 if(data.status==0){
@@ -1870,13 +1873,13 @@ Api = {
 
         //show and hide terms pop
         //close terms popup
-        $('body').on('touchstart','.btn-close',function(){
+        $('body').on('click','.btn-close',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             $('.terms-pop').removeClass('show');
         });
         //    show terms pop
-        $('.link-rule').on('touchstart',function(){
+        $('.link-rule').on('click',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
             $('.terms-pop').addClass('show');
         });
@@ -1885,7 +1888,7 @@ Api = {
         /*
          * submit the form
          * */
-        $('.btn-submit').on('touchstart',function(){
+        $('.btn-submit').on('click',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'btnForSubmitForm']);
             if(self.validateForm()){
                 //name mobile province city area address
@@ -1967,12 +1970,12 @@ Api = {
 
 
         //    imitate share function on pc====test
-        //    $('.share-popup .guide-share').on('touchstart',function(){
+        //    $('.share-popup .guide-share').on('click',function(){
         //        self.shareSuccess();
         //    });
 
         //switch validate code
-        $('.validate-code').on('touchstart', function(){
+        $('.validate-code').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'getValidateCode']);
             self.getValidateCode();
         });
@@ -1982,7 +1985,7 @@ Api = {
          * Get message validate code,check image validate code
          * if image validate code is right
          * */
-        $('.btn-get-msg-code').on('touchstart', function(){
+        $('.btn-get-msg-code').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'getMsgValidateCode']);
             if(self.disableClick) return;
             if(!$('#input-mobile').val()){
@@ -2026,7 +2029,7 @@ Api = {
         });
 
 
-        $('.link-share').on('touchstart', function(){
+        $('.link-share').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
             $('.share-popup').addClass('show');
         });
@@ -2034,7 +2037,7 @@ Api = {
         /*
          * For share tips overlay,click will disappear
          * */
-        $('.share-popup').on('touchstart', function(e){
+        $('.share-popup').on('click', function(e){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'RemoveSharePop']);
             if(e.target.className.indexOf('.share-popup')){
                 $('.share-popup').removeClass('show');
@@ -2042,7 +2045,7 @@ Api = {
         });
 
         //    btn-back
-        $('.btn-back').on('touchstart', function(){
+        $('.btn-back').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'Back']);
             //reload first page again,init all element
             //window.location.href = window.location.origin+location.pathname;
@@ -2058,11 +2061,12 @@ Api = {
         $('.flipbook').turn({
             // Width
 
-            width:$(window).width()*0.82,
+            //width:$(window).width()*0.82,
+            width:$('.flipbook-viewport').width()*0.82,
 
             // Height
 
-            height:$(window).width()*0.82*920/616,
+            height:$('.flipbook-viewport').width()*0.82*920/616,
 
 
             // Elevation
@@ -2106,7 +2110,7 @@ Api = {
             }
         });
 
-        $('.flipbook-viewport .container').on('touchstart', function(){
+        $('.flipbook-viewport .container').on('click', function(){
             if(curSlideIndex==4){
                 Common.gotoPin(2);
             }
@@ -2172,7 +2176,7 @@ Api = {
             'src/media/hmj.aac'
         ];
         var trackingName = ['wyvoice','lhvoice','yzvoice','mjvoice'];
-        $('.btn-play-audio').on('touchstart', function(){
+        $('.btn-play-audio').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', trackingName[curSlideIndex - 1]]);
             if(!isAudioPlay){
                 isAudioPlay = true;

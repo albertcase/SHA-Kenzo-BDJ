@@ -1477,7 +1477,7 @@ noBounce.init({
 $(document).ready(function(){
 
 //	close alert pop
-	$('body').on('touchstart','.btn-alert-ok',function(){
+	$('body').on('click','.btn-alert-ok',function(){
 		$(this).parent().parent('.alertpop').remove();
 	});
 	//Common.overscroll(document.querySelector('.wrapper'));
