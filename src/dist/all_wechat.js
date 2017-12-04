@@ -2080,9 +2080,8 @@ $(document).ready(function(){
         $('.btn-back').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'Back']);
             //reload first page again,init all element
-            //window.location.href = window.location.origin+location.pathname;
-            //back to third page
-            Common.gotoPin(2);
+            window.location.href = window.location.origin+location.pathname+"#page=2";
+            window.location.reload();
         });
     };
 
@@ -2267,19 +2266,6 @@ $(document).ready(function(){
         Common.gotoPin(4);
         self.getValidateCode();
     }
-
-    //share success
-    controller.prototype.shareSuccess = function(){
-        var self = this;
-        if(self.isTransformedOld){
-            $('.share-popup').removeClass('show');
-            if(self.user.isSubmit){
-                self.callLotteryApi();
-            }else{
-                self.gotoFormPage();
-            }
-        }
-    };
 
     //province city and district
     controller.prototype.showAllProvince = function(){
