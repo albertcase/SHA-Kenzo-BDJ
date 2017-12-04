@@ -106,7 +106,30 @@ class ApiController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
         $json_data = curl_exec($ch);
+        $res= json_decode($json_data, true);
+        
+        if($res['code'] == 0) {
+            $smsStatus = 'success';
+        } else {
+            $smsStatus = 'failed';
+        }
+
+        //记录短信发送日志
+        $smsLog = new \stdClass();
+        $smsLog->status = $smsStatus;
+        $smsLog->phone = $phone;
+        $smsLog->api_data = json_encode($data);
+        $smsLog->contents = $text;
+        $smsLog->api_return = $json_data;
+        $this->insertSMSLogs($smsLog);
         return true;
+    }
+
+    private function insertSMSLogs($logs)
+    {
+        $logs->created = date('Y-m-d H:i:s');
+        $log = (array) $logs;
+        $this->helper->insertTable('sms_logs', $log);
     }
 
     /**
