@@ -738,6 +738,7 @@ body {
   border-radius: 100%;
   width: 0.6rem;
   height: 0.6rem;
+  margin-left: -0.3rem;
 }
 .terms-pop .tips {
   color: #713463;
