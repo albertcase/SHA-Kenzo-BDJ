@@ -35,6 +35,7 @@ var path = {
     wechatJs:[
         './src/assets/js/lib/jquery.min.1.7.js',
         './src/assets/js/lib/pre-loader.js',
+        './src/assets/js/lib/cookie.js',
         './src/assets/js/lib/turn.min.js',
         './src/assets/js/rem.js',
         './src/assets/js/region.js',
@@ -47,6 +48,7 @@ var path = {
     weiboJs:[
         './src/assets/js/lib/jquery.min.1.7.js',
         './src/assets/js/lib/pre-loader.js',
+        './src/assets/js/lib/cookie.js',
         './src/assets/js/lib/turn.min.js',
         './src/assets/js/rem.js',
         './src/assets/js/region.js',
@@ -57,6 +59,7 @@ var path = {
     webJs:[
         './src/assets/js/lib/jquery.min.1.7.js',
         './src/assets/js/lib/pre-loader.js',
+        './src/assets/js/lib/cookie.js',
         './src/assets/js/lib/turn.min.js',
         './src/assets/js/rem.js',
         './src/assets/js/region.js',

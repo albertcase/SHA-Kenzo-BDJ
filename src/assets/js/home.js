@@ -119,6 +119,9 @@
         self.showAllProvince();
         Common.hashRoute();
         if(location.hash == '#page=4'){
+            if(Cookies.get('selectedGift')){
+                self.selectedGift = Cookies.get('selectedGift');
+            }
             self.getValidateCode();
         }
     };
@@ -166,6 +169,7 @@
             var trackingGiftName = ['hougift','huname'];
             _hmt.push(['_trackEvent', 'buttons', 'click', trackingGiftName[$(this).index()]]);
             self.selectedGift = 'gift'+parseInt($(this).index()+1);
+            Cookies.set('selectedGift', self.selectedGift);
             //console.log('call api');
             Api.getStock({type:self.selectedGift},function(data){
                 if(data.status==0){
@@ -632,6 +636,8 @@
         var validate = true,
             inputName = document.getElementById('input-name'),
             inputMobile = document.getElementById('input-mobile'),
+            inputValidateCode = document.getElementById('input-validate-code'),
+            inputValidateMsgCode = document.getElementById('input-validate-message-code'),
             inputAddress = document.getElementById('input-address'),
             selectProvince = document.getElementById('select-province'),
             selectCity = document.getElementById('select-city'),
@@ -656,6 +662,16 @@
                 //Common.errorMsg.remove(inputMobile.parentElement);
             }
         }
+
+        if(!inputValidateCode.value){
+            Common.errorMsgBox.add('请填写图片验证码');
+            validate = false;
+        };
+
+        if(!inputValidateMsgCode.value){
+            Common.errorMsgBox.add('请填写短信验证码');
+            validate = false;
+        };
 
         if(!selectProvince.value || selectProvince.value == '省份'){
             //Common.errorMsg.add(selectProvince.parentElement,'请选择省份');
