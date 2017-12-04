@@ -87,41 +87,47 @@ class ApiController extends Controller
 
     public function sendSMS($phone)
     {
-        $ch = curl_init();
-        $apikey = "b42c77ce5a2296dcc0199552012a4bd9";
-        $code = rand(1000, 9999);
+        try {
 
-        $RedisAPI = new Redis();
-        $key = $this->getPhoneKey($phone);
-        $RedisAPI->set($key, $code);
-        $RedisAPI->setTimeout($key, 120);
+            $ch = curl_init();
+            $apikey = "b42c77ce5a2296dcc0199552012a4bd9";
+            $code = rand(1000, 9999);
 
-        $text = "【Kenzo凯卓】您的验证码是{$code}";
-        $data = array(
-            'text' => $text,
-            'apikey' => $apikey,
-            'mobile' => $phone
-        );
-        curl_setopt ($ch, CURLOPT_URL, 'https://sms.yunpian.com/v2/sms/single_send.json');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-        $json_data = curl_exec($ch);
-        $res= json_decode($json_data, true);
-        
-        if($res['code'] == 0) {
-            $smsStatus = 'success';
-        } else {
-            $smsStatus = 'failed';
+            $RedisAPI = new Redis();
+            $key = $this->getPhoneKey($phone);
+            $RedisAPI->set($key, $code);
+            $RedisAPI->setTimeout($key, 120);
+
+            $text = "【Kenzo凯卓】您的验证码是{$code}";
+            $data = array(
+                'text' => $text,
+                'apikey' => $apikey,
+                'mobile' => $phone
+            );
+            curl_setopt ($ch, CURLOPT_URL, 'https://sms.yunpian.com/v2/sms/single_send.json');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+            $json_data = curl_exec($ch);
+            $res= json_decode($json_data, true);
+            
+            if($res['code'] == 0) {
+                $smsStatus = 'success';
+            } else {
+                $smsStatus = 'failed';
+            }
+
+            //记录短信发送日志
+            $smsLog = new \stdClass();
+            $smsLog->status = $smsStatus;
+            $smsLog->phone = $phone;
+            $smsLog->api_data = json_encode($data);
+            $smsLog->contents = $text;
+            $smsLog->api_return = $json_data;
+            $this->insertSMSLogs($smsLog);
+        } catch (Exception $e) {
+            $msg = $e->getMessage();
+            file_put_contents('/data/log/smserr.log', "smsPhone: {$phone}, smsErr: {$msg}\n", FILE_APPEND);
         }
-
-        //记录短信发送日志
-        $smsLog = new \stdClass();
-        $smsLog->status = $smsStatus;
-        $smsLog->phone = $phone;
-        $smsLog->api_data = json_encode($data);
-        $smsLog->contents = $text;
-        $smsLog->api_return = $json_data;
-        $this->insertSMSLogs($smsLog);
         return true;
     }
 
