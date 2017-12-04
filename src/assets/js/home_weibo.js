@@ -455,6 +455,7 @@
 
         $('.flipbook-viewport .container').on('click', function(){
             if(curSlideIndex==4){
+                myAudio.pause();
                 Common.gotoPin(2);
             }
         });

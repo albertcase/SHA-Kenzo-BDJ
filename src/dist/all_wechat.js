@@ -2298,6 +2298,7 @@ $(document).ready(function(){
 
         $('.flipbook-viewport .container').on('touchstart', function(){
             if(curSlideIndex==4){
+                myAudio.pause();
                 Common.gotoPin(2);
             }
         });
