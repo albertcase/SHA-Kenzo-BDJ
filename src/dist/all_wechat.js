@@ -1745,7 +1745,6 @@ $(document).ready(function(){
 
     };
     //init
-    
     controller.prototype.init = function(){
         var self = this;
         var baseurl = ''+'/src/dist/images/';
@@ -2078,7 +2077,7 @@ $(document).ready(function(){
         });
 
     //    btn-back
-        $('.btn-back').on('touchstart', function(){
+        $('.btn-back').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'Back']);
             //reload first page again,init all element
             //window.location.href = window.location.origin+location.pathname;

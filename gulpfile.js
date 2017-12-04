@@ -119,7 +119,7 @@ gulp.task('scripts_weibo',['clean'], function() {
 });
 
 gulp.task('scripts_web',['clean'], function() {
-    return gulp.src(path.weiboJs)
+    return gulp.src(path.webJs)
         .pipe(concat('all_web.js'))
         .pipe(gulp.dest('./src/dist'))
         .pipe(rename('all_web.min.js'))

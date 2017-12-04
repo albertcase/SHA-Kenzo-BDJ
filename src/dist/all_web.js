@@ -1632,8 +1632,8 @@ Api = {
 
 
 };
-/*
- * Just for weibo page
+/*For join page
+ * Inclue two function, one is load new qr for each person, another is show rule popup
  * */
 ;(function(){
     var controller = function(){
@@ -1763,18 +1763,18 @@ Api = {
 
         //play video and close video
         if(!(navigator.userAgent.indexOf('iPhone')>-1)){
-            //    not iphone,will andriod
+        //    not iphone,will andriod
             $('body').addClass('device-andriod');
         }
         var myVideo = document.getElementById('myvideo');
         //play video
-        $('.btn-playvideo').on('click', function(){
+        $('.btn-playvideo').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'videoplay']);
             $('.video-wrap').addClass('show');
             myVideo.play();
         });
         //close video, pause video
-        $('.btn-closevideo').on('click', function(){
+        $('.btn-closevideo').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'videoclose']);
             myVideo.pause();
             $('.video-wrap').removeClass('show');
@@ -1782,21 +1782,21 @@ Api = {
 
 
         //look up the dictionary, load turns js, go pin-lexicon page
-        $('.btn-go').on('click', function(){
+        $('.btn-go').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'dictstart']);
             Common.gotoPin(1);
             self.lexiconPage();
         });
 
         //the book area
-        $('.block-gonext').on('click', function(){
+        $('.block-gonext').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'dictstart']);
             Common.gotoPin(1);
             self.lexiconPage();
         });
 
         //selected relative gift,go prize details page to show relative content,call api to show if there's stock
-        $('.btn-show-gift').on('click', function(){
+        $('.btn-show-gift').on('touchstart', function(){
             var trackingGiftName = ['hougift','huname'];
             _hmt.push(['_trackEvent', 'buttons', 'click', trackingGiftName[$(this).index()]]);
             self.selectedGift = 'gift'+parseInt($(this).index()+1);
@@ -1823,7 +1823,7 @@ Api = {
         });
 
         //get gift, '领见面礼' or "来晚了"
-        $('.btn-get-gift').on('click', function(){
+        $('.btn-get-gift').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'getPrize']);
             Api.getStock({type:self.selectedGift},function(data){
                 if(data.status==0){
@@ -1846,23 +1846,23 @@ Api = {
 
 
         //show and hide terms pop
-        //close terms popup
-        $('.terms-pop .btn-close').on('click',function(){
+            //close terms popup
+        $('body').on('touchstart','.btn-close',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             $('.terms-pop').removeClass('show');
         });
         //    show terms pop
-        $('.link-rule').on('click',function(){
+        $('.link-rule').on('touchstart',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
             $('.terms-pop').addClass('show');
         });
 
 
         /*
-         * submit the form
-         * */
-        $('.btn-submit').on('click',function(){
+        * submit the form
+        * */
+        $('.btn-submit').on('touchstart',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'btnForSubmitForm']);
             if(self.validateForm()){
                 //name mobile province city area address
@@ -1923,7 +1923,7 @@ Api = {
 
         });
 
-        //    switch the province
+    //    switch the province
         var curProvinceIndex = 0;
         $('#select-province').on('change',function(){
             curProvinceIndex = document.getElementById('select-province').selectedIndex;
@@ -1943,23 +1943,23 @@ Api = {
         });
 
 
-        //    imitate share function on pc====test
-        //    $('.share-popup .guide-share').on('click',function(){
-        //        self.shareSuccess();
-        //    });
+    //    imitate share function on pc====test
+    //    $('.share-popup .guide-share').on('touchstart',function(){
+    //        self.shareSuccess();
+    //    });
 
         //switch validate code
-        $('.validate-code').on('click', function(){
+        $('.validate-code').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'getValidateCode']);
             self.getValidateCode();
         });
 
         /*
-         * validate phonenumber first
-         * Get message validate code,check image validate code
-         * if image validate code is right
-         * */
-        $('.btn-get-msg-code').on('click', function(){
+        * validate phonenumber first
+        * Get message validate code,check image validate code
+        * if image validate code is right
+        * */
+        $('.btn-get-msg-code').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'getMsgValidateCode']);
             if(self.disableClick) return;
             if(!$('#input-mobile').val()){
@@ -2003,22 +2003,22 @@ Api = {
         });
 
 
-        $('.link-share').on('click', function(){
+        $('.link-share').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'ShowSharePop']);
             $('.share-popup').addClass('show');
         });
 
         /*
-         * For share tips overlay,click will disappear
-         * */
-        $('.share-popup').on('click', function(e){
+        * For share tips overlay,click will disappear
+        * */
+        $('.share-popup').on('touchstart', function(e){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'RemoveSharePop']);
             if(e.target.className.indexOf('.share-popup')){
                 $('.share-popup').removeClass('show');
             }
         });
 
-        //    btn-back
+    //    btn-back
         $('.btn-back').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'Back']);
             //reload first page again,init all element
@@ -2035,12 +2035,11 @@ Api = {
         $('.flipbook').turn({
             // Width
 
-            //width:$(window).width()*0.82,
-            width:$('.flipbook-viewport').width()*0.82,
+            width:$(window).width()*0.82,
 
             // Height
 
-            height:$('.flipbook-viewport').width()*0.82*920/616,
+            height:$(window).width()*0.82*920/616,
 
 
             // Elevation
@@ -2084,7 +2083,7 @@ Api = {
             }
         });
 
-        $('.flipbook-viewport .container').on('click', function(){
+        $('.flipbook-viewport .container').on('touchstart', function(){
             if(curSlideIndex==4){
                 Common.gotoPin(2);
             }
@@ -2102,6 +2101,7 @@ Api = {
 //    });
 
         $(".flipbook").bind("turning", function(event, page, pageObject) {
+            //console.log(page);
             curSlideIndex = page;
             myAudio.pause();
             switch(page) {
@@ -2149,7 +2149,7 @@ Api = {
             'src/media/hmj.aac'
         ];
         var trackingName = ['wyvoice','lhvoice','yzvoice','mjvoice'];
-        $('.btn-play-audio').on('click', function(){
+        $('.btn-play-audio').on('touchstart', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', trackingName[curSlideIndex - 1]]);
             if(!isAudioPlay){
                 isAudioPlay = true;
@@ -2168,9 +2168,9 @@ Api = {
     };
 
     /*
-     * Countdown
-     * Disabled click the button untill the end the countdown
-     * */
+    * Countdown
+    * Disabled click the button untill the end the countdown
+    * */
 
     controller.prototype.countDown = function(){
         var self = this;
@@ -2350,3 +2350,4 @@ Api = {
     });
 
 })();
+console.log('web');
