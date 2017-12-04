@@ -1870,7 +1870,7 @@ Api = {
 
         //show and hide terms pop
         //close terms popup
-        $('body').on('click','.btn-close',function(){
+        $('.terms-pop .btn-close').on('click',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             //_hmt.push(['_trackEvent', 'buttons', 'click', 'closeTermsPop']);
             $('.terms-pop').removeClass('show');
@@ -1879,6 +1879,7 @@ Api = {
         $('.link-rule').on('click',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
             $('.terms-pop').addClass('show');
+            
         });
 
 
