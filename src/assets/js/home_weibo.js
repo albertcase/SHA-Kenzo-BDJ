@@ -388,9 +388,8 @@
         $('.btn-back').on('click', function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'Back']);
             //reload first page again,init all element
-            //window.location.href = window.location.origin+location.pathname;
-            //back to third page
-            Common.gotoPin(2);
+            window.location.href = window.location.origin+location.pathname+"#page=2";
+            window.location.reload();
         });
     };
 
