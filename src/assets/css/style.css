@@ -657,7 +657,7 @@ html, body {
 }
 
 body {
-  background: url("../images/bg.png") center center no-repeat;
+  background: #ffe9fe url("../images/bg.png") center center no-repeat;
   background-size: cover;
 }
 

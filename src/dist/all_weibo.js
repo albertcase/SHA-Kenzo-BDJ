@@ -1689,27 +1689,6 @@ Api = {
     //init
     controller.prototype.init = function(){
         var self = this;
-
-        var timeStart = 0,
-            step= 1,
-            isTrueNext = false,
-            isFalseNext = false;
-        var loadingAni = setInterval(function(){
-            if(timeStart>100){
-                isFalseNext = true;
-                if(isTrueNext){
-                    self.startUp();
-                }
-                clearInterval(loadingAni);
-                return;
-            };
-            if(timeStart==step){
-                $('.animate-flower').addClass('fadenow');
-            }
-            $('.loading-num .num').html(timeStart);
-            timeStart += step;
-        },50);
-
         var baseurl = ''+'/src/dist/images/';
         var imagesArray = [
             baseurl + 'bg.png',
@@ -1750,16 +1729,14 @@ Api = {
         new preLoader(imagesArray, {
             onProgress: function(){
                 i++;
-                //var progress = parseInt(i/imagesArray.length*100);
+                var progress = parseInt(i/imagesArray.length*100);
                 //console.log(progress);
                 //$('.preload .v-content').html(''+progress+'%');
                 //console.log(i+'i');
+                $('.loading-num .num').html(progress);
             },
             onComplete: function(){
-                isTrueNext  = true;
-                if(isFalseNext){
-                    self.startUp();
-                }
+                self.startUp();
 
             }
         });
@@ -1879,7 +1856,6 @@ Api = {
         $('.link-rule').on('click',function(){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'showTermsPop']);
             $('.terms-pop').addClass('show');
-            
         });
 
 
