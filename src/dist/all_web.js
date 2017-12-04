@@ -1639,19 +1639,6 @@ noBounce.init({
 	animate: false
 });
 
-$(document).ready(function(){
-
-//	close alert pop
-	$('body').on('click','.btn-alert-ok',function(){
-		$(this).parent().parent('.alertpop').remove();
-	});
-	//Common.overscroll(document.querySelector('.wrapper'));
-
-
-
-
-});
-
 
 
 
@@ -1918,6 +1905,9 @@ Api = {
         self.showAllProvince();
         Common.hashRoute();
         if(location.hash == '#page=4'){
+            if(Cookies.get('selectedGift')){
+                self.selectedGift = Cookies.get('selectedGift');
+            }
             self.getValidateCode();
         }
     };
@@ -1965,7 +1955,7 @@ Api = {
             var trackingGiftName = ['hougift','huname'];
             _hmt.push(['_trackEvent', 'buttons', 'click', trackingGiftName[$(this).index()]]);
             self.selectedGift = 'gift'+parseInt($(this).index()+1);
-            $.cookie('selectedGift', self.selectedGift);
+            Cookies.set('selectedGift', self.selectedGift);
             //console.log('call api');
             Api.getStock({type:self.selectedGift},function(data){
                 if(data.status==0){
@@ -2432,6 +2422,8 @@ Api = {
         var validate = true,
             inputName = document.getElementById('input-name'),
             inputMobile = document.getElementById('input-mobile'),
+            inputValidateCode = document.getElementById('input-validate-code'),
+            inputValidateMsgCode = document.getElementById('input-validate-message-code'),
             inputAddress = document.getElementById('input-address'),
             selectProvince = document.getElementById('select-province'),
             selectCity = document.getElementById('select-city'),
@@ -2456,6 +2448,16 @@ Api = {
                 //Common.errorMsg.remove(inputMobile.parentElement);
             }
         }
+
+        if(!inputValidateCode.value){
+            Common.errorMsgBox.add('请填写图片验证码');
+            validate = false;
+        };
+
+        if(!inputValidateMsgCode.value){
+            Common.errorMsgBox.add('请填写短信验证码');
+            validate = false;
+        };
 
         if(!selectProvince.value || selectProvince.value == '省份'){
             //Common.errorMsg.add(selectProvince.parentElement,'请选择省份');
@@ -2489,6 +2491,12 @@ Api = {
 
 
     $(document).ready(function(){
+        //close all alert pop
+        $('body').on('touchstart','.btn-alert-ok',function(){
+            $(this).parent().parent('.alertpop').remove();
+        });
+
+
 //    show form
         var newFollow = new controller();
         if(location.hash.indexOf('#page=')>-1){

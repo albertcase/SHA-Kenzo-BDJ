@@ -1639,19 +1639,6 @@ noBounce.init({
 	animate: false
 });
 
-$(document).ready(function(){
-
-//	close alert pop
-	$('body').on('click','.btn-alert-ok',function(){
-		$(this).parent().parent('.alertpop').remove();
-	});
-	//Common.overscroll(document.querySelector('.wrapper'));
-
-
-
-
-});
-
 
 
 
@@ -2562,6 +2549,12 @@ $(document).ready(function(){
 
 
     $(document).ready(function(){
+        //close all alert pop
+        $('body').on('touchstart','.btn-alert-ok',function(){
+            $(this).parent().parent('.alertpop').remove();
+        });
+
+
 //    show form
         var newFollow = new controller();
         if(location.hash.indexOf('#page=')>-1){

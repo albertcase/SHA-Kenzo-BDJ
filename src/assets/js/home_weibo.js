@@ -119,6 +119,9 @@
         self.showAllProvince();
         Common.hashRoute();
         if(location.hash == '#page=4'){
+            if(Cookies.get('selectedGift')){
+                self.selectedGift = Cookies.get('selectedGift');
+            }
             self.getValidateCode();
         }
     };
@@ -166,6 +169,7 @@
             var trackingGiftName = ['hougift','huname'];
             _hmt.push(['_trackEvent', 'buttons', 'click', trackingGiftName[$(this).index()]]);
             self.selectedGift = 'gift'+parseInt($(this).index()+1);
+            Cookies.set('selectedGift', self.selectedGift);
             //console.log('call api');
             Api.getStock({type:self.selectedGift},function(data){
                 if(data.status==0){
@@ -702,6 +706,10 @@
 
 
     $(document).ready(function(){
+        //close all alert pop
+        $('body').on('touchstart click', '.btn-alert-ok', function(){
+            $(this).parent().parent('.alertpop').remove();
+        });
 //    show form
         var newFollow = new controller();
         if(location.hash.indexOf('#page=')>-1){

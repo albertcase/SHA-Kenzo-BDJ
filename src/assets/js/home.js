@@ -705,6 +705,12 @@
 
 
     $(document).ready(function(){
+        //close all alert pop
+        $('body').on('touchstart','.btn-alert-ok',function(){
+            $(this).parent().parent('.alertpop').remove();
+        });
+
+
 //    show form
         var newFollow = new controller();
         if(location.hash.indexOf('#page=')>-1){
